@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MockAuthService } from '../auth/mock-auth.service';
 import { User } from '../interfaces/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -12,7 +13,7 @@ export class SignUpComponent {
   signUpForm!: FormGroup;
   // loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private _authService : MockAuthService) {}
+  constructor(private fb: FormBuilder, private _authService : MockAuthService, private _Router:Router) {}
 
   ngOnInit() {
     // this.loginForm = this.fb.group({
@@ -88,5 +89,6 @@ export class SignUpComponent {
     this._authService.registerUser(user)
     console.log(user);
     
+    this._Router.navigate(['/login']);
   };
 }

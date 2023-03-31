@@ -32,6 +32,8 @@ export class MockAuthService {
     const authenticatedUser = this.users.find(
       (u) => u.email === user.email && u.password === user.password
     );
+    console.log(authenticatedUser);
+
     if (authenticatedUser) {
       const token = 'mock-token';
       localStorage.setItem('currentUser', JSON.stringify({ user: authenticatedUser, token }));
