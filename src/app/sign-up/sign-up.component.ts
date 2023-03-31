@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { MockAuthService } from '../auth/mock-auth.service';
+import { User } from '../interfaces/user';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,23 +10,23 @@ import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@a
 })
 export class SignUpComponent {
   signUpForm!: FormGroup;
-  loginForm!: FormGroup;
+  // loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private _authService : MockAuthService) {}
 
   ngOnInit() {
-    this.loginForm = this.fb.group({
-      email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-    });
+    // this.loginForm = this.fb.group({
+    //   email: new FormControl('', Validators.required),
+    //   password: new FormControl('', Validators.required),
+    // });
 
     this.signUpForm = this.fb.group(
       {
-        firstName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(15)]],
-        lastName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(15)]],
+        firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+        lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(8), this.passwordValidator]],
-        confirmPassword: ['',[Validators.required]],
+        password: ['', [Validators.required, this.passwordValidator]],
+        confirmPassword: ['', [Validators.required]],
         image: [''],
       },
       {
@@ -39,20 +41,13 @@ export class SignUpComponent {
     return regex.test(value) ? null : { notRegex: true };
   }
 
-  ComparePassword(
-    controlName: string,
-
-    matchingControlName: string
-  ) {
+  ComparePassword(controlName: string, matchingControlName: string) {
     return (formGroup: FormGroup) => {
       const control = formGroup.controls[controlName];
-
       const matchingControl = formGroup.controls[matchingControlName];
-      
       if (matchingControl.errors && !matchingControl.errors['mustMatch']) {
         return;
       }
-
       if (control.value !== matchingControl.value) {
         matchingControl.setErrors({ mustMatch: true });
       } else {
@@ -80,10 +75,18 @@ export class SignUpComponent {
     return this.signUpForm.get('image');
   }
 
-  loginUser = () =>{
-    
-  }
+  // loginUser = () => {};
+
   registerUser = () => {
-    console.log(this.signUpForm.value);
+    const user :User  = {
+      firstName: this.firstName!.value,
+      lastName: this.lastName!.value,
+      email: this.email!.value,
+      password: this.password!.value,
+      photoUrl: this.image!.value,
+    }
+    this._authService.registerUser(user)
+    console.log(user);
+    
   };
 }

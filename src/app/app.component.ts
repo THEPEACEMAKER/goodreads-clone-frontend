@@ -3,14 +3,14 @@ import { MockAuthService } from './auth/mock-auth.service';
 
 @Component({
   selector: 'app-root',
-  // templateUrl: './app.component.html',
-  template: `
-    <button (click)="register()">Register</button>
-    <button (click)="login()">Log in</button>
-    <button (click)="logout()">Log out</button>
-    <p *ngIf="loggedIn$ | async">Logged in</p>
-    <p *ngIf="!(loggedIn$ | async)">Not logged in</p>
-  `,
+  templateUrl: './app.component.html',
+  // template: `
+  //   <button (click)="register()">Register</button>
+  //   <button (click)="login()">Log in</button>
+  //   <button (click)="logout()">Log out</button>
+  //   <p *ngIf="loggedIn$ | async">Logged in</p>
+  //   <p *ngIf="!(loggedIn$ | async)">Not logged in</p>
+  // `,
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
