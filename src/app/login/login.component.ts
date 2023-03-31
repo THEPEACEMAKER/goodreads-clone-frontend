@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   loginForm!: FormGroup;
+  loginError: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -39,7 +40,7 @@ export class LoginComponent {
           console.log('Works');
           this._Router.navigate(['/home']);
         } else {
-          console.log('errorrrr this user is not found');
+          this.loginError = true;
         }
       });
     }

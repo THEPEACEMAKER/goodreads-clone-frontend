@@ -1,40 +1,76 @@
-<form
-  (ngSubmit)="loginUser()"
-  [formGroup]="loginForm"
-  class="d-flex flex-column justify-content-center align-items-center mt-3" >
+<section class="vh-100 bg-image"
+ 
+  >
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
-  
-  <div class="mb-3">
-    <input
-      type="email"
-      id="email"
-      class="form-control"
-      formControlName="email"
-      placeholder="Email"
-    />
+              <form (ngSubmit)="loginUser()"
+              [formGroup]="loginForm">
 
-    <div *ngIf="email!.invalid && (email!.dirty || email!.touched)" class="alert alert-danger">
-      <div *ngIf="email!.errors?.['required']">Email is required.</div>
-      <div *ngIf="email!.errors?.['email']">Please enter a valid email address.</div>
+                
+
+                <div class="form-outline mb-4">
+                  <input type="email"
+                  id="email"
+                  formControlName="email"
+                  placeholder="Email"
+                   class="form-control form-control-lg" />
+                  <label class="form-label" for="form3Example3cg">Your Email</label>
+
+                  <div *ngIf="email!.invalid && (email!.dirty || email!.touched)" class="alert alert-danger">
+                    <div *ngIf="email!.errors?.['required']">email is required.</div>
+                    <div *ngIf="email!.errors?.['minlength']">email must be at least 3 characters long.</div>
+                  </div>
+
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input  type="password"
+                  id="password"
+                  formControlName="password"
+                  placeholder="Password"
+                   class="form-control form-control-lg" />
+                  <label class="form-label" for="form3Example4cg">Password</label>
+
+
+                  <div
+                    *ngIf="password!.invalid && (password!.dirty || password!.touched)"
+                    class="alert alert-danger"
+                  >
+                    <div *ngIf="password!.errors?.['required']">password is required.</div>
+                    <div *ngIf="password!.errors?.['notRegex']">
+                      password must be at least 8 characters long and includes number lower and upper case and
+                      special characters
+                    </div>
+                  </div>
+                </div>
+
+                
+
+                <div class="d-flex justify-content-center">
+                  <button type="submit" [disabled]="!loginForm.valid"
+                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Log In</button>
+                </div>
+                <br>
+                <div
+                *ngIf="loginError"
+                class="alert alert-danger"
+              >
+                <div >Email or password is invalid</div>
+                </div>
+                                
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
-  <div class="mb-3">
-    <input
-      type="password"
-      id="password"
-      class="form-control"
-      formControlName="password"
-      placeholder="Password"
-    />
-
-    <div
-      *ngIf="password!.invalid && (password!.dirty || password!.touched)"
-      class="alert alert-danger"
-    >
-      <div *ngIf="password!.errors?.['required']">Password is required.</div>
-    </div>
-  </div>
-
-  <button type="submit" class="btn btn-primary">Log In</button>
-</form>
+</section>
