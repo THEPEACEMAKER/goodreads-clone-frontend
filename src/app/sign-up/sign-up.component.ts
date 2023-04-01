@@ -13,7 +13,11 @@ export class SignUpComponent {
   signUpForm!: FormGroup;
   // loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private _authService : MockAuthService, private _Router:Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private _authService: MockAuthService,
+    private _Router: Router
+  ) {}
 
   ngOnInit() {
     // this.loginForm = this.fb.group({
@@ -79,16 +83,16 @@ export class SignUpComponent {
   // loginUser = () => {};
 
   registerUser = () => {
-    const user :User  = {
+    const user: User = {
       firstName: this.firstName!.value,
       lastName: this.lastName!.value,
       email: this.email!.value,
       password: this.password!.value,
       photoUrl: this.image!.value,
-    }
-    this._authService.registerUser(user)
+    };
+    this._authService.registerUser(user);
     console.log(user);
-    
+
     this._Router.navigate(['/login']);
   };
 }
