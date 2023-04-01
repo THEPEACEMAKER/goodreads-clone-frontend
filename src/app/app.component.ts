@@ -14,35 +14,35 @@ import { MockAuthService } from './auth/mock-auth.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  loggedIn$ = this.authService.isLoggedIn();
+  loggedIn$ = this.authService.getCurrentUser();
 
   constructor(private authService: MockAuthService) {}
 
-  register() {
-    const user = {
-      firstName: 'Jane',
-      lastName: 'Doe',
-      email: 'janedoe@example.com',
-      password: 'password',
-      photoUrl: 'img.png',
-    };
-    this.authService.registerUser(user).subscribe((result) => {
-      console.log(result);
-      // Check the result here
-    });
-  }
+  // register() {
+  //   const user = {
+  //     firstName: 'Jane',
+  //     lastName: 'Doe',
+  //     email: 'janedoe@example.com',
+  //     password: 'password',
+  //     photoUrl: 'img.png',
+  //   };
+  //   this.authService.registerUser(user).subscribe((result) => {
+  //     console.log(result);
+  //     // Check the result here
+  //   });
+  // }
 
-  login() {
-    const email = 'janedoe@example.com';
-    const password = 'password';
-    this.authService.loginUser(email, password).subscribe((result) => {
-      console.log(result);
-      this.loggedIn$ = this.authService.isLoggedIn();
-    });
-  }
+  // login() {
+  //   const email = 'janedoe@example.com';
+  //   const password = 'password';
+  //   this.authService.loginUser(email, password).subscribe((result) => {
+  //     console.log(result);
+  //     this.loggedIn$ = this.authService.getCurrentUser();
+  //   });
+  // }
 
-  logout() {
-    this.authService.logoutUser();
-    this.loggedIn$ = this.authService.isLoggedIn();
-  }
+  // logout() {
+  //   this.authService.logoutUser();
+  //   this.loggedIn$ = this.authService.getCurrentUser();
+  // }
 }

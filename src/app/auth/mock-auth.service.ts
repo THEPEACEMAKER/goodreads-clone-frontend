@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { User } from '../interfaces/user';
 
 @Injectable({
@@ -18,11 +18,20 @@ export class MockAuthService {
       books: [],
     },
   ];
+  private currentUser = new BehaviorSubject<User | null>(null);
 
-  constructor() {}
+  constructor() {
+    const currentUserData = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    const user = currentUserData.user;
+    const token = currentUserData.token;
+    if (user && token) {
+      this.currentUser.next(user);
+    }
+  }
 
-  registerUser(user: User): Observable<User> {
+  registerUser(user: User, file: File): Observable<User> {
     user.id = this.users.length + 1;
+    console.log(file);
     this.users.push(user);
     return of(user);
   }
@@ -43,17 +52,11 @@ export class MockAuthService {
     }
   }
 
+  getCurrentUser(): Observable<User | null> {
+    return this.currentUser.asObservable();
+  }
+
   logoutUser(): void {
     localStorage.removeItem('currentUser');
-  }
-
-  isAuthenticated(): Observable<boolean> {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-    const authToken = currentUser.token;
-    return of(!!authToken);
-  }
-
-  isLoggedIn(): Observable<boolean> {
-    return this.isAuthenticated();
   }
 }

@@ -9,16 +9,30 @@ import { User } from '../interfaces/user';
 })
 export class AuthService {
   private baseUrl = 'http://localhost:3000';
-  private token: string | null = null;
-  private loggedIn = new BehaviorSubject<boolean>(false);
+  private currentUser = new BehaviorSubject<User | null>(null);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    const currentUserData = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    const user = currentUserData.user;
+    const token = currentUserData.token;
+    if (user && token) {
+      this.currentUser.next(user);
+    }
+  }
 
-  registerUser(user: User): Observable<User> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(`${this.baseUrl}/register`, user, { headers: headers }).pipe(
+  registerUser(user: User, file: File): Observable<User> {
+    const formData = new FormData();
+    formData.append('firstName', user.firstName);
+    formData.append('lastName', user.lastName);
+    formData.append('email', user.email);
+    formData.append('password', user.password ?? '');
+    formData.append('role', user.role ?? 'user');
+    formData.append('photo', file, file.name); // the image file
+
+    const headers = new HttpHeaders({ 'Content-Type': 'multipart/form-data' });
+    return this.http.post(`${this.baseUrl}/register`, formData, { headers: headers }).pipe(
       map((response: any) => {
-        const newUser = { ...user, id: response.id };
+        const newUser: User = { ...user, id: response.id, photoUrl: response.photoUrl };
         return newUser;
       }),
       catchError(this.handleError)
@@ -32,13 +46,12 @@ export class AuthService {
       map((response: any) => {
         const token = response.token;
         if (token) {
-          this.token = token;
-          const { password, ...userWithoutPassword } = user;
+          const { password, ...userWithoutPassword } = response.user;
           localStorage.setItem(
             'currentUser',
             JSON.stringify({ user: userWithoutPassword, token: token })
           );
-          this.loggedIn.next(true);
+          this.currentUser.next(userWithoutPassword);
           return true;
         } else {
           return false;
@@ -49,27 +62,17 @@ export class AuthService {
   }
 
   logoutUser(): void {
-    this.token = null;
+    this.currentUser.next(null);
     localStorage.removeItem('currentUser');
-    this.loggedIn.next(false);
   }
 
-  isAuthenticated(): Observable<boolean> {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-    const authToken = currentUser.token;
-    if (authToken && !this.token) {
-      this.token = authToken;
-      this.loggedIn.next(true);
-    }
-    return this.loggedIn.asObservable();
-  }
-
-  isLoggedIn(): Observable<boolean> {
-    return this.loggedIn.asObservable();
+  getCurrentUser(): Observable<User | null> {
+    return this.currentUser.asObservable();
   }
 
   getToken(): string | null {
-    return this.token;
+    const currentUserData = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    return currentUserData.token;
   }
 
   private handleError(error: HttpErrorResponse) {
