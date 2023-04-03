@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
-import { User } from '../interfaces/user';
+import { UserRole } from '../interfaces/user';
 import { Router } from '@angular/router';
 
 @Component({
@@ -87,9 +87,9 @@ export class SignUpComponent {
     formData.append('email', this.email!.value);
     formData.append('password', this.password!.value);
     if (this.email!.value.includes('@admin.com')) {
-      formData.append('role', 'admin');
+      formData.append('role', UserRole.ADMIN);
     } else {
-      formData.append('role', 'user');
+      formData.append('role', UserRole.USER);
     }
 
     formData.append('image', this.imageFile);

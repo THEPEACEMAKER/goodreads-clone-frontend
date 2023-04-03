@@ -21,6 +21,9 @@ export class AuthService {
   }
 
   registerUser(formData: FormData): Observable<number> {
+    formData.forEach((value, key) => {
+      console.log(key, value);
+    });
     const headers = new HttpHeaders();
     return this.http.post(`${this.baseUrl}/user/signup`, formData, { headers: headers }).pipe(
       map((response: any) => {
@@ -37,11 +40,12 @@ export class AuthService {
       map((response: any) => {
         const token = response.token;
         if (token) {
-          const user = response.user;
+          const user: User = response.user;
           // Update the imageUrl property with the correct URL
           const filename = user.imageUrl.split('/').pop();
           user.imageUrl = `http://localhost:3000/images/${filename}`;
           localStorage.setItem('currentUser', JSON.stringify({ user: user, token: token }));
+          console.log(user);
           this.currentUser.next(user);
           return true;
         } else {

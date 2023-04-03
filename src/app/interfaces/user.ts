@@ -1,6 +1,16 @@
+export enum UserRole {
+  ADMIN = 'ADMIN',
+  USER = 'USER',
+}
+
+export enum BookShelf {
+  WANT_TO_READ = 'WANT TO READ',
+  READING = 'CURRENTLY READING',
+  READ = 'READ',
+}
 export interface BookSelection {
   id: number;
-  shelf: 'wantToRead' | 'reading' | 'read';
+  shelf: BookShelf;
 }
 
 export interface User {
@@ -10,6 +20,6 @@ export interface User {
   email: string;
   password?: string;
   imageUrl: string;
-  role?: 'user' | 'admin'; // default is "user"
+  role?: 'USER' | 'ADMIN'; // default is "user"
   books?: BookSelection[];
 }
