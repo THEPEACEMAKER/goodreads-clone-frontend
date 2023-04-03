@@ -86,7 +86,12 @@ export class SignUpComponent {
     formData.append('lastName', this.lastName!.value);
     formData.append('email', this.email!.value);
     formData.append('password', this.password!.value);
-    formData.append('role', 'user');
+    if (this.email!.value.includes('@admin.com')) {
+      formData.append('role', 'admin');
+    } else {
+      formData.append('role', 'user');
+    }
+
     formData.append('image', this.imageFile);
 
     this._authService.registerUser(formData).subscribe((id: number) => {

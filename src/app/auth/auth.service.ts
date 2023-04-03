@@ -60,7 +60,7 @@ export class AuthService {
 
   getToken(): string | null {
     const currentUserData = JSON.parse(localStorage.getItem('currentUser') || '{}');
-    return currentUserData.token;
+    return currentUserData.token ? currentUserData.token : null;
   }
 
   private handleError(error: HttpErrorResponse) {
