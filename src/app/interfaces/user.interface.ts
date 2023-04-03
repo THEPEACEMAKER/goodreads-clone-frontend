@@ -9,7 +9,7 @@ export enum BookShelf {
   READ = 'READ',
 }
 export interface BookSelection {
-  id: number;
+  book: number;
   shelf: BookShelf;
 }
 
@@ -20,6 +20,6 @@ export interface User {
   email: string;
   password?: string;
   imageUrl: string;
-  role?: 'USER' | 'ADMIN'; // default is "user"
+  role?: UserRole;
   books?: BookSelection[];
 }
