@@ -9,7 +9,7 @@ export interface User {
   lastName: string;
   email: string;
   password?: string;
-  photoUrl: string;
+  imageUrl: string;
   role?: 'user' | 'admin'; // default is "user"
   books?: BookSelection[];
 }

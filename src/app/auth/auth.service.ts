@@ -38,6 +38,9 @@ export class AuthService {
         const token = response.token;
         if (token) {
           const user = response.user;
+          // Update the imageUrl property with the correct URL
+          const filename = user.imageUrl.split('/').pop();
+          user.imageUrl = `http://localhost:3000/images/${filename}`;
           localStorage.setItem('currentUser', JSON.stringify({ user: user, token: token }));
           this.currentUser.next(user);
           return true;
@@ -64,15 +67,21 @@ export class AuthService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    let errorMessage = 'An unknown error occurred';
+    let errorMessage: string;
     if (error.error instanceof ErrorEvent) {
       errorMessage = `Error: ${error.error.message}`;
     } else if (error.status === 401) {
       errorMessage = 'Invalid username or password';
     } else if (error.status === 403) {
       errorMessage = 'You are not authorized to access this resource';
+    } else if (error.error.message?.includes('E11000 duplicate key error collection')) {
+      errorMessage = 'This email is already registered';
+    } else if (error.error.message?.includes('Invalid password')) {
+      errorMessage = 'Invalid password';
     } else if (error.status === 500) {
       errorMessage = 'An internal server error occurred';
+    } else {
+      errorMessage = error.message;
     }
     console.error(errorMessage);
     return throwError(errorMessage);

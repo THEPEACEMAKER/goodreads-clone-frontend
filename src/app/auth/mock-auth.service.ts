@@ -13,7 +13,7 @@ export class MockAuthService {
       lastName: 'Doe',
       email: 'johndoe@example.com',
       password: 'password',
-      photoUrl: 'https://randomuser.me/api/portraits/men/1.jpg',
+      imageUrl: 'https://randomuser.me/api/portraits/men/1.jpg',
       role: 'user',
       books: [],
     },
