@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MockAuthService } from '../auth/mock-auth.service';
-import { User } from '../interfaces/user';
+import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +14,7 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private _authService: MockAuthService,
+    private _authService: AuthService,
     private _Router: Router
   ) {}
 
