@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { MockAuthService } from '../auth/mock-auth.service';
+import { AuthService } from '../auth/auth.service';
 import { User } from '../interfaces/user';
 import { Router } from '@angular/router';
 
@@ -11,20 +11,15 @@ import { Router } from '@angular/router';
 })
 export class SignUpComponent {
   signUpForm!: FormGroup;
-  // loginForm!: FormGroup;
+  imageFile!: File;
 
   constructor(
     private fb: FormBuilder,
-    private _authService: MockAuthService,
+    private _authService: AuthService,
     private _Router: Router
   ) {}
 
   ngOnInit() {
-    // this.loginForm = this.fb.group({
-    //   email: new FormControl('', Validators.required),
-    //   password: new FormControl('', Validators.required),
-    // });
-
     this.signUpForm = this.fb.group(
       {
         firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
@@ -80,22 +75,21 @@ export class SignUpComponent {
     return this.signUpForm.get('image');
   }
 
-  // loginUser = () => {};
+  onFileSelect(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    this.imageFile = (target.files as FileList)[0];
+  }
 
   registerUser = () => {
-    const user: User = {
-      firstName: this.firstName!.value,
-      lastName: this.lastName!.value,
-      email: this.email!.value,
-      password: this.password!.value,
-      photoUrl: '',
-      // role: this.role!.value,
-    };
+    const formData = new FormData();
+    formData.append('firstName', this.firstName!.value);
+    formData.append('lastName', this.lastName!.value);
+    formData.append('email', this.email!.value);
+    formData.append('password', this.password!.value);
+    formData.append('image', this.imageFile);
 
-    const file = this.signUpForm.get('image')?.value;
-
-    this._authService.registerUser(user, file).subscribe((newUser: User) => {
-      console.log(newUser);
+    this._authService.registerUser(formData).subscribe((id: number) => {
+      // a confirmation that the 'newUser' has been registered
       this._Router.navigate(['/login']);
     });
   };

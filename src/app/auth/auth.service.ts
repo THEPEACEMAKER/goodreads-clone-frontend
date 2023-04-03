@@ -20,20 +20,11 @@ export class AuthService {
     }
   }
 
-  registerUser(user: User, file: File): Observable<User> {
-    const formData = new FormData();
-    formData.append('firstName', user.firstName);
-    formData.append('lastName', user.lastName);
-    formData.append('email', user.email);
-    formData.append('password', user.password ?? '');
-    formData.append('role', user.role ?? 'user');
-    formData.append('photo', file, file.name); // the image file
-
-    const headers = new HttpHeaders({ 'Content-Type': 'multipart/form-data' });
-    return this.http.post(`${this.baseUrl}/register`, formData, { headers: headers }).pipe(
+  registerUser(formData: FormData): Observable<number> {
+    const headers = new HttpHeaders();
+    return this.http.post(`${this.baseUrl}/user/signup`, formData, { headers: headers }).pipe(
       map((response: any) => {
-        const newUser: User = { ...user, id: response.id, photoUrl: response.photoUrl };
-        return newUser;
+        return response.userId;
       }),
       catchError(this.handleError)
     );
@@ -42,16 +33,13 @@ export class AuthService {
   loginUser(email: string, password: string): Observable<boolean> {
     const user = { email, password };
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(`${this.baseUrl}/login`, user, { headers: headers }).pipe(
+    return this.http.post(`${this.baseUrl}/user/login`, user, { headers: headers }).pipe(
       map((response: any) => {
         const token = response.token;
         if (token) {
-          const { password, ...userWithoutPassword } = response.user;
-          localStorage.setItem(
-            'currentUser',
-            JSON.stringify({ user: userWithoutPassword, token: token })
-          );
-          this.currentUser.next(userWithoutPassword);
+          const user = response.user;
+          localStorage.setItem('currentUser', JSON.stringify({ user: user, token: token }));
+          this.currentUser.next(user);
           return true;
         } else {
           return false;
