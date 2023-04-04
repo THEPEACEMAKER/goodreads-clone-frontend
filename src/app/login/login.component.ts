@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   loginForm!: FormGroup;
-  loginError: boolean = false;
+  loginError: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -34,13 +34,13 @@ export class LoginComponent {
 
   loginUser = () => {
     if (this.email!.value && this.password!.value) {
-      this._authService.loginUser(this.email?.value, this.password?.value).subscribe((res) => {
-        if (res) {
-          console.log('Works');
+      this._authService.loginUser(this.email?.value, this.password?.value).subscribe({
+        next: (res) => {
           this._Router.navigate(['/home']);
-        } else {
-          this.loginError = true;
-        }
+        },
+        error: (error) => {
+          this.loginError = error;
+        },
       });
     }
   };

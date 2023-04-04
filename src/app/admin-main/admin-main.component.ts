@@ -20,20 +20,22 @@ export class AdminMainComponent {
   constructor(private CategoryService: CategoryService) {}
 
   categoryError: string = '';
+  categorySuccess: boolean = false;
   newCategory: Category = { name: '' };
   addCategory(): void {
     if (this.newCategory.name == '') {
       this.categoryError = "You can't enter empty value";
     } else {
-      this.CategoryService.addCategory(this.newCategory).subscribe(
-        (response: any) => {
+      this.CategoryService.addCategory(this.newCategory).subscribe({
+        next: (response: any) => {
           console.log(response.message);
+          this.categorySuccess = true;
           this.newCategory.name = '';
         },
-        (error) => {
+        error: (error) => {
           this.categoryError = error;
-        }
-      );
+        },
+      });
     }
   }
 

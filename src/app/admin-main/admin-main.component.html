@@ -31,8 +31,11 @@
         </div>
       </div>
       <div *ngIf="categoryError" class="alert alert-danger">
-       <div >You can't enter empty value</div>
-        </div>
+        <div >{{categoryError}}</div>
+      </div>
+      <div *ngIf="categorySuccess" class="alert alert-success">
+        <div>Category added successfully</div>
+      </div>
       </div>
     </div>
   </div>
