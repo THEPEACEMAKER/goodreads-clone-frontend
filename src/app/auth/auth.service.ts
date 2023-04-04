@@ -25,8 +25,7 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/user/signup`, formData, { headers: headers }).pipe(
       map((response: any) => {
         return response.userId;
-      }),
-      catchError(this.handleError)
+      })
     );
   }
 
@@ -40,15 +39,14 @@ export class AuthService {
           const user: User = response.user;
           // Update the imageUrl property with the correct URL
           const filename = user.imageUrl.split('/').pop();
-          user.imageUrl = `http://localhost:3000/images/${filename}`;
+          user.imageUrl = `${this.baseUrl}/images/${filename}`;
           localStorage.setItem('currentUser', JSON.stringify({ user: user, token: token }));
           this.currentUser.next(user);
           return true;
         } else {
           return false;
         }
-      }),
-      catchError(this.handleError)
+      })
     );
   }
 
@@ -64,26 +62,5 @@ export class AuthService {
   getToken(): string | null {
     const currentUserData = JSON.parse(localStorage.getItem('currentUser') || '{}');
     return currentUserData.token ? currentUserData.token : null;
-  }
-
-  private handleError(error: HttpErrorResponse) {
-    let errorMessage: string;
-    if (error.error instanceof ErrorEvent) {
-      errorMessage = `Error: ${error.error.message}`;
-    } else if (error.status === 401) {
-      errorMessage = 'Invalid username or password';
-    } else if (error.status === 403) {
-      errorMessage = 'You are not authorized to access this resource';
-    } else if (error.error.message?.includes('E11000 duplicate key error collection')) {
-      errorMessage = 'This email is already registered';
-    } else if (error.error.message?.includes('Invalid password')) {
-      errorMessage = 'Invalid password';
-    } else if (error.status === 500) {
-      errorMessage = 'An internal server error occurred';
-    } else {
-      errorMessage = error.message;
-    }
-    console.error(errorMessage);
-    return throwError(errorMessage);
   }
 }
