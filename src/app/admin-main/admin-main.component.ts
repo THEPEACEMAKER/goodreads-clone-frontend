@@ -14,12 +14,11 @@ export class AdminMainComponent {
   categoryError: string = '';
   categorySuccess: boolean = false;
 
-  categories: Category[] = [
-    { id: 1, name: 'Fiction' },
-    { id: 2, name: 'Non-Fiction' },
-  ];
+  categories: Category[] = [];
 
-  constructor(private _authService: AuthService, private CategoryService: CategoryService) {}
+  constructor(private _authService: AuthService, private _categoryService: CategoryService) {
+    this.getAllCategories()
+  }
 
   logout() {
     this._authService.logoutUser();
@@ -29,11 +28,12 @@ export class AdminMainComponent {
     if (this.newCategory.name == '') {
       this.categoryError = "You can't enter empty value";
     } else {
-      this.CategoryService.addCategory(this.newCategory).subscribe({
+      this._categoryService.addCategory(this.newCategory).subscribe({
         next: (response: any) => {
           console.log(response.message);
           this.categorySuccess = true;
           this.newCategory.name = '';
+          this.getAllCategories()
         },
         error: (error) => {
           this.categoryError = error;
@@ -42,13 +42,18 @@ export class AdminMainComponent {
     }
   }
 
-  editCategory(category: Category): void {
-    const index = this.categories.findIndex((c) => c.id === category.id);
-    const newName = this.newCategory.name;
-    if (newName == '') {
+  editCategory(categoryId: number): void {
+    if (this.newCategory.name == '') {
       this.categoryError = "You can't enter empty value";
     } else {
-      this.categories[index].name = newName;
+      this._categoryService.updateCategory(categoryId, this.newCategory).subscribe({
+        next: (response: any) => {
+          this.categorySuccess = true;
+        },
+        error: (error) => {
+          this.categoryError = error;
+        },
+      })
     }
   }
 
@@ -56,8 +61,25 @@ export class AdminMainComponent {
     this.selectedCategory = category;
   }
 
-  deleteCategory(category: Category): void {
-    const index = this.categories.findIndex((c) => c.id === category.id);
-    this.categories.splice(index, 1);
+  getAllCategories(): void {
+    this._categoryService.getAllCategories().subscribe({
+      next: (response: any) => {
+        this.categories = response.categories
+      },
+      error: (error) => {
+        this.categoryError = error;
+      },
+    });
+  }
+
+  deleteCategory(categoryId: number): void {
+    this._categoryService.deleteCategory(categoryId).subscribe({
+      next: (response: any) => {
+        this.categorySuccess = true;
+      },
+      error: (error) => {
+        this.categoryError = error;
+      },
+    });
   }
 }
