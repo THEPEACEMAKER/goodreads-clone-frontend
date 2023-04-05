@@ -21,7 +21,7 @@
       <ul class="navbar-nav  mb-2 mb-lg-0">
           <li class="nav-item">
             <!-- <a class="nav-link logout" style="cursor: pointer;" (click)="logout()">Logout</a> -->
-            <button class="logout">
+            <button class="logout" (click)="logout()">
               <a>logout</a>
           </button>
           </li>
@@ -55,15 +55,15 @@
       <div class="modal-body">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Enter category name" [(ngModel)]="categoryName">
-          <button class="btn btn-primary ma" data-bs-dismiss="modal" (click)="addCategory()">Add</button>
+          <button class="btn btn-primary ma" (click)="addCategory()">Add</button>
         </div>
       </div>
       <div *ngIf="categoryError" class="alert alert-danger">
         <div >{{categoryError}}</div>
       </div>
-      <div *ngIf="categorySuccess" class="alert alert-success">
+      <!-- <div *ngIf="categorySuccess" class="alert alert-success">
         <div>Category added successfully</div>
-      </div>
+      </div> -->
       </div>
     </div>
   </div>
