@@ -13,6 +13,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { AdminMainComponent } from './admin-main/admin-main.component';
 import { RedirectComponent } from './redirect/redirect.component';
+import { AdminBooksComponent } from './admin-books/admin-books.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +23,7 @@ import { RedirectComponent } from './redirect/redirect.component';
     NavbarComponent,
     AdminMainComponent,
     RedirectComponent,
+    AdminBooksComponent,
   ],
   imports: [BrowserModule, ReactiveFormsModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [

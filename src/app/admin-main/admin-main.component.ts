@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
 
 interface Category {
   id: number;
@@ -22,7 +23,11 @@ export class AdminMainComponent {
 
   categoryName: string = '';
 
-  constructor() {}
+  constructor(private _authService: AuthService) {}
+
+  logout() {
+    this._authService.logoutUser();
+  }
 
   addCategory(): void {
     const newCategory: Category = {

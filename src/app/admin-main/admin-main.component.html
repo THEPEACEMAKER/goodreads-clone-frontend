@@ -1,19 +1,47 @@
-<!-- <div class="mt-3">
-  <h4>Add Category</h4>
-  <div class="input-group">
-    <input type="text" class="form-control" placeholder="Enter category name" [(ngModel)]="categoryName">
-    <button class="btn btn-primary" (click)="addCategory()">Add</button>
+<div class="bigbody">
+<h1 class="text-center">Welcome to Admin Page!</h1>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand home" [routerLink]="['/home']">HOME</a>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 smsm">
+        <li class="nav-item">
+          <a class="nav-link smsmlink" routerLink="admin">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link smsmlink">Books</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link smsmlink">Authors</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav  mb-2 mb-lg-0">
+          <li class="nav-item">
+            <!-- <a class="nav-link logout" style="cursor: pointer;" (click)="logout()">Logout</a> -->
+            <button class="logout">
+              <a>logout</a>
+          </button>
+          </li>
+        </ul>
+    </div>
   </div>
-</div>
-<div *ngIf="categoryError" class="alert alert-danger">
- <div >You can't enter empty value</div>
-  </div> -->
+</nav>
 
-  <!-- ////////////////////////////////////////////// -->
-<!-- Button trigger modal -->
+
+
+
+
 <br><br>
-<button style="margin-left: 90%;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+<!-- <button type="button" class="btn btn-primary addbtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
   Add Category
+</button> -->
+<button class="newbtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  <span>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg> Add Category
+  </span>
 </button>
 
 <!-- Modal -->
@@ -21,13 +49,13 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Add new Category</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Enter category name" [(ngModel)]="categoryName">
-          <button class="btn btn-primary ma" data-bs-dismiss="modal" (click)="addCategory()">Add</button>
+          <button class="btn btn-primary ma" (click)="addCategory()">Add</button>
         </div>
       </div>
       <div *ngIf="categoryError" class="alert alert-danger">
@@ -52,16 +80,15 @@
       <th scope="col">Action</th>
     </tr>
   </thead>
-  <tbody *ngFor="let category of categories">
-    <tr>
-      <td scope="row"></td>
+  <tbody>
+    <tr *ngFor="let category of categories">
+      <td scope="row">{{category.id}}</td>
       <td>{{category.name}}</td>
       <td>
-        <!-- <button class="btn btn-outline-secondary me-2" (click)="editCategory(category)">Edit </button> -->
         
         
         <button  type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#staticBackdropnn" (click)="getSelectedCategory(category)">
-          Edit here
+          Edit 
         </button>
         
         <!-- Modal -->
@@ -74,7 +101,7 @@
               </div>
               <div class="modal-body">
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Enter category name" [(ngModel)]="categoryName">
+                  <input type="text" class="form-control" placeholder="Edit category name" [(ngModel)]="categoryName">
                   <button class="btn btn-primary ma" data-bs-dismiss="modal" (click)="editCategory(selectedCategory)">Edit</button>
                 </div>
               </div>
@@ -84,9 +111,6 @@
               </div>
             </div>
           </div>
-
-          <!-- ////////////////////////////// -->
-        <!-- <button class="btn btn-outline-danger" (click)="deleteCategory(category)">Delete</button></td> -->
 
         <button  type="button" class="btn btn-outline-danger me-2" data-bs-toggle="modal" data-bs-target="#staticBackdropdel" (click)="getSelectedCategory(category)">
           Delete
@@ -109,11 +133,10 @@
               </div>
             </div>
           </div>
-
     </tr>
   </tbody>
 </table>
-
+</div>
 
 
 
