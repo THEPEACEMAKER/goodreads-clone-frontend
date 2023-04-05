@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
 
 interface Category {
   id: number;
@@ -13,7 +12,6 @@ interface Category {
   styleUrls: ['./admin-main.component.css'],
 })
 export class AdminMainComponent {
-  categoryError: boolean = false;
   selectedCategory: any;
 
   categories: Category[] = [
@@ -23,22 +21,25 @@ export class AdminMainComponent {
 
   categoryName: string = '';
 
-  constructor(private _authService: AuthService) {}
+  constructor() {}
 
-  logout() {
-    this._authService.logoutUser();
-  }
-
+  categoryError: string = '';
+  categorySuccess: boolean = false;
+  newCategory: Category = { name: '' };
   addCategory(): void {
-    const newCategory: Category = {
-      id: this.categories.length + 1,
-      name: this.categoryName,
-    };
-    if (this.categoryName == '') {
-      this.categoryError = true;
+    if (this.newCategory.name == '') {
+      this.categoryError = "You can't enter empty value";
     } else {
-      this.categories.push(newCategory);
-      this.categoryName = '';
+      this.CategoryService.addCategory(this.newCategory).subscribe({
+        next: (response: any) => {
+          console.log(response.message);
+          this.categorySuccess = true;
+          this.newCategory.name = '';
+        },
+        error: (error) => {
+          this.categoryError = error;
+        },
+      });
     }
   }
 
@@ -46,7 +47,7 @@ export class AdminMainComponent {
     const index = this.categories.findIndex((c) => c.id === category.id);
     const newName = this.categoryName;
     if (newName == '') {
-      this.categoryError = true;
+      this.categoryError = "You can't enter empty value";
     } else {
       this.categories[index].name = newName;
     }

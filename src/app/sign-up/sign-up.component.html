@@ -25,7 +25,7 @@
                   >
                     <div *ngIf="firstName!.errors?.['required']">firstName is required.</div>
                     <div *ngIf="firstName!.errors?.['minlength']">
-                      firstName must be at least 5 characters long.
+                      firstName must be at least 3 characters long.
                     </div>
                   </div>
                 </div>
@@ -113,6 +113,13 @@
                 <div class="d-flex justify-content-center">
                   <button type="submit" [disabled]="!signUpForm.valid"
                     class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                </div>
+                <br>
+                <div *ngIf="registerError" class="alert alert-danger">
+                  {{ registerError }}
+                </div>
+                <div *ngIf="registerSuccess" class="alert alert-success">
+                  Your account has been registered successfully, Now let's login
                 </div>
 
                 <p class="text-center text-muted mt-5 mb-0">Have already an account? <a

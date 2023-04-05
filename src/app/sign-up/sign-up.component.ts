@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class SignUpComponent {
   signUpForm!: FormGroup;
   imageFile!: File;
+  registerError: string | null = null;
+  registerSuccess: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -94,9 +96,18 @@ export class SignUpComponent {
 
     formData.append('image', this.imageFile);
 
-    this._authService.registerUser(formData).subscribe((id: number) => {
-      // a confirmation that the 'newUser' has been registered
-      this._Router.navigate(['/login']);
+    this._authService.registerUser(formData).subscribe({
+      next: (id: number) => {
+        // registered successfully
+        this.registerError = null;
+        this.registerSuccess = true;
+        setTimeout(() => {
+          this._Router.navigate(['/login']);
+        }, 1000);
+      },
+      error: (error) => {
+        this.registerError = error;
+      },
     });
   };
 }

@@ -55,12 +55,15 @@
       <div class="modal-body">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Enter category name" [(ngModel)]="categoryName">
-          <button class="btn btn-primary ma" (click)="addCategory()">Add</button>
+          <button class="btn btn-primary ma" data-bs-dismiss="modal" (click)="addCategory()">Add</button>
         </div>
       </div>
       <div *ngIf="categoryError" class="alert alert-danger">
-       <div >You can't enter empty value</div>
-        </div>
+        <div >{{categoryError}}</div>
+      </div>
+      <div *ngIf="categorySuccess" class="alert alert-success">
+        <div>Category added successfully</div>
+      </div>
       </div>
     </div>
   </div>
