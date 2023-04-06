@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-
-interface Category {
-  id: number;
-  name: string;
-  selectedCategory?: string;
-}
+import { Category } from '../interfaces';
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-admin-main',
@@ -13,42 +9,51 @@ interface Category {
   styleUrls: ['./admin-main.component.css'],
 })
 export class AdminMainComponent {
-  categoryError: boolean = false;
   selectedCategory: any;
+  newCategory: Category = { name: '' };
+  categoryError: string = '';
+  categorySuccess: boolean = false;
 
-  categories: Category[] = [
-    { id: 1, name: 'Fiction' },
-    { id: 2, name: 'Non-Fiction' },
-  ];
+  categories: Category[] = [];
 
-  categoryName: string = '';
-
-  constructor(private _authService: AuthService) {}
+  constructor(private _authService: AuthService, private _categoryService: CategoryService) {
+    this.getAllCategories()
+  }
 
   logout() {
     this._authService.logoutUser();
   }
 
   addCategory(): void {
-    const newCategory: Category = {
-      id: this.categories.length + 1,
-      name: this.categoryName,
-    };
-    if (this.categoryName == '') {
-      this.categoryError = true;
+    if (this.newCategory.name == '') {
+      this.categoryError = "You can't enter empty value";
     } else {
-      this.categories.push(newCategory);
-      this.categoryName = '';
+      this._categoryService.addCategory(this.newCategory).subscribe({
+        next: (response: any) => {
+          console.log(response.message);
+          this.categorySuccess = true;
+          this.newCategory.name = '';
+          this.getAllCategories()
+        },
+        error: (error) => {
+          this.categoryError = error;
+        },
+      });
     }
   }
 
-  editCategory(category: Category): void {
-    const index = this.categories.findIndex((c) => c.id === category.id);
-    const newName = this.categoryName;
-    if (newName == '') {
-      this.categoryError = true;
+  editCategory(categoryId: number): void {
+    if (this.newCategory.name == '') {
+      this.categoryError = "You can't enter empty value";
     } else {
-      this.categories[index].name = newName;
+      this._categoryService.updateCategory(categoryId, this.newCategory).subscribe({
+        next: (response: any) => {
+          this.categorySuccess = true;
+        },
+        error: (error) => {
+          this.categoryError = error;
+        },
+      })
     }
   }
 
@@ -56,8 +61,25 @@ export class AdminMainComponent {
     this.selectedCategory = category;
   }
 
-  deleteCategory(category: Category): void {
-    const index = this.categories.findIndex((c) => c.id === category.id);
-    this.categories.splice(index, 1);
+  getAllCategories(): void {
+    this._categoryService.getAllCategories().subscribe({
+      next: (response: any) => {
+        this.categories = response.categories
+      },
+      error: (error) => {
+        this.categoryError = error;
+      },
+    });
+  }
+
+  deleteCategory(categoryId: number): void {
+    this._categoryService.deleteCategory(categoryId).subscribe({
+      next: (response: any) => {
+        this.categorySuccess = true;
+      },
+      error: (error) => {
+        this.categoryError = error;
+      },
+    });
   }
 }
