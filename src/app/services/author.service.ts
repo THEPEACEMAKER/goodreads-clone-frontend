@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
 import { Author } from '../interfaces';
 
 @Injectable({
@@ -11,8 +11,15 @@ export class AuthorService {
 
   constructor(private http: HttpClient) {}
 
-  addAuthor(author: Author): Observable<Author> {
-    return this.http.post<Author>(this.baseUrl, author);
+  addAuthor(formData:FormData): Observable<Author> {
+    // return this.http.post<Author>(this.baseUrl, author);
+
+    const headers = new HttpHeaders();
+    return this.http.post(`${this.baseUrl}`, formData, { headers: headers }).pipe(
+      map((response: any) => {
+        return response.userId;
+      })
+    );
   }
 
   deleteAuthor(authorId: number): Observable<Author> {

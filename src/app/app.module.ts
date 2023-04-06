@@ -14,6 +14,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { AdminMainComponent } from './admin-main/admin-main.component';
 import { RedirectComponent } from './redirect/redirect.component';
 import { AdminBooksComponent } from './admin-books/admin-books.component';
+import { AdminAuthorComponent } from './admin-author/admin-author.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { AdminBooksComponent } from './admin-books/admin-books.component';
     AdminMainComponent,
     RedirectComponent,
     AdminBooksComponent,
+    AdminAuthorComponent,
   ],
   imports: [BrowserModule, ReactiveFormsModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [
