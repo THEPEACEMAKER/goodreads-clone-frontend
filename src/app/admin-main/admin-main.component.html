@@ -45,7 +45,7 @@
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" (hidden.bs.modal)="clearMessages()">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -58,10 +58,10 @@
           <button class="btn btn-primary ma" (click)="addCategory()">Add</button>
         </div>
       </div>
-      <div *ngIf="categoryError" class="alert alert-danger">
-        <div >{{categoryError}}</div>
+      <div *ngIf="operationStatus.add.error" class="alert alert-danger">
+        <div >{{operationStatus.add.error}}</div>
       </div>
-      <div *ngIf="categorySuccess" class="alert alert-success">
+      <div *ngIf="operationStatus.add.success" class="alert alert-success">
         <div>Category added successfully</div>
       </div>
       </div>
@@ -108,11 +108,15 @@
                   <button class="btn btn-primary ma" data-bs-dismiss="modal" (click)="editCategory(selectedCategory._id)">Edit</button>
                 </div>
               </div>
-              <div *ngIf="categoryError" class="alert alert-danger">
-               <div >You can't Edit empty value</div>
-                </div>
+              <div *ngIf="operationStatus.edit.error" class="alert alert-danger">
+               <div >{{operationStatus.edit.error}}</div>
+              </div>
+              <div *ngIf="operationStatus.edit.success" class="alert alert-success">
+                <div>Category Edited successfully</div>
+              </div>
               </div>
             </div>
+            
           </div>
 
         <button  type="button" class="btn btn-outline-danger me-2" data-bs-toggle="modal" data-bs-target="#staticBackdropdel" (click)="getSelectedCategory(category)">
@@ -133,6 +137,12 @@
                   <button class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteCategory(selectedCategory._id)">delete</button>
                 </div>
               </div>
+              <div *ngIf="operationStatus.delete.error" class="alert alert-danger">
+                <div >{{operationStatus.delete.error}}</div>
+               </div>
+               <div *ngIf="operationStatus.delete.success" class="alert alert-success">
+                 <div>Category deleted successfully</div>
+               </div>
               </div>
             </div>
           </div>

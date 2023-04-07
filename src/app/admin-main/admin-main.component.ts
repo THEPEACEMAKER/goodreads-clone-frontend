@@ -11,13 +11,25 @@ import { CategoryService } from '../services/category.service';
 export class AdminMainComponent {
   selectedCategory: any;
   newCategory: Category = { name: '' };
-  categoryError: string = '';
-  categorySuccess: boolean = false;
+  operationStatus = {
+    add: {
+      success: false,
+      error: '',
+    },
+    edit: {
+      success: false,
+      error: '',
+    },
+    delete: {
+      success: false,
+      error: '',
+    },
+  };
 
   categories: Category[] = [];
 
   constructor(private _authService: AuthService, private _categoryService: CategoryService) {
-    this.getAllCategories()
+    this.getAllCategories();
   }
 
   logout() {
@@ -26,17 +38,19 @@ export class AdminMainComponent {
 
   addCategory(): void {
     if (this.newCategory.name == '') {
-      this.categoryError = "You can't enter empty value";
+      this.operationStatus.add.error = "You can't enter empty value";
     } else {
       this._categoryService.addCategory(this.newCategory).subscribe({
         next: (response: any) => {
           console.log(response.message);
-          this.categorySuccess = true;
-          this.newCategory.name = '';
-          this.getAllCategories()
+          this.operationStatus.add.success = true;
+          this.getAllCategories();
+          setTimeout(() => {
+            this.clearMessages();
+          }, 1000);
         },
         error: (error) => {
-          this.categoryError = error;
+          this.operationStatus.add.error = error;
         },
       });
     }
@@ -44,16 +58,20 @@ export class AdminMainComponent {
 
   editCategory(categoryId: number): void {
     if (this.newCategory.name == '') {
-      this.categoryError = "You can't enter empty value";
+      this.operationStatus.edit.error = "You can't enter empty value";
     } else {
       this._categoryService.updateCategory(categoryId, this.newCategory).subscribe({
         next: (response: any) => {
-          this.categorySuccess = true;
+          this.operationStatus.edit.success = true;
+          this.getAllCategories();
+          setTimeout(() => {
+            this.clearMessages();
+          }, 1000);
         },
         error: (error) => {
-          this.categoryError = error;
+          this.operationStatus.edit.error = error;
         },
-      })
+      });
     }
   }
 
@@ -64,10 +82,7 @@ export class AdminMainComponent {
   getAllCategories(): void {
     this._categoryService.getAllCategories().subscribe({
       next: (response: any) => {
-        this.categories = response.categories
-      },
-      error: (error) => {
-        this.categoryError = error;
+        this.categories = response.categories;
       },
     });
   }
@@ -75,11 +90,33 @@ export class AdminMainComponent {
   deleteCategory(categoryId: number): void {
     this._categoryService.deleteCategory(categoryId).subscribe({
       next: (response: any) => {
-        this.categorySuccess = true;
+        this.operationStatus.delete.success = true;
+        this.getAllCategories();
+        setTimeout(() => {
+          this.clearMessages();
+        }, 1000);
       },
       error: (error) => {
-        this.categoryError = error;
+        this.operationStatus.delete.error = error;
       },
     });
+  }
+
+  clearMessages() {
+    this.operationStatus = {
+      add: {
+        success: false,
+        error: '',
+      },
+      edit: {
+        success: false,
+        error: '',
+      },
+      delete: {
+        success: false,
+        error: '',
+      },
+    };
+    this.newCategory = { name: '' };
   }
 }
