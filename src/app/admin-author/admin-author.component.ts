@@ -19,29 +19,14 @@ currentAuthor!:Author;
 firstName:string="lol";
 registerError!: null;
 registerSuccess!: boolean;
-
+first:string="lol"; 
 constructor(private _authService: AuthService,private _authorService:AuthorService,private fb:FormBuilder){}
-// author :Author={
-//   id:1,
-//   firstName: 'John',
-//   lastName: 'Smith',
-//   dob:new Date(),
-//   imageUrl:"assets/images/henry-be-lc7xcWebECc-unsplash.jpg"
-// } 
-num:number =1;
+
 authors:Author[]=[];
-// [this.author,{
-//   id:2,
-//   firstName: 'John',
-//   lastName: 'Smith',
-//   dob:new Date(),
-//   imageUrl:"assets/images/henry-be-lc7xcWebECc-unsplash.jpg"
-// } ]
 
 ngOnInit() {
-  
-  this._authorService.getAuthors().subscribe((author=>{
-    this.authors=author;
+  this._authorService.getAuthors().subscribe((authors=>{
+    this.authors=[...authors];
   }));
   this.addForm = this.fb.group({
     firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
@@ -68,6 +53,16 @@ logout() {
   this._authService.logoutUser();
 }
 
+attachValues(){
+  if(this.editForm.value.firstName === "")
+    this.editForm.value.firstName = this.currentAuthor.firstName;
+  if(this.editForm.value.lastName === "")
+    this.editForm.value.lastName = this.currentAuthor.lastName;
+  if(this.editForm.value.dob === "")
+    this.editForm.value.dob = this.currentAuthor.dob;
+  if(this.editForm.value.imageUrl==="")
+    this.editForm.value.imageUrl = this.currentAuthor.imageUrl;
+}
 
 addAuthor() {
   if(this.addForm.valid)
@@ -77,7 +72,8 @@ addAuthor() {
       formData.append('firstName', this.addForm.value.firstName);
       formData.append('lastName', this.addForm.value.lastName);
       formData.append('dob', this.addForm.value.dob);
-
+      formData.append('image', this.imageFile);
+      
       this._authorService.addAuthor(formData).subscribe({
         next: (author: Author) => {
           // registered successfully
@@ -101,20 +97,55 @@ getSelectedAuthor(author:Author){
   
 }
 editAuthor(author:Author){
-  let authorIndex=this.authors.findIndex(a => a.id===author.id);
-  this.authors[authorIndex]={
-    firstName:this.editForm.value.firstName,
-    lastName:this.editForm.value.lastName,
-    dob:this.editForm.value.dob,
-    imageUrl:this.editForm.value.imageUrl,
-  };
+  console.log(this.editForm.value);
+  this.getSelectedAuthor(author);
+  this.attachValues()
+  console.log(this.editForm.value);
+
+  // let authorIndex=this.authors.findIndex(a => a._id===author._id);
+  // this.authors[authorIndex]={
+  //   firstName:this.editForm.value.firstName,
+  //   lastName:this.editForm.value.lastName,
+  //   dob:this.editForm.value.dob,
+  //   imageUrl:this.editForm.value.imageUrl,
+  // };
+
+
+  const formData = new FormData();
+  formData.append('firstName', this.addForm.value.firstName);
+  formData.append('lastName', this.addForm.value.lastName);
+  formData.append('dob', this.addForm.value.dob);
+  formData.append('image', this.imageFile);
+  if(this.currentAuthor._id)
+    this._authorService.updateAuthor(this.currentAuthor._id,formData).subscribe({
+      next: (author: Author) => {
+        // registered successfully
+        this.registerError = null;
+        this.registerSuccess = true;
+        // setTimeout(() => {
+        //   this._Router.navigate(['/login']);
+        // }, 1000);
+      },
+      error: (error) => {
+        this.registerError = error;
+      },
+    })
+
+
 }
 
 deleteAuthor(author:Author){
-//  this.authors=this.authors.filter(a=>a.id !== author.id);
-//  console.log(author.id);
-if(author.id)
-  this._authorService.deleteAuthor(author.id)
+if(author._id)
+  this._authorService.deleteAuthor(author._id).subscribe({
+    next: (author: Author) => {
+      console.log(author);
+      
+    },
+    error: (error) => {
+      console.log(error.message);
+      
+    },
+  })
 }
 
 }
