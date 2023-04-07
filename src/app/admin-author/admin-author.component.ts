@@ -101,7 +101,7 @@ getSelectedAuthor(author:Author){
   
 }
 editAuthor(author:Author){
-  let authorIndex=this.authors.findIndex(a => a.id===author.id);
+  let authorIndex=this.authors.findIndex(a => a._id===author._id);
   this.authors[authorIndex]={
     firstName:this.editForm.value.firstName,
     lastName:this.editForm.value.lastName,
@@ -113,8 +113,8 @@ editAuthor(author:Author){
 deleteAuthor(author:Author){
 //  this.authors=this.authors.filter(a=>a.id !== author.id);
 //  console.log(author.id);
-if(author.id)
-  this._authorService.deleteAuthor(author.id)
+if(author._id)
+  this._authorService.deleteAuthor(author._id)
 }
 
 }

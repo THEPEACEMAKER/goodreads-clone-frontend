@@ -7,6 +7,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { AdminMainComponent } from './admin-main/admin-main.component';
 import { RedirectComponent } from './redirect/redirect.component';
 import { AdminAuthorComponent } from './admin-author/admin-author.component';
+import { AuthorsComponent } from './authors/authors.component';
+import { AuthorDetailsComponent } from './authors/author-details/author-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: 'signup', component: SignUpComponent },
   {path: 'trial', component: AdminAuthorComponent},
   { path: 'redirect', component: RedirectComponent },
+  { path: 'authors', component: AuthorsComponent },
+  {path: 'authors/:id', component: AuthorDetailsComponent},
 ];
 
 @NgModule({
