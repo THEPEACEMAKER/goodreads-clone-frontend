@@ -7,7 +7,7 @@
         <h3 class="author" *ngIf="book.author && book.author.length > 0">{{ book.author[0] }}</h3>
         <h3 class="rating">{{ book.avgRating }}</h3>
         <p class="info">
-            It continues the story of Louisa Clark after Will's death. She is trying to move on. 
+            {{ book.description }}
         </p>
         <button>See the Book</button>
     </div>
