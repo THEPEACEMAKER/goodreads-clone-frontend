@@ -15,6 +15,7 @@ import { AdminMainComponent } from './admin-main/admin-main.component';
 import { RedirectComponent } from './redirect/redirect.component';
 import { AdminBooksComponent } from './admin-books/admin-books.component';
 import { AdminAuthorComponent } from './admin-author/admin-author.component';
+import { BookCardComponent } from './book-card/book-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +27,7 @@ import { AdminAuthorComponent } from './admin-author/admin-author.component';
     RedirectComponent,
     AdminBooksComponent,
     AdminAuthorComponent,
+    BookCardComponent,
   ],
   imports: [BrowserModule, ReactiveFormsModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [
