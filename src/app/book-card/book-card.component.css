@@ -187,7 +187,7 @@
   align-items: center;
   height: fit-content;
   margin: 10px;
-  /* min-height: 100vh; */
+
 }
 [class^="item"] {
   text-decoration: none;
