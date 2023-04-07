@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Author } from '../interfaces';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthorService {
   private baseUrl = 'http://localhost:3000/authors';
-
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private _router: Router) {}
 
   addAuthor(formData:FormData): Observable<Author> {
     // return this.http.post<Author>(this.baseUrl, author);
@@ -44,10 +44,13 @@ export class AuthorService {
     );;
   }
 
-  // not implemented in the backend yet
-  // getAuthorById(authorId: number): Observable<Author> {
-  //   return this.http.get<Author>(`${this.baseUrl}/${authorId}`);
-  // }
+  navigateToAuthorDetails(author: any) {    
+    this._router.navigate(['/authors', author._id])
+  }
+
+  getAuthorById(authorId: string): Observable<Author> {
+    return this.http.get<Author>(`${this.baseUrl}/${authorId}`);
+  }
 
   // the authors with the most books or the authors with the highest-rated books
   // getPopularAuthors(): Observable<Author[]>

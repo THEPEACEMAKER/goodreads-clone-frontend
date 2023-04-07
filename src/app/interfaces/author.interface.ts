@@ -1,5 +1,5 @@
 export interface Author {
-  _id?: number;
+  id?: number;
   firstName: string;
   lastName: string;
   dob: Date;

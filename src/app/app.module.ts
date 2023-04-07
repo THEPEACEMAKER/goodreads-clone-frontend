@@ -15,6 +15,9 @@ import { AdminMainComponent } from './admin-main/admin-main.component';
 import { RedirectComponent } from './redirect/redirect.component';
 import { AdminBooksComponent } from './admin-books/admin-books.component';
 import { AdminAuthorComponent } from './admin-author/admin-author.component';
+import { AuthorComponent } from './authors/author/author.component';
+import { AuthorsComponent } from './authors/authors.component';
+import { AuthorDetailsComponent } from './authors/author-details/author-details.component';
 import { BookCardComponent } from './book-card/book-card.component';
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { BookCardComponent } from './book-card/book-card.component';
     RedirectComponent,
     AdminBooksComponent,
     AdminAuthorComponent,
+    AuthorComponent,
+    AuthorsComponent,
+    AuthorDetailsComponent,
     BookCardComponent,
   ],
   imports: [BrowserModule, ReactiveFormsModule, AppRoutingModule, HttpClientModule, FormsModule],
