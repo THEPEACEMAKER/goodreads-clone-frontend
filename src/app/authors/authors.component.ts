@@ -14,9 +14,8 @@ export class AuthorsComponent {
   }
   getAllAuthors(): void {
     this._authorService.getAuthors().subscribe({
-      next: (response: any) => {
-        this._authorService.authors = response.authors;
-        this.authors = this._authorService.authors
+      next: (response: any) => {        
+        this.authors = response;
       },
     });
   }

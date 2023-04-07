@@ -1,6 +1,6 @@
 <div class="col">
   <div class="card" style="width: 18rem;" (click)="navigateToAuthorDetails(author)">
-    <img src="http://localhost:3000/images/{{ author.imageUrl }}" class="card-img-top" alt={{author.firstName}}>
+    <img [src]="author.imageUrl" class="card-img-top" alt={{author.firstName}}>
     <div class="card-body">
       <h5 class="card-title"><a>{{ author.firstName }} {{ author.lastName }}</a></h5>
     </div>
