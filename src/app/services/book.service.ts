@@ -26,6 +26,7 @@ export class BookService {
   getBooks(page: number = 1): Observable<Book[]> {
     const perPage = 10;
     const url = `${this.baseUrl}?page=${page}&perPage=${perPage}`;
+    console.log(url);
     return this.http.get<Book[]>(url);
   }
 

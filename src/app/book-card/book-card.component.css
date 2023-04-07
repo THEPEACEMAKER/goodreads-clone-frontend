@@ -1,95 +1,258 @@
-  /******************************************
-  Book stuff
-  *******************************************/
-  
-  .book {
-    display: inline-block;
-    width: 230px;
-    height: 390px;
-    box-shadow: 0 0 20px #aaa;
-    margin: 25px;
-    padding: 10px 10px 0 10px;
-    vertical-align: top;
-    transition: height 1s;
-  }
-  /* star button */
-  .book:after {
-    font-family: FontAwesome;
-    content: "\f006";
-    font-size: 35px;
-    position: relative;
-    left: -.1cm;
-    top: -1.6cm;
-    float: right;
-  }
-  
-  .cover {
-    border: 2px solid gray;
-    height: 80%;
-    overflow: hidden;
-  }
-  
-  .cover img {
-    width: 100%;
-  }
-  
-  .book p {
-    margin-top: 12px;
-    font-size: 20px;
-  }
-  
-  .book .author {
-    font-size: 15px;
-  }
 
-@media (max-width: 941px) {
-    .book {
-      margin: 49px;
-    }
-  }
-  @media (max-width: 730px) {
-    .book {
-      display: block;
-      margin: 0 auto;
-      margin-top: 50px;
-    }
-    /* .cover {
-      
-    } */
-  }
 
-/**********************************
-  display change
-  ***********************************/
-  /*book height smaller, cover opacity, move text onto cover and star too
-  animate it */
-  #list-th:target .book {
-    height: 100px;
-    width: 250px;
-    padding: 10px;
-    margin: 25px auto 25px auto;
-  }
-  
-  #list-th:target .cover {
-    width: 246px;
-  }
-  
-  #list-th:target img {
-    opacity: .1;
-  }
-  
-  #list-th:target p {
-    margin-top: -62px;
-    margin-left: 20px;
-  }
-  /* remove button? */
-  #large-th:target .book {
-    height: 390px;
-  }
-    
-  /***********************************
-  star animation
-  ***********************************/
-  /***********************************
-  zoom on click
-  ***********************************/
+/* ------------------------------------------------- for mobiles -------------------------------------------------------------------- */
+@media(max-width: 900px){
+    /* ------------------------- main book store ---------------------------- */
+    .books{
+        display: flex;
+        flex-direction: row;
+        background-color: #fdca95;
+        border-radius: 10px;
+        margin-bottom: 3em;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+    }
+    .book-img{
+        width: 100%;
+        max-width: 1000px;
+        margin: 1.5em;
+        border-radius: 3px;
+        transition: transform 1s;
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    }
+    .book-img:hover{
+        transform: scale(1.05);
+    }
+    .descp{
+        margin: 1.5em;
+        padding: 1em;
+        
+    }
+    .book-name{
+        font-weight: bold;
+        padding-bottom: 0.5em;
+        font-size: 1.1em;
+        letter-spacing: 1px;
+        color: white;
+    }
+    .author{
+        padding-bottom: 0.5em;
+        font-size: 1.1em;
+        letter-spacing: 1px;
+        color: white;
+    }
+    .rating{
+        padding-bottom: 1.2em;
+        font-size: 1em;
+        letter-spacing: 1px;
+        color: white;
+    }
+    .info{
+        font-size: 1em;
+        letter-spacing: 1px;
+        color: white;
+    }
+    .descp button{
+        margin-top: 1em;
+        background: none;
+        border: none;
+        color: #fdca95;
+        background-color: white;
+        padding: 0.6em 1.5em;
+        font-size: 1em;
+        border-radius: 20px;
+        font-weight: bolder;
+    }
+    .descp button:hover{
+        color: #a790f2;
+    }
+    #b1{
+        color: #fbadaf;
+    }
+    #b1:hover{
+        color: #ff6e9f;
+    }
+    #b2{
+        color: #a4e0eb;
+    }
+    #b2:hover{
+        color: #62cdec;
+    }
+    #b3{
+        color: #fdca95;
+    }
+    #b3:hover{
+        color: #fb9124;
+    }
+
+}
+
+
+
+
+
+
+/*--------------------------------------------------------------- fOR PC AND LAPTOPS -------------------------------------------- */
+@media(min-width: 900px){
+    /* ----------------------------------------------------- Navbar ---------------------------------------------------------- */
+    /* ------------------- MAIN BOOKS ---------------------------------- */
+    main{
+        margin-top: 1em;
+        font-family: 'Noto Sans JP', sans-serif;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .books{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        max-width: 600px;
+        justify-content: space-evenly;
+        background-color: #fdca95;
+        border-radius: 10px;
+        margin-bottom: 3em;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+    }
+    .books:nth-of-type(2){
+        background-color: #fbadaf;
+    }
+    .books:nth-of-type(3){
+        background-color: #a4e0eb;
+    }
+    .books:nth-of-type(4){
+        background-color: #fdca95;
+    }
+    .book-img{
+        width: 100%;
+        max-width: 500px;
+        border-radius: 3px;
+        transition: transform 1s;
+        margin: 1.5em;
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    }
+    .book-img:hover{
+        transform: scale(1.05);
+    }
+    .descp{
+        margin: 1.5em;
+        padding: 1em;
+        
+    }
+    .book-name{
+        font-weight: bold;
+        padding-bottom: 0.5em;
+        font-size: 1.1em;
+        letter-spacing: 1px;
+        color: white;
+    }
+    .author{
+        padding-bottom: 0.5em;
+        font-size: 1.1em;
+        letter-spacing: 1px;
+        color: white;
+    }
+    .rating{
+        padding-bottom: 1.2em;
+        font-size: 1em;
+        letter-spacing: 1px;
+        color: white;
+    }
+    .info{
+        font-size: 1em;
+        letter-spacing: 1px;
+        color: white;
+    }
+    .descp button{
+        margin-top: 1em;
+        background: none;
+        border: none;
+        color: #fdca95;
+        background-color: white;
+        padding: 0.6em 1.5em;
+        font-size: 1em;
+        border-radius: 20px;
+        font-weight: bolder;
+    }
+    .descp button:hover{
+        color: #fb9124;
+    }
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  height: fit-content;
+  margin: 10px;
+  /* min-height: 100vh; */
+}
+[class^="item"] {
+  text-decoration: none;
+  margin-right: 20px;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+[class^="item"]:last-child {
+  margin-right: 0;
+}
+.item-2 {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  border: 1px solid #fff;
+  border-radius: 50%;
+}
+.item-2:before, .item-2:after {
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 2px;
+  background-color: #fff;
+  transition: 0.3s ease-out;
+  left: 50%;
+  top: 50%;
+}
+.item-2:after {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.item-2:before {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+.item-2:hover:before, .item-2:focus:before, .item-2:hover:after, .item-2:focus:after {
+  transform: translate(-50%, -50%) rotate(180deg);
+}
+
+.item-4 {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 0.8;
+  transition: 0.3s ease-out;
+}
+.item-4:before, .item-4:after {
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 2px;
+  background-color: #36658d;
+  left: 50%;
+  top: 50%;
+}
+.item-4:after {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.item-4:before {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+.item-4:hover, .item-4:focus {
+  transform: scale(1.15);
+  opacity: 1;
+}

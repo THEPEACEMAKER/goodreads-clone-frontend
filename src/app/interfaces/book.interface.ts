@@ -1,9 +1,9 @@
 export interface Book {
-  id?: number;
+  _id?: number;
   name: string;
   imageUrl?: string;
-  category: number[]; // reference to Category
-  author: number[]; // reference to Author
+  category: number[] | []; // reference to Category
+  author: number[] | []; // reference to Author
   avgRating?: number;
-  reviews?: number[]; // reference to Review
+  reviews?: number[] | []; // reference to Review
 }
