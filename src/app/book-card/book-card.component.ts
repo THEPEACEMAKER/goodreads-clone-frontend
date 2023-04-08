@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Book } from '../interfaces';
+import { Author, Book } from '../interfaces';
 
 @Component({
   selector: 'app-book-card',
@@ -7,8 +7,16 @@ import { Book } from '../interfaces';
   styleUrls: ['./book-card.component.css'],
 })
 export class BookCardComponent {
-  @Input() book!: Book;
+  @Input() book!: any;
   @Output() delete = new EventEmitter<number>();
+
+  author!: Author;
+
+  ngOnInit(): void {
+    if (this.book && this.book.author) {
+      this.author = this.book.author;
+    }
+  }
 
   onDelete() {
     this.delete.emit(this.book._id);
