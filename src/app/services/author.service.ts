@@ -11,7 +11,7 @@ export class AuthorService {
   private baseUrl = 'http://localhost:3000/authors';
   constructor(private http: HttpClient, private _router: Router) {}
 
-  addAuthor(formData:FormData): Observable<Author> {
+  addAuthor(formData: FormData): Observable<Author> {
     // return this.http.post<Author>(this.baseUrl, author);
 
     const headers = new HttpHeaders();
@@ -35,17 +35,13 @@ export class AuthorService {
     const url = `${this.baseUrl}?page=${page}&perPage=${perPage}`;
     return this.http.get<Author[]>(url).pipe(
       map((response: any) => {
-        response.authors.forEach((author:any)=>{
-          const filename = author.imageUrl.split('/').pop();
-          author.imageUrl=`http://localhost:3000/images/${filename}`
-        })
         return response.authors;
       })
-    );;
+    );
   }
 
-  navigateToAuthorDetails(author: any) {    
-    this._router.navigate(['/authors', author._id])
+  navigateToAuthorDetails(author: any) {
+    this._router.navigate(['/authors', author._id]);
   }
 
   getAuthorById(authorId: string): Observable<Author> {

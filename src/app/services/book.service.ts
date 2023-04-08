@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Book } from '../interfaces';
 
@@ -11,8 +11,9 @@ export class BookService {
 
   constructor(private http: HttpClient) {}
 
-  addBook(book: Book): Observable<Book> {
-    return this.http.post<Book>(this.baseUrl, book);
+  addBook(formData: FormData): Observable<Book> {
+    const headers = new HttpHeaders();
+    return this.http.post<Book>(this.baseUrl, formData, { headers: headers });
   }
 
   deleteBook(bookId: number): Observable<Book> {

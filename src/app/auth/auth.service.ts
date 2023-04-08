@@ -37,9 +37,6 @@ export class AuthService {
         const token = response.token;
         if (token) {
           const user: User = response.user;
-          // Update the imageUrl property with the correct URL
-          const filename = user.imageUrl.split('/').pop();
-          user.imageUrl = `${this.baseUrl}/images/${filename}`;
           localStorage.setItem('currentUser', JSON.stringify({ user: user, token: token }));
           this.currentUser.next(user);
           return true;

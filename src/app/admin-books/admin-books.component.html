@@ -1,12 +1,57 @@
-<!-- <div id="large-th">
-    <div class="container">
-      <h1> A list of books</h1>
-      <br>
-      <div id="list-th">
-        <app-book-card class="task" *ngFor="let book of books"></app-book-card>
+    <!-- Button to open the modal -->
+    <button class="newbtn" data-bs-toggle="modal" data-bs-target="#addBookModal">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+          <path fill="none" d="M0 0h24v24H0z"></path>
+          <path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path>
+        </svg> Add Book
+      </span>
+    </button>
+
+    <!-- Modal to add a new book -->
+    <div class="modal fade" id="addBookModal" tabindex="-1" aria-labelledby="addBookModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addBookModalLabel">Add Book</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" [(ngModel)]="book.name" name="name">
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea class="form-control" id="description" [(ngModel)]="book.description" name="description"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="image" class="form-label">Upload Image</label>
+              <input  type="file"
+              id="img"
+              (change)="onFileSelect($event)"
+              placeholder="upload your image" class="form-control" accept="image/*" />
+            </div>
+            <div class="mb-3">
+              <label for="category" class="form-label">Category</label>
+              <select class="form-select" id="category" [(ngModel)]="book.category" name="category">
+                <option *ngFor="let category of categories" [ngValue]="category._id">{{ category.name }}</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="author" class="form-label">Author</label>
+              <select class="form-select" id="author" [(ngModel)]="book.author" name="author">
+                <option *ngFor="let author of authors" [ngValue]="author._id">{{ author.firstName }} {{ author.lastName }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" (click)="addBook()" [disabled]="!book.name || !book.description || !book.category || !book.author">Add</button>
+          </div>
+        </div>
       </div>
     </div>
-</div> -->
 
     <main>
         <app-book-card class="task" *ngFor="let book of books" [book]="book"
