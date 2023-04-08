@@ -3,8 +3,8 @@ export interface Book {
   name: string;
   description: string;
   imageUrl?: string;
-  category: number[] | []; // reference to Category
-  author: number[] | []; // reference to Author
+  category: string; // reference to Category
+  author: string; // reference to Author
   avgRating?: number;
   reviews?: number[] | []; // reference to Review
 }

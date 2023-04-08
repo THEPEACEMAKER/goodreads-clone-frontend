@@ -98,16 +98,16 @@ export class AdminAuthorComponent {
     formData.append('dob', this.editForm.value.dob);
     if (this.editForm.value.imageUrl) formData.append('image', this.imageFile);
 
-    if (this.currentAuthor.id)
-      this._authorService.updateAuthor(this.currentAuthor.id, formData).subscribe({
+    if (this.currentAuthor._id)
+      this._authorService.updateAuthor(this.currentAuthor._id, formData).subscribe({
         next: (author: Author) => {},
         error: (error) => console.log(error),
       });
   }
 
   deleteAuthor(author: Author) {
-    if (author.id)
-      this._authorService.deleteAuthor(author.id).subscribe({
+    if (author._id)
+      this._authorService.deleteAuthor(author._id).subscribe({
         next: (author: Author) => console.log(author),
         error: (error) => console.log(error),
       });
