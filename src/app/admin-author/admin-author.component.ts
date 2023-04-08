@@ -78,36 +78,25 @@ export class AdminAuthorComponent {
     this.currentAuthor = { ...author };
     console.log(this.currentAuthor);
   }
-  editAuthor(author: Author) {
-    console.log(this.editForm.value);
-    this.getSelectedAuthor(author);
+  editAuthor() {
     this.attachEditValues();
-    console.log(this.editForm.value);
-
-    // let authorIndex=this.authors.findIndex(a => a.id===author.id);
-    // this.authors[authorIndex]={
-    //   firstName:this.editForm.value.firstName,
-    //   lastName:this.editForm.value.lastName,
-    //   dob:this.editForm.value.dob,
-    //   imageUrl:this.editForm.value.imageUrl,
-    // };
-
+    
     const formData = new FormData();
     formData.append('firstName', this.editForm.value.firstName);
     formData.append('lastName', this.editForm.value.lastName);
     formData.append('dob', this.editForm.value.dob);
     if (this.editForm.value.imageUrl) formData.append('image', this.imageFile);
 
-    if (this.currentAuthor.id)
-      this._authorService.updateAuthor(this.currentAuthor.id, formData).subscribe({
+    if (this.currentAuthor._id)
+      this._authorService.updateAuthor(this.currentAuthor._id, formData).subscribe({
         next: (author: Author) => {},
         error: (error) => console.log(error),
       });
   }
 
-  deleteAuthor(author: Author) {
-    if (author.id)
-      this._authorService.deleteAuthor(author.id).subscribe({
+  deleteAuthor() {
+    if (this.currentAuthor._id)
+      this._authorService.deleteAuthor(this.currentAuthor._id).subscribe({
         next: (author: Author) => console.log(author),
         error: (error) => console.log(error),
       });

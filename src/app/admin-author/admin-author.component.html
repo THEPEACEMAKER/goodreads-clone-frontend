@@ -2,15 +2,8 @@
   <h1 class="text-center">Welcome to Admin Page!</h1>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarTogglerDemo03"
-        aria-controls="navbarTogglerDemo03"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+        aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <a class="navbar-brand home" [routerLink]="['/home']">HOME</a>
@@ -28,7 +21,6 @@
         </ul>
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item">
-            <!-- <a class="nav-link logout" style="cursor: pointer;" (click)="logout()">Logout</a> -->
             <button class="logout" (click)="logout()">
               <a>logout</a>
             </button>
@@ -50,55 +42,27 @@
 </button>
 
 <!-- Modal -->
-<div
-  class="modal fade"
-  id="addFormDrop"
-  data-bs-backdrop="static"
-  data-bs-keyboard="false"
-  tabindex="-1"
-  aria-labelledby="addFormDropLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="addFormDrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="addFormDropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="addFormDropLabel">Add new Author</h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          (click)="addForm.reset()"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="addForm.reset()"
+          aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form (ngSubmit)="addAuthor()" [formGroup]="addForm">
-          <!-- <div class="input-group"> -->
-          <input
-            type="text"
-            class="form-control mb-2"
-            placeholder="First Name..."
-            formControlName="firstName"
-          />
-          <input
-            type="text"
-            class="form-control mb-2"
-            placeholder="Last Name..."
-            formControlName="lastName"
-          />
+          <input type="text" class="form-control mb-2" placeholder="First Name..." formControlName="firstName" />
+          <input type="text" class="form-control mb-2" placeholder="Last Name..." formControlName="lastName" />
           <input type="date" class="form-control mb-2" formControlName="dob" />
-          <input type="file" formControlName="image"
-          (change)="onFileSelect($event)" class="form-control mb-2" formControlName="image" />
-          <!-- </div> -->
-          <button [disabled]="!addForm.valid" class="btn btn-primary ma">Add</button>
+          <input type="file" formControlName="image" (change)="onFileSelect($event)" class="form-control mb-2"
+            formControlName="image" />
+          <button [disabled]="!addForm.valid" class="btn btn-primary ma" data-bs-dismiss="modal">
+            Add
+          </button>
         </form>
       </div>
-      <!-- <div *ngIf="addingError" class="alert alert-danger">
-        <div>{{ addingError }}</div>
-      </div> -->
-      <!-- <div *ngIf="categorySuccess" class="alert alert-success">
-              <div>Category added successfully</div>
-            </div> -->
     </div>
   </div>
 </div>
@@ -107,83 +71,63 @@
 <div *ngFor="let a of authors" class="container card mt-3" style="height: 10rem">
   <div class="row card-body overflow-hidden">
     <div class="col-2">
-      <img
-        [src]="a.imageUrl"
-        class="rounded"
-        style="max-width: 100%; max-height: 100%"
-        alt="..."
-      />
+      <img [src]="a.imageUrl" class="rounded" style="max-width: 100%; max-height: 100%" alt="..." />
     </div>
     <div class="col">
       <h5 class="">{{ a.firstName + ' ' + a.lastName }}</h5>
     </div>
     <div class="col-2">
       <div class="row p-1">
-        <a
-          href="#"
-          class="btn btn-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#editFormDrop"
-          (click)="getSelectedAuthor(a)"
-          >Edit</a
-        >
+        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editFormDrop"
+          (click)="getSelectedAuthor(a)">Edit</a>
 
         <!-- Modal -->
-        <div
-          class="modal fade"
-          id="editFormDrop"
-          data-bs-backdrop="static"
-          data-bs-keyboard="false"
-          tabindex="-1"
-          aria-labelledby="editFormDropLabel"
-          aria-hidden="true"
-        >
+        <div class="modal fade" id="editFormDrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+          aria-labelledby="editFormDropLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5" id="editFormDropLabel">Edit Here</h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                  (click)="editForm.reset()"
-                ></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                  (click)="editForm.reset()"></button>
               </div>
               <div class="modal-body">
-                <form [formGroup]="editForm" (ngSubmit)="editAuthor(a)">
-                  <input
-                    type="text"
-                    class="form-control mb-2"
-                    placeholder="First Name..."
-                    formControlName="firstName"
-                    value="a.firstName"
-                  />
-                  <input
-                    type="text"
-                    class="form-control mb-2"
-                    formControlName="lastName"
-                    value="lol"
-                  />
+                <form [formGroup]="editForm" (ngSubmit)="editAuthor()">
+                  <input type="text" class="form-control mb-2" placeholder="First Name..."
+                    formControlName="firstName" />
+                  <input type="text" class="form-control mb-2" formControlName="lastName" placeholder="Last Name..." />
                   <input type="date" class="form-control mb-2" formControlName="dob" />
                   <input type="file" class="form-control mb-2" formControlName="image" />
-                  <button class="btn btn-primary ma" data-bs-dismiss="modal">Edit</button>
+                  <button class="btn btn-primary ma" data-bs-dismiss="modal" (click)="editForm.reset()">Edit</button>
                 </form>
               </div>
-              <!-- <div *ngIf="categoryError" class="alert alert-danger">
-                 <div >You can't Edit empty value</div>
-                  </div>
-                </div> -->
             </div>
           </div>
         </div>
         <div class="row p-1">
-          <a class="btn btn-primary" (click)="deleteAuthor(a)">Delete</a>
+          <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteAssertion" (click)="getSelectedAuthor(a)">Delete</a>
+          <div class="modal fade" id="deleteAssertion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="deleteAssertionLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="deleteAssertionLabel">Are You Sure?</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                  <h5 *ngIf="currentAuthor">Delete Author {{ currentAuthor.firstName + ' ' + currentAuthor.lastName}}</h5>
+                  <div class="d-flex justify-content-evenly mt-3">
+                    <button class="btn btn-danger ma" data-bs-dismiss="modal" (click)="deleteAuthor()">
+                      Yes
+                    </button>
+                    <button class="btn btn-secondary ma" data-bs-dismiss="modal">No</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <!-- <div class="card-body">
-          <p class="card-text"></p>
-        </div> -->
   </div>
 </div>
