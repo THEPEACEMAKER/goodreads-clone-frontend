@@ -22,7 +22,7 @@ export class AuthService {
 
   registerUser(formData: FormData): Observable<number> {
     const headers = new HttpHeaders();
-    return this.http.post(`${this.baseUrl}/user/signup`, formData, { headers: headers }).pipe(
+    return this.http.post(`${this.baseUrl}/auth/signup`, formData, { headers: headers }).pipe(
       map((response: any) => {
         return response.userId;
       })
@@ -32,7 +32,7 @@ export class AuthService {
   loginUser(email: string, password: string): Observable<boolean> {
     const user = { email, password };
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(`${this.baseUrl}/user/login`, user, { headers: headers }).pipe(
+    return this.http.post(`${this.baseUrl}/auth/login`, user, { headers: headers }).pipe(
       map((response: any) => {
         const token = response.token;
         if (token) {
