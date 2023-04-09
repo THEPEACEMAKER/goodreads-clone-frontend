@@ -22,9 +22,7 @@ export class AdminAuthorComponent {
   authors: Author[] = [];
 
   ngOnInit() {
-    this._authorService.getAuthors().subscribe((authors) => {
-      this.authors = [...authors];
-    });
+    this.getAuthors();
     this.addForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
@@ -49,14 +47,17 @@ export class AdminAuthorComponent {
     this._authService.logoutUser();
   }
 
+  getAuthors(){
+    this._authorService.getAuthors().subscribe((authors) => {
+      this.authors = [...authors];
+    });
+  }
   attachEditValues() {
     if (this.editForm.value.firstName === '')
       this.editForm.value.firstName = this.currentAuthor.firstName;
     if (this.editForm.value.lastName === '')
       this.editForm.value.lastName = this.currentAuthor.lastName;
-    if (this.editForm.value.dob === '') this.editForm.value.dob = this.currentAuthor.dob;
-    if (this.editForm.value.imageUrl === '')
-      this.editForm.value.imageUrl = this.currentAuthor.imageUrl;
+    if (!this.editForm.value.dob) this.editForm.value.dob = this.currentAuthor.dob;
   }
 
   addAuthor() {
@@ -71,12 +72,12 @@ export class AdminAuthorComponent {
         next: (author: Author) => {},
         error: (error) => console.log(error),
       });
+      this.getAuthors();
     }
   }
 
   getSelectedAuthor(author: Author) {
     this.currentAuthor = { ...author };
-    console.log(this.currentAuthor);
   }
   editAuthor() {
     this.attachEditValues();
@@ -92,6 +93,8 @@ export class AdminAuthorComponent {
         next: (author: Author) => {},
         error: (error) => console.log(error),
       });
+    this.getAuthors();
+    this.editForm.reset();
   }
 
   deleteAuthor() {
@@ -100,5 +103,6 @@ export class AdminAuthorComponent {
         next: (author: Author) => console.log(author),
         error: (error) => console.log(error),
       });
+    this.getAuthors();
   }
 }
