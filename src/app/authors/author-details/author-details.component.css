@@ -1,0 +1,12 @@
+.author-card{
+    background-color: rgb(224, 211, 137);
+    border-radius: 2%;
+}
+.author-card>img{
+    border-radius: 2%;
+}
+
+.author-name{
+    /* border: 2px solid #ccc;
+    border-radius: 3%; */
+}
