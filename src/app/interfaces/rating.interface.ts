@@ -1,7 +1,6 @@
-export interface Review {
+export interface Rating {
   _id?: number;
-  title: string;
-  content: string;
+  score?: number;
   user: number; // reference to User
   book: number; // reference to Book
 }

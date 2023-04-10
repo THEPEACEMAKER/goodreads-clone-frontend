@@ -14,6 +14,7 @@ export class AdminBooksComponent {
   books: Book[] = [];
   currentPage: number = 1;
   totalPages: number = 1;
+  isEditingBook: boolean = false;
   editingBook: Book | null = null;
   book: Book = {
     _id: 0,
@@ -97,9 +98,6 @@ export class AdminBooksComponent {
     formData.append('categoryId', this.book.category);
     formData.append('authorId', this.book.author);
     formData.append('image', this.imageFile);
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
     this.bookService.addBook(formData).subscribe(
       (newBook) => {
         this.getBooks();
@@ -120,17 +118,29 @@ export class AdminBooksComponent {
   }
 
   editBook(book: Book): void {
+    this.isEditingBook = true;
     this.editingBook = book;
     this.book = { ...book };
+    const modal = document.getElementById('addBookModal');
+    modal!.classList.add('show');
+    modal!.style.display = 'block';
   }
 
   updateBook(): void {
+    const formData = new FormData();
+    formData.append('name', this.book.name);
+    formData.append('description', this.book.description);
+    formData.append('categoryId', this.book.category);
+    formData.append('authorId', this.book.author);
+    formData.append('image', this.imageFile ? this.imageFile : this.book.imageUrl || '');
     if (this.editingBook!._id) {
-      this.bookService.updateBook(this.editingBook!._id, this.book).subscribe(
-        (updatedBook) => {
+      this.bookService.updateBook(this.editingBook!._id, formData).subscribe(
+        (response: any) => {
+          const updatedBook = response.book;
           const index = this.books.findIndex((b) => b._id === updatedBook._id);
           this.books[index] = updatedBook;
           this.editingBook = null;
+          this.isEditingBook = false;
           this.book = {
             _id: 0,
             name: '',
@@ -139,6 +149,9 @@ export class AdminBooksComponent {
             category: '',
             author: '',
           };
+          const modal = document.getElementById('addBookModal');
+          modal!.classList.remove('show');
+          modal!.style.display = 'none';
         },
         (error) => {
           console.error(error);
@@ -149,6 +162,7 @@ export class AdminBooksComponent {
 
   cancelEdit(): void {
     this.editingBook = null;
+    this.isEditingBook = false;
     this.book = {
       _id: 0,
       name: '',
@@ -157,5 +171,8 @@ export class AdminBooksComponent {
       category: '',
       author: '',
     };
+    const modal = document.getElementById('addBookModal');
+    modal!.classList.remove('show');
+    modal!.style.display = 'none';
   }
 }
