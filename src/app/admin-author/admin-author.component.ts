@@ -20,9 +20,17 @@ export class AdminAuthorComponent {
   ) {}
 
   authors: Author[] = [];
+  totalAuthors: number = 0;
+  currentPage: number = 1;
+  maxNumberOfPages: number =1;
+  pages: number []=[];
+  maxAuthorsPerPage: number = 10;
 
   ngOnInit() {
     this.getAuthors();
+    this.updatePages();
+    this.pages=Array(this.maxNumberOfPages).fill(4).map((x,i)=>i+1);
+    
     this.addForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
@@ -48,9 +56,19 @@ export class AdminAuthorComponent {
   }
 
   getAuthors(){
-    this._authorService.getAuthors().subscribe((authors) => {
-      this.authors = [...authors];
+    this._authorService.getAuthors(this.currentPage).subscribe((response) => {
+      this.authors = [...response.authors];
+      this.totalAuthors = response.totalAuthors;
+      this.updatePages();
+      console.log(this.totalAuthors);
+      console.log(this.pages); 
     });
+  }
+
+  updatePages(){
+    this.maxNumberOfPages=Math.round(this.totalAuthors/this.maxAuthorsPerPage) +1;
+    console.log(this.maxNumberOfPages);
+    
   }
   attachEditValues() {
     if (this.editForm.value.firstName === '')
@@ -65,7 +83,7 @@ export class AdminAuthorComponent {
       const formData = new FormData();
       formData.append('firstName', this.addForm.value.firstName);
       formData.append('lastName', this.addForm.value.lastName);
-      formData.append('dob', this.addForm.value.dob);
+      formData.append('dob', this.addForm.value.dob.split('T')[0]);
       formData.append('image', this.imageFile);
 
       this._authorService.addAuthor(formData).subscribe({
@@ -73,6 +91,8 @@ export class AdminAuthorComponent {
         error: (error) => console.log(error),
       });
       this.getAuthors();
+      console.log(this.authors);
+      this.addForm.reset();
     }
   }
 

@@ -38,14 +38,14 @@
 
 <!-- authors conatiner-->
 <div *ngFor="let a of authors" class="container card mt-3" style="height: 10rem">
-  <div class="row card-body overflow-hidden">
+  <div class="row card-body p-3 overflow-hidden">
     <div class="col-2">
-      <img [src]="a.imageUrl" class="rounded" style="max-width: 100%; max-height: 100%" alt="..." />
+      <img [src]="a.imageUrl" class="rounded" style="max-width: 100%; max-height: 80%" alt="..." />
     </div>
     <div class="col">
       <h5 class="">{{ a.firstName + ' ' + a.lastName }}</h5>
     </div>
-    <div class="col-2">
+    <div class="col-2 justify-content-center">
       <div class="row p-1">
         <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editFormDrop"
           (click)="getSelectedAuthor(a)">Edit</a>
@@ -100,3 +100,23 @@
     </div>
   </div>
 </div>
+
+<nav aria-label="Page navigation example" class="m-5" >
+  <ul *ngIf="maxNumberOfPages==1" class="pagination">
+    <li class="page-item"><a class="page-link" >1</a></li>
+  </ul>
+
+  <ul *ngIf="maxNumberOfPages > 1" class="pagination">
+      <li class="page-item">
+        <a class="page-link" aria-label="Previous" (click)="currentPage=1">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li *ngFor="let page of pages" class="page-item"><a class="page-link" (click)="currentPage=page;getAuthors()">{{page}}</a></li>
+      <li class="page-item">
+        <a class="page-link" aria-label="Next" (click)="currentPage=maxNumberOfPages">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+  </ul>
+</nav>

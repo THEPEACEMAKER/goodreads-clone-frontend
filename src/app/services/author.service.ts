@@ -30,14 +30,10 @@ export class AuthorService {
     return this.http.patch<Author>(`${this.baseUrl}/${authorId}`, updates);
   }
 
-  getAuthors(page: number = 1): Observable<Author[]> {
+  getAuthors(page: number = 1): Observable<any> {
     const perPage = 10;
     const url = `${this.baseUrl}?page=${page}&perPage=${perPage}`;
-    return this.http.get<Author[]>(url).pipe(
-      map((response: any) => {
-        return response.authors;
-      })
-    );
+    return this.http.get<Author[]>(url);
   }
 
   navigateToAuthorDetails(author: any) {
