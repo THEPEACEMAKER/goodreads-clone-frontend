@@ -40,6 +40,12 @@
         letter-spacing: 1px;
         color: white;
     }
+    .category{
+        padding-bottom: 0.5em;
+        font-size: 1.1em;
+        letter-spacing: 1px;
+        color: white;
+    }
     .rating{
         padding-bottom: 1.2em;
         font-size: 1em;
@@ -151,6 +157,12 @@
         padding-bottom: 0.5em;
         font-size: 1.1em;
         letter-spacing: 1px;
+        color: white;
+    }
+    .category{
+        padding-bottom: 0.5em;
+        font-size: 1.1em;
+        letter-spacing: 0.5px;
         color: white;
     }
     .rating{
