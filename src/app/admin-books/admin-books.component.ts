@@ -43,8 +43,8 @@ export class AdminBooksComponent {
 
   getAllAuthors(): void {
     this._authorService.getAuthors().subscribe({
-      next: (authors: any) => {
-        this.authors = authors;
+      next: (response: any) => {
+        this.authors = response.authors;
       },
     });
   }
