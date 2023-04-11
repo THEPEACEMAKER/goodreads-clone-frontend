@@ -19,6 +19,7 @@ import { AuthorComponent } from './authors/author/author.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { AuthorDetailsComponent } from './authors/author-details/author-details.component';
 import { BookCardComponent } from './book-card/book-card.component';
+import { PaginationComponent } from './pagination/pagination.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +35,7 @@ import { BookCardComponent } from './book-card/book-card.component';
     AuthorsComponent,
     AuthorDetailsComponent,
     BookCardComponent,
+    PaginationComponent,
   ],
   imports: [BrowserModule, ReactiveFormsModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [

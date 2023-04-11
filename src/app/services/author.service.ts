@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
-import { Author } from '../interfaces';
+import { Author, Book } from '../interfaces';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -42,6 +42,10 @@ export class AuthorService {
 
   getAuthorById(authorId: string): Observable<Author> {
     return this.http.get<Author>(`${this.baseUrl}/${authorId}`);
+  }
+
+  getAuthorBooks(authorId: string): Observable<Book[]>{
+    return this.http.get<Book[]>(`${this.baseUrl}/${authorId}/books`);
   }
 
   // the authors with the most books or the authors with the highest-rated books

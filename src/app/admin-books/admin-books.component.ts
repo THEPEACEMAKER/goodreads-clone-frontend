@@ -41,8 +41,8 @@ export class AdminBooksComponent {
 
   getAllAuthors(): void {
     this._authorService.getAuthors().subscribe({
-      next: (authors: any) => {
-        this.authors = authors;
+      next: (response: any) => {
+        this.authors = response.authors;
       },
     });
   }
@@ -59,6 +59,7 @@ export class AdminBooksComponent {
     this.bookService.getBooks(this.currentPage).subscribe(
       (response: any) => {
         // response.books // response.totalBooks
+        console.log(response);
         this.books = response.books;
         this.totalPages = response.totalPages;
       },

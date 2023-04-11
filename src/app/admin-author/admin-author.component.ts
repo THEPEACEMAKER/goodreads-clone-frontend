@@ -3,10 +3,12 @@ import { Author } from '../interfaces';
 import { AuthorService } from '../services/author.service';
 import { AuthService } from '../auth/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+// import {NgbPaginationModule} from '@ng'
 @Component({
   selector: 'app-admin-author',
   templateUrl: './admin-author.component.html',
   styleUrls: ['./admin-author.component.css'],
+  // imports:[NgbPaginationModule]
 })
 export class AdminAuthorComponent {
   imageFile!: File;
@@ -22,14 +24,13 @@ export class AdminAuthorComponent {
   authors: Author[] = [];
   totalAuthors: number = 0;
   currentPage: number = 1;
-  maxNumberOfPages: number =1;
+  totalPages: number =1;
   pages: number []=[];
   maxAuthorsPerPage: number = 10;
 
   ngOnInit() {
     this.getAuthors();
     this.updatePages();
-    this.pages=Array(this.maxNumberOfPages).fill(4).map((x,i)=>i+1);
     
     this.addForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
@@ -66,8 +67,8 @@ export class AdminAuthorComponent {
   }
 
   updatePages(){
-    this.maxNumberOfPages=Math.round(this.totalAuthors/this.maxAuthorsPerPage) +1;
-    console.log(this.maxNumberOfPages);
+    this.totalPages=Math.round(this.totalAuthors/this.maxAuthorsPerPage) +1;
+    console.log(this.totalPages);
     
   }
   attachEditValues() {

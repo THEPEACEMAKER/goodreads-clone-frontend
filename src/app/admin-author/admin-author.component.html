@@ -128,22 +128,17 @@
   </div>
 </div>
 
-<nav aria-label="Page navigation example" class="m-5" >
-  <ul *ngIf="maxNumberOfPages==1" class="pagination">
-    <li class="page-item"><a class="page-link" >1</a></li>
-  </ul>
+<app-pagination
+        [currentPage]="currentPage"
+        [totalPages]="totalPages"
+        ></app-pagination>
 
-  <ul *ngIf="maxNumberOfPages > 1" class="pagination">
-      <li class="page-item">
-        <a class="page-link" aria-label="Previous" (click)="currentPage=1">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
-      <li *ngFor="let page of pages" class="page-item"><a class="page-link" (click)="currentPage=page;getAuthors()">{{page}}</a></li>
-      <li class="page-item">
-        <a class="page-link" aria-label="Next" (click)="currentPage=maxNumberOfPages">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
-  </ul>
-</nav>
+        <!-- <ngb-pagination
+	[collectionSize]="120"
+	[(page)]="page"
+	[maxSize]="5"
+	[rotate]="true"
+	[ellipses]="false"
+	[boundaryLinks]="true"
+></ngb-pagination> -->
+        <!-- (pageChange)="onPageChange($event)" -->
