@@ -1,0 +1,30 @@
+<h1 class="text-center">Welcome to Admin Page!</h1>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand home" [routerLink]="['/home']">HOME</a>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 smsm">
+        <li class="nav-item">
+          <a class="nav-link smsmlink" id="btnbtn" routerLink="admin"><span class="hover-underline-animation" (click)="toggleClass()" [ngClass]="{'newtry': isToggled}"> categories </span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link smsmlink" routerLink="/admin/books"><span class="hover-underline-animation" (click)="toggleClass()" [ngClass]="{'newtry': isToggled}"> Books </span></a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link smsmlink" routerLink="/admin/authors"><span class="hover-underline-animation"> Authors </span></a>
+        </li>
+      </ul>
+      <ul class="navbar-nav  mb-2 mb-lg-0">
+          <li class="nav-item">
+            <!-- <a class="nav-link logout" style="cursor: pointer;" (click)="logout()">Logout</a> -->
+            <button class="logout" (click)="logout()">
+              <a>logout</a>
+          </button>
+          </li>
+        </ul>
+    </div>
+  </div>
+</nav>
