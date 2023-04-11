@@ -40,6 +40,12 @@
         letter-spacing: 1px;
         color: white;
     }
+    .category{
+        padding-bottom: 0.5em;
+        font-size: 1.1em;
+        letter-spacing: 1px;
+        color: white;
+    }
     .rating{
         padding-bottom: 1.2em;
         font-size: 1em;
@@ -153,6 +159,12 @@
         letter-spacing: 1px;
         color: white;
     }
+    .category{
+        padding-bottom: 0.5em;
+        font-size: 1.1em;
+        letter-spacing: 0.5px;
+        color: white;
+    }
     .rating{
         padding-bottom: 1.2em;
         font-size: 1em;
@@ -182,12 +194,12 @@
 
 .flex-container {
   display: flex;
-  justify-content: center;
-  flex-direction: row;
+  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   height: fit-content;
   margin: 10px;
-
+  height: auto;
 }
 [class^="item"] {
   text-decoration: none;
@@ -255,4 +267,33 @@
 .item-4:hover, .item-4:focus {
   transform: scale(1.15);
   opacity: 1;
+}
+
+.fa-combo {
+    white-space: nowrap;
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    display: contents;
+    font-size: 3.5em;
+}
+.fa-combo .fa {
+    text-align: center;
+    height: 60px;
+    width: 60px;
+    line-height: 1.7em;
+    background: transparent;
+    box-shadow: none;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    cursor: pointer;
+    color: #fff;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 0.6em;
+    margin-left: -0.8em;
+}
+
+.fa-combo .fa:hover {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.1));
 }

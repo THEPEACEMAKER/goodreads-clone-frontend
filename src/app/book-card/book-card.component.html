@@ -4,9 +4,8 @@
     </div>
     <div class="descp">
         <h2 class="book-name">{{ book.name }}</h2>
-        <!-- <h3 class="author" *ngIf="book.author && book.author.length > 0">{{ book.author[0] }}</h3> -->
         <h3 class="author" *ngIf="author">{{ author.firstName }} {{ author.lastName }}</h3>
-        <!-- <h3 class="author" *ngIf="typeof book.author !== 'string'">{{ book.author.firstName }}</h3> -->
+        <h3 class="category" *ngIf="book.category">{{ book.category.name }}</h3>
         <h3 class="rating">{{ book.avgRating }}</h3>
         <p class="info">
             {{ book.description }}
@@ -15,6 +14,8 @@
     </div>
     <div class="flex-container">
         <button class="item-2" (click)="onDelete()"></button>
-        <!-- <button class="item-4"></button> -->
+        <button class="fa-combo" (click)="onEdit()">
+            <i class="fa fa-pencil"></i>
+        </button>
     </div>
 </div>
