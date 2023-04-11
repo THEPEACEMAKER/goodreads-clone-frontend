@@ -1,3 +1,7 @@
-<img src="http://localhost:3000/images/{{ author?.imageUrl }}" alt="">
-<h3>{{ author?.firstName }} {{ author?.lastName }}</h3>
-<h5>{{ author?.dob }}</h5>
+<div class="d-flex flex-row author-card p-2" style="height: 18rem;">
+    <img src="{{ author?.imageUrl }}" alt="">
+    <div class="d-flex flex-column m-5">
+        <h3 class="author-name">{{ author?.firstName }} {{ author?.lastName }}</h3>
+        <h5 class="author-dob">{{ author?.dob }}</h5>
+    </div>
+</div>
