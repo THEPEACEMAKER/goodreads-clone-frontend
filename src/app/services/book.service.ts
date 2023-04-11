@@ -20,7 +20,7 @@ export class BookService {
     return this.http.delete<Book>(`${this.baseUrl}/${bookId}`);
   }
 
-  updateBook(bookId: number, updates: Partial<Book>): Observable<Book> {
+  updateBook(bookId: number, updates: FormData): Observable<Book> {
     return this.http.patch<Book>(`${this.baseUrl}/${bookId}`, updates);
   }
 

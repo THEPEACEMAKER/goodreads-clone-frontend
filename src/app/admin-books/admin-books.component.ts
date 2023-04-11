@@ -3,6 +3,7 @@ import { Author, Book, Category } from '../interfaces';
 import { BookService } from '../services/book.service';
 import { CategoryService } from '../services/category.service';
 import { AuthorService } from '../services/author.service';
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-admin-books',
@@ -14,6 +15,7 @@ export class AdminBooksComponent {
   books: Book[] = [];
   currentPage: number = 1;
   totalPages: number = 1;
+  isEditingBook: boolean = false;
   editingBook: Book | null = null;
   book: Book = {
     _id: 0,
@@ -41,8 +43,8 @@ export class AdminBooksComponent {
 
   getAllAuthors(): void {
     this._authorService.getAuthors().subscribe({
-      next: (authors: any) => {
-        this.authors = authors;
+      next: (response: any) => {
+        this.authors = response.authors;
       },
     });
   }
@@ -69,7 +71,6 @@ export class AdminBooksComponent {
   }
 
   deleteBook(id: number): void {
-    // console.log(id);
     this.bookService.deleteBook(id).subscribe(
       () => {
         this.books = this.books.filter((b) => b._id !== id);
@@ -97,21 +98,10 @@ export class AdminBooksComponent {
     formData.append('categoryId', this.book.category);
     formData.append('authorId', this.book.author);
     formData.append('image', this.imageFile);
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
     this.bookService.addBook(formData).subscribe(
       (newBook) => {
         this.getBooks();
-        this.book = {
-          _id: 0,
-          name: '',
-          description: '',
-          imageUrl: '',
-          category: '',
-          author: '',
-        };
-        console.log(newBook);
+        this.cancelEdit();
       },
       (error) => {
         console.error(error);
@@ -119,26 +109,35 @@ export class AdminBooksComponent {
     );
   }
 
+  addBookModal(): void {
+    const modal = document.getElementById('addBookModal');
+    const myModal = new bootstrap.Modal(modal!, { backdrop: 'static' });
+    myModal.show();
+  }
+
   editBook(book: Book): void {
+    this.isEditingBook = true;
     this.editingBook = book;
     this.book = { ...book };
+    const modal = document.getElementById('addBookModal');
+    const myModal = new bootstrap.Modal(modal!, { backdrop: 'static' });
+    myModal.show();
   }
 
   updateBook(): void {
+    const formData = new FormData();
+    formData.append('name', this.book.name);
+    formData.append('description', this.book.description);
+    formData.append('categoryId', this.book.category);
+    formData.append('authorId', this.book.author);
+    formData.append('image', this.imageFile ? this.imageFile : this.book.imageUrl || '');
     if (this.editingBook!._id) {
-      this.bookService.updateBook(this.editingBook!._id, this.book).subscribe(
-        (updatedBook) => {
+      this.bookService.updateBook(this.editingBook!._id, formData).subscribe(
+        (response: any) => {
+          const updatedBook = response.book;
           const index = this.books.findIndex((b) => b._id === updatedBook._id);
           this.books[index] = updatedBook;
-          this.editingBook = null;
-          this.book = {
-            _id: 0,
-            name: '',
-            description: '',
-            imageUrl: '',
-            category: '',
-            author: '',
-          };
+          this.cancelEdit();
         },
         (error) => {
           console.error(error);
@@ -149,6 +148,7 @@ export class AdminBooksComponent {
 
   cancelEdit(): void {
     this.editingBook = null;
+    this.isEditingBook = false;
     this.book = {
       _id: 0,
       name: '',
@@ -157,5 +157,10 @@ export class AdminBooksComponent {
       category: '',
       author: '',
     };
+    const modal = document.getElementById('addBookModal');
+    const myModal = bootstrap.Modal.getInstance(modal!);
+    if (myModal) {
+      myModal.hide();
+    }
   }
 }

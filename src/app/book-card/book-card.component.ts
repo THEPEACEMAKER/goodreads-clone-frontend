@@ -9,6 +9,7 @@ import { Author, Book } from '../interfaces';
 export class BookCardComponent {
   @Input() book!: any;
   @Output() delete = new EventEmitter<number>();
+  @Output() edit = new EventEmitter<Book>();
 
   author!: Author;
 
@@ -20,5 +21,9 @@ export class BookCardComponent {
 
   onDelete() {
     this.delete.emit(this.book._id);
+  }
+
+  onEdit() {
+    this.edit.emit(this.book);
   }
 }
