@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Author, Book } from '../interfaces';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-card',
@@ -12,6 +13,8 @@ export class BookCardComponent {
   @Output() edit = new EventEmitter<Book>();
 
   author!: Author;
+
+  constructor(public router: Router) {}
 
   ngOnInit(): void {
     if (this.book && this.book.author) {
