@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Author, Book } from '../interfaces';
+import { Router } from '@angular/router';
 
 
 
@@ -16,6 +17,7 @@ export class BookCardComponent {
 
   author!: Author;
 
+  constructor(public router: Router) {}
 
   ngOnInit(): void {
     if (this.book && this.book.author) {
@@ -31,6 +33,8 @@ export class BookCardComponent {
     this.edit.emit(this.book);
   }
 
-  
+  saveToDatabase(event:any){
+    console.log(event.value);
+  }  
 
 }

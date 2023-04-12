@@ -6,19 +6,23 @@
         <h2 class="book-name">{{ book.name }}</h2>
         <h3 class="author" *ngIf="author">{{ author.firstName }} {{ author.lastName }}</h3>
         <h3 class="category" *ngIf="book.category">{{ book.category.name }}</h3>
-        <h3 class="rating">{{ book.avgRating }}</h3>
+        <h3 class="rating">{{ book.avgRating }} <i class="fas fa-stars"></i></h3>
         <p class="info">
             {{ book.description }}
         </p>
-        <button [routerLink]='["/book", book._id]'>See the Book</button>
-        <select class="shelf">
+
+        
+        <button [routerLink]='["/book", book._id]' >See the Book</button>
+        <br>
+        <select class="shelf" (change)="saveToDatabase($event.target)">
             <option selected disabled>Choose shelf</option>
-            <option>Read</option>
-            <option>Continue reading</option>
-            <option>Want to read</option>
+            <option value="read">Read</option>
+            <option value="continue">Continue reading</option>
+            <option value="wantToRead">Want to read</option>
         </select>
     </div>
-    <div  class="flex-container">
+    <!-- <div  class="flex-container"> -->
+        <div class="flex-container" *ngIf="router.url.includes('admin')">
         <button class="item-2" (click)="onDelete()"></button>
         <button class="fa-combo" (click)="onEdit()">
             <i class="fa fa-pencil"></i>
