@@ -5,7 +5,8 @@
         <h5 class="author-dob">{{ author?.dob }}</h5>
     </div>
 </div>
-<div class="d-flex flex-row">
-    <app-book-card class="col" *ngFor="let book of books" [book]="book"></app-book-card>
-</div>
+<app-books-container [books]="books"></app-books-container>
 
+<div class="pagination">
+    <ngb-pagination [collectionSize]="totalBooks" [pageSize]="perPage" [(page)]="page" aria-label="Default pagination" (pageChange)="getAuthorBooks()"></ngb-pagination>
+</div>

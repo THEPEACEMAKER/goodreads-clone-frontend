@@ -58,12 +58,7 @@
     <main>
         <app-book-card class="task" *ngFor="let book of books" [book]="book"
         (delete)="deleteBook($event)" (edit)="editBook($event)"></app-book-card>
-
-        <!-- <app-pagination
-        [currentPage]="currentPage"
-        [totalPages]="totalPages"
-        (pageChange)="onPageChange($event)">
-        </app-pagination> -->
-
-        
     </main>
+<div class="pagination">
+  <ngb-pagination [(page)]="currentPage" (pageChange)="getBooks()" [collectionSize]="totalBooks" [pageSize]="booksPerPage"></ngb-pagination>
+</div>

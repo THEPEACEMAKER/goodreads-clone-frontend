@@ -10,11 +10,14 @@ import { AuthorService } from '../services/author.service';
 export class AuthorsComponent {
   authors: Author[] = [];
   totalAuthors: number = 0;
+  currentPage: number = 1;
+  authorsPerPage: number =10;
+
   constructor(private _authorService: AuthorService) {
     this.getAllAuthors();
   }
   getAllAuthors(): void {
-    this._authorService.getAuthors().subscribe({
+    this._authorService.getAuthors(this.currentPage,this.authorsPerPage).subscribe({
       next: (response: any) => {        
         this.authors = [...response.authors];
         this.totalAuthors = response.totalAuthors;

@@ -12,17 +12,28 @@ export class AuthorDetailsComponent {
   id: string;
   author: Author | undefined;
   books: Book[]=[];
+  page: number=1;
+  perPage:number=5;
+  totalBooks: number=15;
   constructor(private _authorService: AuthorService, private _activatedRoute: ActivatedRoute) {
     this.id = this._activatedRoute.snapshot.params['id'];
+    this.getAuthorById();
+    this.getAuthorBooks();
+  }
+
+  getAuthorById(){
     this._authorService.getAuthorById(this.id).subscribe({
       next: (response: any) => {
         this.author = response.author;
       },
       error: (error) => {},
     });
-    this._authorService.getAuthorBooks(this.id).subscribe({
+  }
+  getAuthorBooks(){
+    this._authorService.getAuthorBooks(this.id,this.page,this.perPage).subscribe({
       next: (response: any) => {
         this.books=response.authorBooks;
+        this.totalBooks=response.totalBooks;
       },
       error: (error) => {},
     })
