@@ -1,3 +1,45 @@
-<div class="bigbody">
+<!-- <div class="bigbody">
 <p>home works!</p>
+</div> -->
+
+
+<div class="d-flex flex-row">
+   
+    <div class="col-5 d-flex flex-column">
+        <!-- most popular authors -->
+        <div class="row">
+            <ngb-carousel *ngIf="books">
+                <ng-template style="height: 18rem;width: 18rem;" *ngFor="let book of books" ngbSlide>
+                    <div class="picsum-img-wrapper">
+                        <img style="height: 18rem;width: 18rem;" [src]="book.imageUrl" alt="Random first slide" />
+                    </div>
+                    <div class="carousel-caption">
+                        <h3>{{book.name}}</h3>
+                        <p>{{book.description}}</p>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+        </div>
+        <!-- Most popular books -->
+        <div class="row">
+            <ngb-carousel *ngIf="authors">
+                <ng-template style="height: 18rem;width: 18rem;" *ngFor="let author of authors" ngbSlide>
+                    <div class="picsum-img-wrapper">
+                        <img style="height: 18rem;width: 18rem;" [src]="author.imageUrl" alt="Random first slide" />
+                    </div>
+                    <div class="carousel-caption">
+                        <h3>{{author.firstName}}</h3>
+                        <p>{{author.lastName}}</p>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+        </div>
+    </div>
+
+     <!-- categories -->
+     <div class="col-5">
+        <p>Hi categories</p>
+    </div>
+
+
 </div>
