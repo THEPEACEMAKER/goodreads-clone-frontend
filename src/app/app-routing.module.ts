@@ -10,6 +10,7 @@ import { AdminAuthorComponent } from './admin-author/admin-author.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { AuthorDetailsComponent } from './authors/author-details/author-details.component';
 import { AdminBooksComponent } from './admin-books/admin-books.component';
+import { BookDetailsComponent } from './book-details/book-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'redirect', component: RedirectComponent },
   { path: 'authors', component: AuthorsComponent },
   { path: 'authors/:id', component: AuthorDetailsComponent },
+  { path: 'book/:id', component: BookDetailsComponent },
 ];
 
 @NgModule({

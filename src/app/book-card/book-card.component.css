@@ -297,3 +297,9 @@
 .fa-combo .fa:hover {
     background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.1));
 }
+
+
+.shelf {
+    margin-top: 25px;
+    background-color: #fbadaf;
+}

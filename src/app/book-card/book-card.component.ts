@@ -1,6 +1,9 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Author, Book } from '../interfaces';
 
+
+
+
 @Component({
   selector: 'app-book-card',
   templateUrl: './book-card.component.html',
@@ -12,6 +15,7 @@ export class BookCardComponent {
   @Output() edit = new EventEmitter<Book>();
 
   author!: Author;
+
 
   ngOnInit(): void {
     if (this.book && this.book.author) {
@@ -26,4 +30,7 @@ export class BookCardComponent {
   onEdit() {
     this.edit.emit(this.book);
   }
+
+  
+
 }

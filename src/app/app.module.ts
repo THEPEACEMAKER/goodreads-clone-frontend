@@ -22,6 +22,7 @@ import { BookCardComponent } from './book-card/book-card.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { FooterComponent } from './footer/footer.component';
 import { AdminHeaderComponent } from './admin-header/admin-header.component';
+import { BookDetailsComponent } from './book-details/book-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { AdminHeaderComponent } from './admin-header/admin-header.component';
     PaginationComponent,
     FooterComponent,
     AdminHeaderComponent,
+    BookDetailsComponent,
   ],
   imports: [BrowserModule, ReactiveFormsModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [
