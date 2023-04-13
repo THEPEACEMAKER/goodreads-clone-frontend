@@ -51,7 +51,14 @@ newShelf: any = { bookId: 0, shelf: ''}
         console.log(response);
     }});
 
+   
+
   }  
   
+  isToggled: boolean = false
+
+  clickedStar(){
+      this.isToggled = true
+  }
 
 }
