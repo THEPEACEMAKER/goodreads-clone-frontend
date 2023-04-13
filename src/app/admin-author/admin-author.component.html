@@ -62,10 +62,10 @@
               </div>
               <div class="modal-body">
                 <form [formGroup]="editForm" (ngSubmit)="editAuthor()">
-                  <input type="text" class="form-control mb-2" placeholder="First Name..."
+                  <input type="text" class="form-control mb-2" placeholder="First Name..." [(ngModel)]="currentAuthor.firstName"
                     formControlName="firstName" />
-                  <input type="text" class="form-control mb-2" formControlName="lastName" placeholder="Last Name..." />
-                  <input type="date" class="form-control mb-2" formControlName="dob" />
+                  <input type="text" class="form-control mb-2" [(ngModel)]="currentAuthor.lastName" formControlName="lastName" placeholder="Last Name..." />
+                  <input type="date" class="form-control mb-2" [(ngModel)]="currentAuthor.dob" formControlName="dob" />
                   <input type="file" class="form-control mb-2" formControlName="image" />
                   <button class="btn btn-primary ma" data-bs-dismiss="modal">Edit</button>
                 </form>
@@ -100,18 +100,6 @@
     </div>
   </div>
 </div>
-
-<app-pagination
-        [currentPage]="currentPage"
-        [totalPages]="totalPages"
-        ></app-pagination>
-
-        <!-- <ngb-pagination
-	[collectionSize]="120"
-	[(page)]="page"
-	[maxSize]="5"
-	[rotate]="true"
-	[ellipses]="false"
-	[boundaryLinks]="true"
-></ngb-pagination> -->
-        <!-- (pageChange)="onPageChange($event)" -->
+<div class="pagination">
+  <ngb-pagination [page]="currentPage" [collectionSize]="totalAuthors" [pageSize]="maxAuthorsPerPage" (pageChange)="getAuthors()"></ngb-pagination>
+</div>

@@ -19,9 +19,10 @@ import { AuthorComponent } from './authors/author/author.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { AuthorDetailsComponent } from './authors/author-details/author-details.component';
 import { BookCardComponent } from './book-card/book-card.component';
-import { PaginationComponent } from './pagination/pagination.component';
 import { FooterComponent } from './footer/footer.component';
 import { AdminHeaderComponent } from './admin-header/admin-header.component';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { BooksContainerComponent } from './books-container/books-container.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 @NgModule({
   declarations: [
@@ -38,12 +39,12 @@ import { BookDetailsComponent } from './book-details/book-details.component';
     AuthorsComponent,
     AuthorDetailsComponent,
     BookCardComponent,
-    PaginationComponent,
     FooterComponent,
     AdminHeaderComponent,
-    BookDetailsComponent,
+    BooksContainerComponent,
+    BookDetailsComponent
   ],
-  imports: [BrowserModule, ReactiveFormsModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [BrowserModule, ReactiveFormsModule,NgbPaginationModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

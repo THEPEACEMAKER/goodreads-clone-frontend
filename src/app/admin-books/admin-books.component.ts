@@ -14,7 +14,8 @@ export class AdminBooksComponent {
   imageFile!: File;
   books: Book[] = [];
   currentPage: number = 1;
-  totalPages: number = 1;
+  totalBooks: number = 1;
+  booksPerPage: number =10;
   isEditingBook: boolean = false;
   editingBook: Book | null = null;
   book: Book = {
@@ -60,12 +61,12 @@ export class AdminBooksComponent {
   }
 
   getBooks(): void {
-    this.bookService.getBooks(this.currentPage).subscribe(
+    this.bookService.getBooks(this.currentPage,this.booksPerPage).subscribe(
       (response: any) => {
-        // response.books // response.totalBooks
-        console.log(response);
         this.books = response.books;
-        this.totalPages = response.totalPages;
+        this.totalBooks = response.totalBooks;
+        console.log(this.totalBooks);
+        
       },
       (error) => {
         console.error(error);
@@ -82,11 +83,6 @@ export class AdminBooksComponent {
         console.error(error);
       }
     );
-  }
-
-  onPageChange(page: number): void {
-    this.currentPage = page;
-    this.getBooks();
   }
 
   onFileSelect(event: Event): void {

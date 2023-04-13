@@ -14,11 +14,12 @@
         
         <button [routerLink]='["/book", book._id]' >See the Book</button>
         <br>
-        <select class="shelf" (change)="saveToDatabase($event.target)">
+        <select class="shelf" (change)="addSehlf($event.target, book._id)">
             <option selected disabled>Choose shelf</option>
-            <option value="read">Read</option>
-            <option value="continue">Continue reading</option>
-            <option value="wantToRead">Want to read</option>
+            <option value="READ">Read</option>
+            <option value="CURRENTLY READING">Continue reading</option>
+            <option value="WANT TO READ">Want to read</option>
+            <option value="NONE">NONE</option>
         </select>
     </div>
     <!-- <div  class="flex-container"> -->

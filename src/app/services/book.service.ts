@@ -24,8 +24,7 @@ export class BookService {
     return this.http.patch<Book>(`${this.baseUrl}/${bookId}`, updates);
   }
 
-  getBooks(page: number = 1): Observable<Book[]> {
-    const perPage = 10;
+  getBooks(page: number = 1,perPage:number=10): Observable<Book[]> {
     const url = `${this.baseUrl}?page=${page}&perPage=${perPage}`;
     console.log(url);
     return this.http.get<Book[]>(url);

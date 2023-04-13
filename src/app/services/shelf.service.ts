@@ -13,11 +13,13 @@ export class ShelfService {
 
   addToShelf(bookId: number, shelf: BookShelf): Observable<any> {
     const body = { bookId, shelf };
+    console.log(`${this.baseUrl}/book`);
+    
     return this.http.post(`${this.baseUrl}/book`, body);
     // { message: 'Book Added successfully' }
   }
 
-  updateShelf(bookId: number, shelf: BookShelf): Observable<any> {
+  updateShelf(bookId: any, shelf: BookShelf): Observable<any> {
     const body = { bookId, shelf };
     return this.http.patch(`${this.baseUrl}/${bookId}`, body);
     // { message: 'User shelf updated successfully', updateData: user }

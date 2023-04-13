@@ -1,6 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Author, Book } from '../interfaces';
+import { Author, Book, BookShelf } from '../interfaces';
 import { Router } from '@angular/router';
+import { ShelfService } from '../services/shelf.service';
+
 
 
 
@@ -17,7 +19,10 @@ export class BookCardComponent {
 
   author!: Author;
 
-  constructor(public router: Router) {}
+
+newShelf: any = { bookId: 0, shelf: ''}  
+
+  constructor(public router: Router, private ShelfService:ShelfService) {}
 
   ngOnInit(): void {
     if (this.book && this.book.author) {
@@ -33,8 +38,20 @@ export class BookCardComponent {
     this.edit.emit(this.book);
   }
 
-  saveToDatabase(event:any){
+  addSehlf(event:any, bookId:any){
     console.log(event.value);
+    console.log(bookId);
+    let newShelf = {
+      bookId: bookId,
+      shelf: event.value
+    }
+    
+    this.ShelfService.addToShelf(bookId, event.value).subscribe({
+      next: (response:any) => {
+        console.log(response);
+    }});
+
   }  
+  
 
 }
