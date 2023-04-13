@@ -1,0 +1,17 @@
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-4">
+            <img class="w-100" [src]="book.imageUrl" style="height: 626px; width: 416px;">
+        </div>
+        <div class="col-md-8">
+            <h3>{{book.name}}</h3>
+            <p>{{book.avgRating}}</p>
+            <p class="px-5">{{book.description}}</p>
+
+            <h3>category:</h3>
+            <h3> {{book.category.name}}</h3>
+            <h3>{{book.author.firstName}} {{book.author.lastName}}</h3>
+
+        </div>
+    </div>
+</div>
