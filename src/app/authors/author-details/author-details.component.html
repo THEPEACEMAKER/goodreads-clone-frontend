@@ -1,12 +1,12 @@
 <div class="d-flex flex-row author-card p-2" style="height: 18rem;">
     <img src="{{ author?.imageUrl }}" alt="">
     <div class="d-flex flex-column m-5">
-        <h3 class="author-name">{{ author?.firstName }} {{ author?.lastName }}</h3>
-        <h5 class="author-dob">{{ author?.dob }}</h5>
+        <span>Name:</span> <h3 class="author-name">{{ author?.firstName }} {{ author?.lastName }}</h3>
+        <span>Date of Birth:</span> <h5 class="author-dob">{{ author?.dob?.toString()?.slice(0,10) }}</h5>
     </div>
 </div>
 <app-books-container [books]="books"></app-books-container>
 
-<div class="pagination">
-    <ngb-pagination [collectionSize]="totalBooks" [pageSize]="perPage" [(page)]="page" aria-label="Default pagination" (pageChange)="getAuthorBooks()"></ngb-pagination>
+<div class="d-flex flex-row justify-content-center mt-3">
+    <ngb-pagination  [collectionSize]="totalBooks" [pageSize]="perPage" [(page)]="page" aria-label="Default pagination" (pageChange)="getAuthorBooks()"></ngb-pagination>
 </div>

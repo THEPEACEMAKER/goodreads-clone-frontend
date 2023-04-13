@@ -1,4 +1,4 @@
-<br>
+<br />
 
 <button class="newbtn" data-bs-toggle="modal" data-bs-target="#addFormDrop">
   <span>
@@ -11,22 +11,49 @@
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="addFormDrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  aria-labelledby="addFormDropLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="addFormDrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="addFormDropLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="addFormDropLabel">Add new Author</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="addForm.reset()"
-          aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          (click)="addForm.reset()"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <form (ngSubmit)="addAuthor()" [formGroup]="addForm">
-          <input type="text" class="form-control mb-2" placeholder="First Name..." formControlName="firstName" />
-          <input type="text" class="form-control mb-2" placeholder="Last Name..." formControlName="lastName" />
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="First Name..."
+            formControlName="firstName"
+          />
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="Last Name..."
+            formControlName="lastName"
+          />
           <input type="date" class="form-control mb-2" formControlName="dob" />
-          <input type="file" formControlName="image" (change)="onFileSelect($event)" class="form-control mb-2"
-            formControlName="image" />
+          <input
+            type="file"
+            formControlName="image"
+            (change)="onFileSelect($event)"
+            class="form-control mb-2"
+            formControlName="image"
+          />
           <button [disabled]="!addForm.valid" class="btn btn-primary ma" data-bs-dismiss="modal">
             Add
           </button>
@@ -37,6 +64,7 @@
 </div>
 
 <!-- authors conatiner-->
+
 <div *ngFor="let a of authors" class="container card mt-3" style="height: 10rem">
   <div class="row card-body p-3 overflow-hidden">
     <div class="col-2">
@@ -46,60 +74,117 @@
       <h5 class="">{{ a.firstName + ' ' + a.lastName }}</h5>
     </div>
     <div class="col-2 justify-content-center">
-      <div class="row p-1">
-        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editFormDrop"
-          (click)="getSelectedAuthor(a)">Edit</a>
+      <div class="row pt-1">
+        <a
+          class="btn btn-secondary flex-fill"
+          data-bs-toggle="modal"
+          data-bs-target="#editFormDrop"
+          (click)="getSelectedAuthor(a)"
+          >Edit</a
+        >
 
-        <!-- Modal -->
-        <div class="modal fade" id="editFormDrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-          aria-labelledby="editFormDropLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editFormDropLabel">Edit Here</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                  (click)="editForm.reset()"></button>
-              </div>
-              <div class="modal-body">
-                <form [formGroup]="editForm" (ngSubmit)="editAuthor()">
-                  <input type="text" class="form-control mb-2" placeholder="First Name..." [(ngModel)]="currentAuthor.firstName"
-                    formControlName="firstName" />
-                  <input type="text" class="form-control mb-2" [(ngModel)]="currentAuthor.lastName" formControlName="lastName" placeholder="Last Name..." />
-                  <input type="date" class="form-control mb-2" [(ngModel)]="currentAuthor.dob" formControlName="dob" />
-                  <input type="file" class="form-control mb-2" formControlName="image" />
-                  <button class="btn btn-primary ma" data-bs-dismiss="modal">Edit</button>
-                </form>
-              </div>
-            </div>
-          </div>
+      </div>
+        <div class="row pt-1 flex-fill">
+          <a
+            class="btn btn-danger"
+            data-bs-toggle="modal"
+            data-bs-target="#deleteAssertion"
+            (click)="getSelectedAuthor(a)"
+            >Delete</a
+          >
         </div>
-        <div class="row p-1">
-          <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteAssertion" (click)="getSelectedAuthor(a)">Delete</a>
-          <div class="modal fade" id="deleteAssertion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="deleteAssertionLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="deleteAssertionLabel">Are You Sure?</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                  <h5 *ngIf="currentAuthor">Delete Author {{ currentAuthor.firstName + ' ' + currentAuthor.lastName}}</h5>
-                  <div class="d-flex justify-content-evenly mt-3">
-                    <button class="btn btn-danger ma" data-bs-dismiss="modal" (click)="deleteAuthor()">
-                      Yes
-                    </button>
-                    <button class="btn btn-secondary ma" data-bs-dismiss="modal">No</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div
+  class="modal fade"
+  id="editFormDrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="editFormDropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editFormDropLabel">Edit Here</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="editForm.reset()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editForm" (ngSubmit)="editAuthor()">
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="First Name..."
+            [(ngModel)]="currentAuthor.firstName"
+            formControlName="firstName"
+          />
+          <input
+            type="text"
+            class="form-control mb-2"
+            [(ngModel)]="currentAuthor.lastName"
+            formControlName="lastName"
+            placeholder="Last Name..."
+          />
+          <input
+            type="date"
+            class="form-control mb-2"
+            [(ngModel)]="currentAuthor.dob"
+            formControlName="dob"
+          />
+          <input type="file" class="form-control mb-2" formControlName="image" />
+          <button class="btn btn-primary ma" data-bs-dismiss="modal">Edit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<div
+  class="modal fade"
+  id="deleteAssertion"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="deleteAssertionLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="deleteAssertionLabel">Are You Sure?</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <h5 *ngIf="currentAuthor">
+          Delete Author {{ currentAuthor.firstName + ' ' + currentAuthor.lastName }}
+        </h5>
+        <div class="d-flex justify-content-evenly mt-3">
+          <button class="btn btn-danger ma" data-bs-dismiss="modal" (click)="deleteAuthor()">
+            Yes
+          </button>
+          <button class="btn btn-secondary ma" data-bs-dismiss="modal">No</button>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="pagination">
-  <ngb-pagination [page]="currentPage" [collectionSize]="totalAuthors" [pageSize]="maxAuthorsPerPage" (pageChange)="getAuthors()"></ngb-pagination>
+
+<div class="d-flex flex-row justify-content-center mt-3">
+  <ngb-pagination
+    [page]="currentPage"
+    [collectionSize]="totalAuthors"
+    [pageSize]="maxAuthorsPerPage"
+    (pageChange)="getAuthors()"
+  ></ngb-pagination>
 </div>
