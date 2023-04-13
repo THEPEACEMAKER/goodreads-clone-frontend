@@ -1,7 +1,7 @@
-<div class="row row-cols-1 row-cols-md-3 g-4">
+<div style="display: flex; height: 350px;">
     <app-author *ngFor="let author of authors" [author]="author"></app-author>
 </div>
 
-<div class="pagination">
-    <ngb-pagination [page]="currentPage" [collectionSize]="totalAuthors" [pageSize]="authorsPerPage" (pageChange)="getAllAuthors"></ngb-pagination>
+<div class="d-flex flex-row justify-content-center mt-3">
+    <ngb-pagination  [page]="currentPage" [collectionSize]="totalAuthors" [pageSize]="authorsPerPage" (pageChange)="getAllAuthors"></ngb-pagination>
 </div>

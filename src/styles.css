@@ -1,2 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.css';
+/* .pagination{
+    margin-top: 1em;
+    margin: auto;
+        font-family: 'Noto Sans JP', sans-serif;
+} */
+
+.page-link{
+    background-color: black;
+    color: white;
+}
+
+.page-link:hover{
+    background-color: chocolate;
+    color: white;
+}
+
+.active>.page-link{
+    background-color: chocolate;
+}
