@@ -3,10 +3,6 @@ import { Author, Book, BookShelf } from '../interfaces';
 import { Router } from '@angular/router';
 import { ShelfService } from '../services/shelf.service';
 
-
-
-
-
 @Component({
   selector: 'app-book-card',
   templateUrl: './book-card.component.html',
@@ -19,10 +15,9 @@ export class BookCardComponent {
 
   author!: Author;
 
+  newShelf: any = { bookId: 0, shelf: '' };
 
-newShelf: any = { bookId: 0, shelf: ''}  
-
-  constructor(public router: Router, private ShelfService:ShelfService) {}
+  constructor(public router: Router, private ShelfService: ShelfService) {}
 
   ngOnInit(): void {
     if (this.book && this.book.author) {
@@ -38,27 +33,42 @@ newShelf: any = { bookId: 0, shelf: ''}
     this.edit.emit(this.book);
   }
 
-  addSehlf(event:any, bookId:any){
+  addSehlf(event: any, bookId: any) {
     console.log(event.value);
     console.log(bookId);
     let newShelf = {
       bookId: bookId,
-      shelf: event.value
-    }
-    
+      shelf: event.value,
+    };
+
     this.ShelfService.addToShelf(bookId, event.value).subscribe({
-      next: (response:any) => {
+      next: (response: any) => {
         console.log(response);
-    }});
-
-   
-
-  }  
-  
-  isToggled: boolean = false
-
-  clickedStar(){
-      this.isToggled = true
+      },
+    });
   }
 
+  isToggled: boolean = false;
+
+  clickedStar() {
+    this.isToggled = true;
+  }
+
+  rating: number = 0;
+  showAllStars: boolean = false;
+
+  setRating(rating: number) {
+    this.rating = rating;
+    this.showAllStars = true;
+  }
+
+  showStars() {
+    this.showAllStars = true;
+  }
+
+  hideStars() {
+    if (this.rating === 0) {
+      this.showAllStars = false;
+    }
+  }
 }

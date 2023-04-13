@@ -6,24 +6,16 @@
         <h2 class="book-name">{{ book.name }}</h2>
         <h3 class="author" *ngIf="author">{{ author.firstName }} {{ author.lastName }}</h3>
         <h3 class="category" *ngIf="book.category">{{ book.category.name }}</h3>
-        <label for="star" class="rating">{{ book.avgRating }} <div class="rating-star">
-            <input type="radio" id="star" name="rating" value="9" (click)="clickedStar()">
-            <label for="star">&#9733;</label>
-            <span class="rate-text"> &#8592; Rate here</span>
+        <i class="material-icons star-filled">star</i>
+        <label for="star" class="rating">{{ book.avgRating }}/5</label> 
+        <div class="star-rating"  [ngClass]="{'show-all-stars': showAllStars}"  (mouseenter)="showStars()" (mouseleave)="hideStars()">
+            <i class="material-icons" [ngClass]="{'star-filled': 1 <= rating, 'star-empty': 1 > rating}"
+                (click)="setRating(1)">star</i>
+                <span *ngIf="!showAllStars"> Rate</span>
+            <i class="material-icons" *ngFor="let i of [2,3,4,5]" [ngClass]="{'star-filled': i <= rating, 'star-empty': i > rating}"
+               (click)="setRating(i)">star</i>
           </div>
-          </label> 
-<form *ngIf="isToggled">
-    <fieldset >
-      <span class="star-cb-group">
-        <input type="radio" id="rating-5" name="rating" value="5" /><label for="rating-5">5</label>
-        <input type="radio" id="rating-4" name="rating" value="4" checked="checked" /><label for="rating-4">4</label>
-        <input type="radio" id="rating-3" name="rating" value="3" /><label for="rating-3">3</label>
-        <input type="radio" id="rating-2" name="rating" value="2" /><label for="rating-2">2</label>
-        <input type="radio" id="rating-1" name="rating" value="1" /><label for="rating-1">1</label>
-        <input type="radio" id="rating-0" name="rating" value="0" class="star-cb-clear" /><label for="rating-0">0</label>
-      </span>
-    </fieldset>
-  </form>
+        
         
         <button [routerLink]='["/book", book._id]' >See the Book</button>
         <br>

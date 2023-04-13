@@ -423,3 +423,37 @@
 .rate-text:hover {
   color: #666;
 }
+
+.star-rating {
+    font-size: 24px;
+  }
+
+  .star-rating:hover {
+    border: 1px solid #eee;
+    border-radius: 20%;
+  }
+  
+  .star-rating .material-icons {
+    display: inline-block;
+    font-size: inherit;
+    color: #999;
+    cursor: pointer;
+  }
+  
+  .star-rating .material-icons.star-filled {
+    color: #ff0;
+  }
+  
+  .star-rating .material-icons.star-empty:hover,
+  .star-rating .material-icons.star-filled:hover {
+    color: #fc0;
+  }
+  
+  .star-rating i:not(:first-child) {
+    display: none;
+  }
+  
+  .star-rating.show-all-stars i:not(:first-child) {
+    display: inline-block;
+  }
+  
