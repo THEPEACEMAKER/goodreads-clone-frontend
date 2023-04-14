@@ -1,17 +1,19 @@
-<div class="container py-5">
+<div class="bigbody" style="height: vh-100; background-color: #131722;">
+<div class="container py-5" style="color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
     <div class="row">
         <div class="col-md-4">
             <img class="w-100" [src]="book.imageUrl" style="height: 626px; width: 416px;">
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8" style="margin-top: 50px;">
             <h3>{{book.name}}</h3>
-            <p>{{book.avgRating}}</p>
+            <p><i class="material-icons star-filled" style="color: gold;">star</i>{{book.avgRating}}</p>
             <p class="px-5">{{book.description}}</p>
 
             <h3>category:</h3>
-            <h3> {{book.category.name}}</h3>
-            <h3>{{book.author.firstName}} {{book.author.lastName}}</h3>
+            <h3 style="border: 1px solid black;border-radius: 5px; background-color: blueviolet; width: fit-content; padding: 2px;"> {{book.category.name}}</h3>
+            <h3 style="font-size: smaller;">Author : {{book.author.firstName}} {{book.author.lastName}}</h3>
 
         </div>
     </div>
+</div>
 </div>

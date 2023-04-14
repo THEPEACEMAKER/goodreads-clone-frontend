@@ -2,6 +2,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Author, Book, BookShelf } from '../interfaces';
 import { Router } from '@angular/router';
 import { ShelfService } from '../services/shelf.service';
+import { RatingService } from '../services/rating.service';
+
 
 @Component({
   selector: 'app-book-card',
@@ -16,8 +18,9 @@ export class BookCardComponent {
   author!: Author;
 
   newShelf: any = { bookId: 0, shelf: '' };
+  newRating: any = { bookId: 0, rating: 0 };
 
-  constructor(public router: Router, private ShelfService: ShelfService) {}
+  constructor(public router: Router, private ShelfService: ShelfService, private RatingService:RatingService) {}
 
   ngOnInit(): void {
     if (this.book && this.book.author) {
@@ -71,4 +74,21 @@ export class BookCardComponent {
       this.showAllStars = false;
     }
   }
+
+
+  addRating(bookId:any, rate:any){
+    console.log(rate);
+    console.log(bookId);
+    let newRating = {
+      bookId: bookId,
+      rate: rate,
+    };
+    this.RatingService.addRating(bookId, rate).subscribe({
+      next: (response: any) => {
+        console.log(response);
+      },
+    });
+  }
+
+
 }

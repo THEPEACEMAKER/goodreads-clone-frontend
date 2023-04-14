@@ -309,30 +309,30 @@
 
 
 
- .star-cb-group {
-	/* remove inline-block whitespace */
+ /* .star-cb-group {
+
 	 font-size: 0;
-	/* flip the order so we can use the + and ~ combinators */
+
 	 unicode-bidi: bidi-override;
 	 direction: rtl;
-	/* the hidden clearer */
-}
- .star-cb-group * {
+
+} */
+ /* .star-cb-group * {
 	 font-size: 1.5rem;
 }
  .star-cb-group > input {
 	 display: none;
 }
  .star-cb-group > input + label {
-	/* only enough room for the star */
+
 	 display: inline-block;
 	 overflow: hidden;
 	 text-indent: 9999px;
 	 width: 1em;
 	 white-space: nowrap;
 	 cursor: pointer;
-}
- .star-cb-group > input + label:before {
+} */
+ /* .star-cb-group > input + label:before {
 	 display: inline-block;
 	 text-indent: -9999px;
 	 content: '\2606';
@@ -342,8 +342,8 @@
 	 content: '\2605';
 	 color: #e52;
 	 text-shadow: 0 0 1px #333;
-}
- .star-cb-group > .star-cb-clear + label {
+} */
+ /* .star-cb-group > .star-cb-clear + label {
 	 text-indent: -9999px;
 	 width: 0.5em;
 	 margin-left: -0.5em;
@@ -360,21 +360,21 @@
 	 content: '\2605';
 	 color: #e52;
 	 text-shadow: 0 0 1px #333;
-}
+} */
 
 
- #log {
+ /* #log {
 	 margin: 1em auto;
 	 width: 5em;
 	 text-align: center;
 	 background: transparent;
-}
+} */
  
 
 
 
 
-.rating-star {
+/* .rating-star {
     display: inline-block;
     position: relative;
     font-size: 24px;
@@ -423,20 +423,20 @@
 .rate-text:hover {
   color: #666;
 }
-
+*/
 .star-rating {
-    font-size: 24px;
-  }
+    font-size: 18px;
+  } 
 
   .star-rating:hover {
-    border: 1px solid #eee;
+    /* border: 1px solid #eee; */
     border-radius: 20%;
   }
   
   .star-rating .material-icons {
     display: inline-block;
     font-size: inherit;
-    color: #999;
+    color: #99b9;
     cursor: pointer;
   }
   
