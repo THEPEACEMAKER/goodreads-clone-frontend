@@ -8,22 +8,22 @@
         <h3 class="category" *ngIf="book.category">{{ book.category.name }}</h3>
         <i class="material-icons star-filled">star</i>
         <label for="star" class="rating">{{ book.avgRating }}/5</label> 
-        <div class="star-rating"  [ngClass]="{'show-all-stars': showAllStars}"  (mouseenter)="showStars()" (mouseleave)="hideStars()" (click)="addRating( book._id, rating)" >
+        <div class="star-rating"  [ngClass]="{'show-all-stars': showAllStars}"  (mouseenter)="showStars()" (mouseleave)="hideStars()">
             <i class="material-icons" [ngClass]="{'star-filled': 1 <= rating, 'star-empty': 1 > rating}"
                 (click)="setRating(1)">star</i>
-                <span *ngIf="!showAllStars">Rate</span>
+                <span *ngIf="!showAllStars"> Rate</span>
             <i class="material-icons" *ngFor="let i of [2,3,4,5]" [ngClass]="{'star-filled': i <= rating, 'star-empty': i > rating}"
                (click)="setRating(i)">star</i>
-          </div>
+        </div>
         
         
-        <button [routerLink]='["/book", book._id]'>See the Book</button>
+        <button [routerLink]='["/book", book._id]' >See the Book</button>
         <br>
         <select class="shelf" (change)="addSehlf($event.target, book._id)">
             <option selected disabled>Choose shelf</option>
             <option value="READ">Read</option>
-            <option value="CURRENTLY READING">Continue reading</option>
-            <option value="WANT TO READ">Want to read</option>
+            <option value="CURRENTLY_READING">Continue reading</option>
+            <option value="WANT_TO_READ">Want to read</option>
             <option value="NONE">NONE</option>
         </select>
     </div>
