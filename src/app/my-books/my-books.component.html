@@ -1,38 +1,13 @@
-<!-- <div class="button-container" >
-    <button class="button" id="button1" (click)="press()">Button 1</button>
-    <button class="button" id="button2">Button 2</button>
-    <button class="button" id="button3">Button 3</button>
-    <button class="button" id="button4">Button 4</button>
-  </div>
-  
-  <div class="content-container">
-    <div class="content" id="content1">
-      Content for Button 1
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ut dolorum ipsa et? Pariatur aliquam illo hic ad maiores atque nobis enim minima laborum nemo, debitis labore eveniet veniam sed?
-    </div>
-    <div class="content" id="content2">
-      Content for Button 2
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ut dolorum ipsa et? Pariatur aliquam illo hic ad maiores atque nobis enim minima laborum nemo, debitis labore eveniet veniam sed?
-    </div>
-    <div class="content" id="content3">
-      Content for Button 3
-    </div>
-    <div class="content" id="content4">
-      Content for Button 4
-    </div>
-  </div>
-   -->
-
-
-   <div class="button-container">
-    <button class="button" (click)="showContent(1)">All books</button>
+ <div class="bigbody">
+ <div class="button-container">
+    <button class="button" (click)="showContent(1)" >All books</button>
     <button class="button" (click)="showContent(2)">Read</button>
     <button class="button" (click)="showContent(3)">Want to Read</button>
     <button class="button" (click)="showContent(4)">Currently Reading</button>
   </div>
   
   <div class="content-container">
-    <div class="content" *ngIf="selectedButton === 1">
+    <div class="content" *ngIf="selectedButton === 1" >
       <main>
           <app-book-card class="task" *ngFor="let book of books" [book]="book"></app-book-card>
       </main>
@@ -46,12 +21,5 @@
       Content for Button 4
     </div>
   </div>
-
-
-
-  <!-- <mdb-tabs [fill]="true">
-    <mdb-tab title="Tab 1"><img src="../../assets/images/123-removebg-preview.png" alt=""></mdb-tab>
-    <mdb-tab title="Tab 2">Tab content 2</mdb-tab>
-    <mdb-tab title="Tab 3">Tab content 3</mdb-tab>
-  </mdb-tabs> -->
+</div>
   

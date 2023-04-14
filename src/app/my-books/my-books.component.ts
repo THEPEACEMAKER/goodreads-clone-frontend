@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { BookService } from '../services/book.service';
 import { Book} from '../interfaces';
-// import { MdbTabsModule } from 'mdb-angular-ui-kit/tabss';
 
 
 @Component({
@@ -45,10 +44,14 @@ export class MyBooksComponent {
     );
   }
 
-  selectedButton: number = 0;
-
+  selectedButton: number = 1;
+  isSelected: boolean = false;
   showContent(buttonNumber: number) {
     this.selectedButton = buttonNumber;
+    this.isSelected = true;
+    // if(this.isSelected == true){
+    //   this.isSelected.
+    // }
   }
 }
 
