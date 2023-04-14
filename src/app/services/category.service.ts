@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Category } from '../interfaces';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ import { Category } from '../interfaces';
 export class CategoryService {
   private baseUrl = 'http://localhost:3000/categories';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private _router: Router) {}
 
   // Add a new category
   addCategory(category: Category): Observable<Category> {
@@ -29,16 +30,19 @@ export class CategoryService {
   }
 
   // Get all categories
-  getAllCategories(page: number = 1): Observable<Category[]> {
-    const perPage = 10;
+  getAllCategories(page: number = 1, perPage:number=10): Observable<Category[]> {
     const url = `${this.baseUrl}?page=${page}&perPage=${perPage}`;
     return this.http.get<Category[]>(url);
   }
 
   // Get a category by ID
-  getCategoryById(categoryId: number): Observable<Category> {
+  getCategoryById(categoryId: string): Observable<Category> {
     const url = `${this.baseUrl}/${categoryId}`;
     return this.http.get<Category>(url);
+  }
+
+  navigateToCategoryDetails(category: any) {
+    this._router.navigate(['/categories', category._id]);
   }
 
   // the categories with the most books or the categories with the highest-rated books

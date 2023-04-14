@@ -23,6 +23,9 @@ import { FooterComponent } from './footer/footer.component';
 import { AdminHeaderComponent } from './admin-header/admin-header.component';
 import { NgbPaginationModule ,NgbCarouselModule} from '@ng-bootstrap/ng-bootstrap';
 import { BooksContainerComponent } from './books-container/books-container.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { CategoryComponent } from './categories/category/category.component';
+import { CategoryDetailsComponent } from './categories/category-details/category-details.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 @NgModule({
   declarations: [
@@ -42,6 +45,9 @@ import { BookDetailsComponent } from './book-details/book-details.component';
     FooterComponent,
     AdminHeaderComponent,
     BooksContainerComponent,
+    CategoriesComponent,
+    CategoryComponent,
+    CategoryDetailsComponent,
     BookDetailsComponent
   ],
   imports: [BrowserModule, ReactiveFormsModule,NgbPaginationModule,NgbCarouselModule, AppRoutingModule, HttpClientModule, FormsModule],

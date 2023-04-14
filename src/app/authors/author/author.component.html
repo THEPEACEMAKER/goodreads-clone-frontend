@@ -1,6 +1,6 @@
 <div class="col" style="cursor: pointer; margin-left: 50px;">
-  <div class="card" style="max-width: 18rem;" (click)="navigateToAuthorDetails(author)">
-    <img [src]="author.imageUrl" class="card-img-top" style="height: 300px; width: 286px;" alt={{author.firstName}}>
+  <div class="card" style="max-width: 18rem; border: none;" (click)="navigateToAuthorDetails(author)">
+    <img [src]="author.imageUrl" class="card-img-top" style="height: 300px; width: 286px; border-radius: 50%;" alt={{author.firstName}}>
     <div class="card-body">
       <h5 class="card-title"><a>{{ author.firstName }} {{ author.lastName }}</a></h5>
     </div>
