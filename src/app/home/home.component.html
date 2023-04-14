@@ -1,3 +1,8 @@
+ <section class="adminHeader vh-100">
+    <p class="adminPar">Welcome to your favourite book library</p>
+    <button class="mybtn btn btn-primary" [routerLink]="['/mybooks']">My books</button>
+ </section>
+ 
  <div class="bigbody">
 
     <ngb-carousel *ngIf="books">
@@ -10,14 +15,9 @@
       </ngb-carousel>
 
       <section>
-        <div class="card " style="width: 18rem;display: inline-block; margin-right: 23px; margin-left: 23px; margin-bottom: 20px; background-color: black;"   *ngFor="let author of authors" ngbSlide>
-            <img style="height: 18rem;width: 18rem; border-radius: 50%;" [src]="author.imageUrl" alt="Random first slide" />
-            <div class="card-body" style="background-color: bisque;">
-              <h5 class="card-title">{{ author.firstName }}</h5>
-              <!-- <p class="card-text"><i class="material-icons star-filled">star</i> {{ author.avgRating }} </p> -->
-            </div>
-        
-          </div>
+        <div style="display: flex; height: 350px;">
+            <app-author *ngFor="let author of authors" [author]="author"></app-author>
+        </div>
       </section>
 
 

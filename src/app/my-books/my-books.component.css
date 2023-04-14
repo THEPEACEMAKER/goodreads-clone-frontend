@@ -1,0 +1,30 @@
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    
+  }
+  
+  .button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: black;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* .content-container {
+    display: none;
+  } */
+  
+  /* .content-container.ng-tns-c34-2 {
+    display: block;
+  } */
+  
+  .content {
+    padding: 20px;
+    border: 1px solid #4CAF50;
+    margin-bottom: 20px;
+  }
+  
