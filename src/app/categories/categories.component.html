@@ -1,0 +1,10 @@
+<div class="container mt-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <app-category *ngFor="let category of categories" [category]="category"></app-category>
+    </div>
+</div>
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="pagination m-auto">
+        <ngb-pagination [page]="currentPage" [collectionSize]="totalCategories" [pageSize]="categoriesPerPage" (pageChange)="getAllCategories"></ngb-pagination>
+    </div>
+</div>
