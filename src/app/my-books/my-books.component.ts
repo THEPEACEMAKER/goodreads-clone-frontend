@@ -44,10 +44,10 @@ export class MyBooksComponent {
     );
   }
 
-  selectedButton: number = 1;
+  selectedButton: string = 'ALL';
   isSelected: boolean = false;
-  showContent(buttonNumber: number) {
-    this.selectedButton = buttonNumber;
+  showContent(buttonName: string) {
+    this.selectedButton = buttonName;
     this.isSelected = true;
     // if(this.isSelected == true){
     //   this.isSelected.

@@ -1,12 +1,17 @@
+.bigbody{
+    background-color: rgb(155, 101, 177);
+
+}
+
 .author-card{
-    background-color: rgb(224, 211, 137);
+    /* background-color: rgb(224, 211, 137); */
     border-radius: 2%;
 }
 .author-card>img{
-    border-radius: 2%;
+    border-radius: 50%;
 }
 
-.author-name{
-    /* border: 2px solid #ccc;
-    border-radius: 3%; */
-}
+/* .author-name{
+    border: 2px solid #ccc; 
+    border-radius: 3%; 
+} */

@@ -1,17 +1,21 @@
 
 .button-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    justify-content: space-around;
+    
     margin-bottom: 20px;
     
   }
   
   .button {
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: white;
+    /* background-color: none; */
     color: black;
     border: none;
     cursor: pointer;
+    font-size: 25px;
   }
   
   /* .content-container {
@@ -24,7 +28,7 @@
   
   .content {
     padding: 20px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     margin-bottom: 20px;
   }
   
@@ -36,3 +40,9 @@
   /* .bigbody{
     height: 2000px;
   } */
+
+  .selected{
+    background-color: #f4f8f5;
+    border-bottom: 2px solid red;
+    color: red;
+  }

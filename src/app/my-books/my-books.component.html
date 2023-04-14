@@ -1,23 +1,23 @@
  <div class="bigbody">
  <div class="button-container">
-    <button class="button" (click)="showContent(1)" >All books</button>
-    <button class="button" (click)="showContent(2)">Read</button>
-    <button class="button" (click)="showContent(3)">Want to Read</button>
-    <button class="button" (click)="showContent(4)">Currently Reading</button>
+    <button class="button" [class.selected]="selectedButton === 'ALL'" (click)="showContent('ALL')" >All books</button>
+    <button class="button" [class.selected]="selectedButton === 'READ'" (click)="showContent('READ')">Read</button>
+    <button class="button" [class.selected]="selectedButton === 'WANT_TO_READ'" (click)="showContent('WANT_TO_READ')">Want to Read</button>
+    <button class="button" [class.selected]="selectedButton === 'CURRENTLY_READING'" (click)="showContent('CURRENTLY_READING')">Currently Reading</button>
   </div>
   
   <div class="content-container">
-    <div class="content" *ngIf="selectedButton === 1" >
+    <div class="content" *ngIf="selectedButton === 'ALL'" >
       <main>
           <app-book-card class="task" *ngFor="let book of books" [book]="book"></app-book-card>
       </main>
     </div>
-    <div class="content" *ngIf="selectedButton === 2">
+    <div class="content" *ngIf="selectedButton === 'READ'">
     </div>
-    <div class="content" *ngIf="selectedButton === 3">
+    <div class="content" *ngIf="selectedButton === 'WANT_TO_READ'">
       Content for Button 3
     </div>
-    <div class="content" *ngIf="selectedButton === 4">
+    <div class="content" *ngIf="selectedButton === 'CURRENTLY_READING'">
       Content for Button 4
     </div>
   </div>
