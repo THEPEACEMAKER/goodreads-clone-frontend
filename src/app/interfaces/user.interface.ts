@@ -4,8 +4,8 @@ export enum UserRole {
 }
 
 export enum BookShelf {
-  WANT_TO_READ = 'WANT TO READ',
-  READING = 'CURRENTLY READING',
+  WANT_TO_READ = 'WANT_TO_READ',
+  READING = 'CURRENTLY_READING',
   READ = 'READ',
 }
 export interface BookSelection {
