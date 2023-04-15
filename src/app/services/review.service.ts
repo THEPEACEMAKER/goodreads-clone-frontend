@@ -13,18 +13,18 @@ export class ReviewService {
   constructor(private http: HttpClient) {}
 
   // Add a new review
-  addReview(review: Review): Observable<Review> {
-    return this.http.post<Review>(this.baseUrl, review);
+  addReview(bookId: number,review:Review): Observable<Review> {
+    return this.http.post<Review>(`${this.baseUrl}/${bookId}`,review);
   }
 
   // Delete a review by ID
-  deleteReview(reviewId: number): Observable<Review> {
+  deleteReview(reviewId: string): Observable<Review> {
     const url = `${this.baseUrl}/${reviewId}`;
     return this.http.delete<Review>(url);
   }
 
   // Update a review by ID
-  updateReview(reviewId: number, review: Review): Observable<Review> {
+  updateReview(reviewId: string, review: Review): Observable<Review> {
     const url = `${this.baseUrl}/${reviewId}`;
     return this.http.patch<Review>(url, review);
   }
@@ -37,19 +37,19 @@ export class ReviewService {
   }
 
   // Get a review by ID
-  getReviewById(reviewId: number): Observable<Review> {
+  getReviewById(reviewId: string): Observable<Review> {
     const url = `${this.baseUrl}/${reviewId}`;
     return this.http.get<Review>(url);
   }
 
   // Get all reviews for a book by book ID
-  getReviewsByBookId(bookId: number): Observable<Review[]> {
-    const url = `${this.baseUrl}?bookId=${bookId}`;
+  getReviewsByBookId(bookId: number,page:number,perPage:number=5): Observable<Review[]> {
+    const url = `${this.baseUrl}/${bookId}?page=${page}&perPage=${perPage}`;
     return this.http.get<Review[]>(url);
   }
 
   // Get all reviews for a user by user ID
-  getReviewsByUserId(userId: number): Observable<Review[]> {
+  getReviewsByUserId(userId: string): Observable<Review[]> {
     const url = `${this.baseUrl}?userId=${userId}`;
     return this.http.get<Review[]>(url);
   }
