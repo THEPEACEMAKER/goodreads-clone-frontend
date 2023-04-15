@@ -85,3 +85,23 @@
     transform: scaleX(1);
     transform-origin: bottom left;
   }
+  .list-group {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+  }
+  
+  .list-group-item {
+    border: none;
+    cursor: pointer;
+  }
+  
+  .list-group-item:hover {
+    background-color: #f5f5f5;
+  }
+  

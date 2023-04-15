@@ -22,15 +22,15 @@ const routes: Routes = [
   { path: 'admin/authors', component: AdminAuthorComponent, canActivate: [AuthGuard] },
   { path: 'admin/books', component: AdminBooksComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignUpComponent },
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+  { path: 'signup', component: SignUpComponent, canActivate: [AuthGuard] },
   { path: 'redirect', component: RedirectComponent },
   { path: 'authors', component: AuthorsComponent },
   { path: 'categories', component: CategoriesComponent },
   { path: 'authors/:id', component: AuthorDetailsComponent },
   { path: 'categories/:id', component: CategoryDetailsComponent },
   { path: 'book/:id', component: BookDetailsComponent },
-  { path: 'mybooks', component:MyBooksComponent}
+  { path: 'mybooks', component: MyBooksComponent },
   // { path: 'categories', component: categoriesComponent },
 ];
 

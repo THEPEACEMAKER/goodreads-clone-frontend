@@ -23,9 +23,14 @@
           </li>
         </ul>
         <form class="d-flex me-auto" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <input class="form-control me-2" type="search" [(ngModel)]="searchTerm" (keyup.enter)="search()" placeholder="Search for a book..." aria-label="Search" name="search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
+        <div *ngIf="searchTerm">
+          <ul class="list-group">
+            <li *ngFor="let book of searchResults" class="list-group-item">{{ book.name }}</li>
+          </ul>
+        </div>
         <ul class="navbar-nav  mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" routerLink="signup" *ngIf="!(currentUser | async)">Register</a>
