@@ -3,23 +3,23 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand home" href="#">Navbar</a>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" [routerLink]="['/home']">Home</a>
+            <a class="nav-link active smsmlink" aria-current="page" [routerLink]="['/home']"><span class="hover-underline-animation"> Home </span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link"routerLink="categories">Categories</a>
+            <a class="nav-link smsmlink"routerLink="categories"><span class="hover-underline-animation"> Categories </span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="books">Books</a>
+            <a class="nav-link smsmlink" routerLink="books"><span class="hover-underline-animation"> Books </span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="authors">Authors</a>
+            <a class="nav-link smsmlink" routerLink="authors"><span class="hover-underline-animation"> Authors</span></a>
           </li>
           <li class="nav-item" *ngIf="(currentUser | async)?.role === 'ADMIN'">
-            <a class="nav-link" [routerLink]="['/admin']">Admin</a>
+            <a class="nav-link smsmlink" [routerLink]="['/admin']"><span class="hover-underline-animation"> Admin </span></a>
           </li>
         </ul>
         <form class="d-flex me-auto" role="search">

@@ -28,6 +28,8 @@ import { CategoryComponent } from './categories/category/category.component';
 import { CategoryDetailsComponent } from './categories/category-details/category-details.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { MyBooksComponent } from './my-books/my-books.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,7 @@ import { MyBooksComponent } from './my-books/my-books.component';
     BookDetailsComponent,
     MyBooksComponent
   ],
-  imports: [BrowserModule, ReactiveFormsModule,NgbPaginationModule,NgbCarouselModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [BrowserModule, ReactiveFormsModule,NgbPaginationModule,NgbCarouselModule, AppRoutingModule, HttpClientModule, FormsModule, CarouselModule, BrowserAnimationsModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

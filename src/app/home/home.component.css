@@ -1,6 +1,6 @@
 .bigbody{
-    background-color: black;
-    height: 100vh;
+     background-color: rgb(230, 227, 227);
+
     font-family: Arial, sans-serif;
     position: relative;
     top: 0;
@@ -29,3 +29,31 @@
     width: 140px;
     font-size: larger;
 }
+
+
+.book-style {
+    position: relative;
+    margin: 0 15px 25px;
+  }
+
+  .book-style img.book-item {
+    /* background: #efeee8; */
+    /* border: 1px solid #eae8df; */
+    padding: 15%;
+    cursor: pointer;
+    width: 300px;
+    height: 300px;
+  }
+
+  .popularbooks{
+    background-color: rgb(0,0,0,0.5);
+    height: 150px;
+    align-items: center;
+    font-size: 200px;
+    font-style: italic;
+    font-size: bold;
+    font-family: fantasy;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
