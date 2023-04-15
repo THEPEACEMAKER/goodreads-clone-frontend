@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Book, BookShelf } from '../interfaces';
-
+import { environment } from '@env/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class ShelfService {
-  private baseUrl = 'http://localhost:3000/user';
+  private baseUrl = `${environment.BASE_URL}/user`;
 
   constructor(private http: HttpClient) {}
   // 'WANT_TO_READ', 'CURRENTLY_READING', 'READ', 'NONE'
@@ -19,7 +19,7 @@ export class ShelfService {
   }
 
   getUserBooks(
-    shelf?: string, // 'WANT_TO_READ', 'CURRENTLY_READING', 'READ'
+    shelf?: string, // noshelf=allbooks 'WANT_TO_READ', 'CURRENTLY_READING', 'READ'
     page = 1,
     perPage = 10
   ): Observable<{ books: Book[]; totalBooks: number }> {

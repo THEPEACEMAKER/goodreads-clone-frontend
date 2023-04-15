@@ -3,12 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Author, Book } from '../interfaces';
 import { Router } from '@angular/router';
+import { environment } from '@env/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthorService {
-  private baseUrl = 'http://localhost:3000/authors';
+  private baseUrl = `${environment.BASE_URL}/authors`;
   constructor(private http: HttpClient, private _router: Router) {}
 
   addAuthor(formData: FormData): Observable<Author> {
@@ -30,7 +31,7 @@ export class AuthorService {
     return this.http.patch<Author>(`${this.baseUrl}/${authorId}`, updates);
   }
 
-  getAuthors(page: number = 1,perPage:number=10): Observable<any> {
+  getAuthors(page: number = 1, perPage: number = 10): Observable<any> {
     const url = `${this.baseUrl}?page=${page}&perPage=${perPage}`;
     return this.http.get<Author[]>(url);
   }
@@ -43,8 +44,10 @@ export class AuthorService {
     return this.http.get<Author>(`${this.baseUrl}/${authorId}`);
   }
 
-  getAuthorBooks(authorId: string,page:number=1,perPage:number=6): Observable<Book[]>{
-    return this.http.get<Book[]>(`${this.baseUrl}/${authorId}/books?page=${page}&perPage=${perPage}`);
+  getAuthorBooks(authorId: string, page: number = 1, perPage: number = 6): Observable<Book[]> {
+    return this.http.get<Book[]>(
+      `${this.baseUrl}/${authorId}/books?page=${page}&perPage=${perPage}`
+    );
   }
 
   // the authors with the most books or the authors with the highest-rated books

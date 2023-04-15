@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Category } from '../interfaces';
 import { Router } from '@angular/router';
+import { environment } from '@env/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CategoryService {
-  private baseUrl = 'http://localhost:3000/categories';
+  private baseUrl = `${environment.BASE_URL}/categories`;
 
   constructor(private http: HttpClient, private _router: Router) {}
 
@@ -30,7 +31,7 @@ export class CategoryService {
   }
 
   // Get all categories
-  getAllCategories(page: number = 1, perPage:number=10): Observable<Category[]> {
+  getAllCategories(page: number = 1, perPage: number = 10): Observable<Category[]> {
     const url = `${this.baseUrl}?page=${page}&perPage=${perPage}`;
     return this.http.get<Category[]>(url);
   }
