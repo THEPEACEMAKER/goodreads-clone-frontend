@@ -40,8 +40,6 @@ export class BookCardComponent {
   }
 
   addSehlf(event: any, bookId: any) {
-    console.log(event.value);
-    console.log(bookId);
     let newShelf = {
       bookId: bookId,
       shelf: event.value,
@@ -79,16 +77,12 @@ export class BookCardComponent {
   }
 
   addRating(bookId: any, rate: any) {
-    console.log(rate);
-    console.log(bookId);
     let newRating = {
       bookId: bookId,
       rate: rate,
     };
     this.RatingService.addRating(bookId, rate).subscribe({
-      next: (response: any) => {
-        console.log(response);
-      },
+      next: (response: any) => {},
     });
   }
 }

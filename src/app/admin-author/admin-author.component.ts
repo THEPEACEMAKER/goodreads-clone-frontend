@@ -62,8 +62,6 @@ export class AdminAuthorComponent {
     this._authorService.getAuthors(this.currentPage).subscribe((response) => {
       this.authors = [...response.authors];
       this.totalAuthors = response.totalAuthors;
-      console.log(this.totalAuthors);
-      console.log(this.pages); 
     });
   }
 
@@ -78,7 +76,7 @@ export class AdminAuthorComponent {
 
       this._authorService.addAuthor(formData).subscribe({
         next: (author: Author) => {},
-        error: (error) => console.log(error),
+        error: (error) => {},
       });
       this.getAuthors();
       this.addForm.reset();
@@ -99,7 +97,7 @@ export class AdminAuthorComponent {
     if (this.currentAuthor._id)
       this._authorService.updateAuthor(this.currentAuthor._id, formData).subscribe({
         next: (author: Author) => {},
-        error: (error) => console.log(error),
+        error: (error) => {},
       });
     this.getAuthors();
     this.editForm.reset();
@@ -108,8 +106,8 @@ export class AdminAuthorComponent {
   deleteAuthor() {
     if (this.currentAuthor._id)
       this._authorService.deleteAuthor(this.currentAuthor._id).subscribe({
-        next: (author: Author) => console.log(author),
-        error: (error) => console.log(error),
+        next: (author: Author) => {},
+        error: (error) => {},
       });
     this.getAuthors();
   }

@@ -26,9 +26,7 @@ export class BookService {
   }
 
   getBooks(page: number = 1, perPage: number = 10): Observable<Book[]> {
-    console.log(this.baseUrl);
     const url = `${this.baseUrl}?page=${page}&perPage=${perPage}`;
-    console.log(url);
     return this.http.get<Book[]>(url);
   }
 
@@ -36,10 +34,9 @@ export class BookService {
     return this.http.get<Book>(`${this.baseUrl}/${bookId}`);
   }
 
-  getBooksByCategory(categoryId: string): Observable<Book[]> {
-    console.log(`${this.baseUrl}/${categoryId}/books`);
+  getBooksByCategory(categoryId: string,page:number,perPage:number=6): Observable<Book[]> {
     const url: string = `${this.baseUrl.split('b')[0]}`;
-    return this.http.get<Book[]>(`${url}categories/${categoryId}/books`);
+    return this.http.get<Book[]>(`${url}categories/${categoryId}/books?page=${page}&perPage=${perPage}`);
   }
 
   // highest average rating or the most reviewed books

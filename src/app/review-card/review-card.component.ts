@@ -14,21 +14,13 @@ export class ReviewCardComponent {
   @Output() reviewToUpdate = new EventEmitter<Review>();
   editReviewForm!: FormGroup;
   constructor(private _reviewService: ReviewService,private fb:FormBuilder) {
-    console.log(this.review); 
-
   }
 
-  ngOnInit(){
-    console.log(this.review); 
-  }
 
   deleteReview() {
     this._reviewService.deleteReview(this.review._id).subscribe({
-      next: (response) => {
-        console.log(response);
-        this.reviewUpdated.emit();
-      },
-      error: (error) => console.log(error),
+      next: () => this.reviewUpdated.emit(),
+      error: (error) => {},
     });
   }
 

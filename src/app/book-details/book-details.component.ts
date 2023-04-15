@@ -34,8 +34,8 @@ export class BookDetailsComponent {
   addReview(){
     if(this.addReviewForm.valid){
       this._reviewService.addReview(this.id,{title:this.addReviewForm.value.title,content:this.addReviewForm.value.content}).subscribe({
-        next:(response)=>console.log(response),
-        error:(error)=>console.log(error)
+        next:(response)=>{},
+        error:(error)=>{}
       })
     }
   }

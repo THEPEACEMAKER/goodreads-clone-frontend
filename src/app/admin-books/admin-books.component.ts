@@ -53,10 +53,7 @@ export class AdminBooksComponent {
   getAllCategories(): void {
     this._categoryService.getAllCategories().subscribe({
       next: (response: any) => {
-        this.categories = response.categories;
-        console.log(this.categories);
-        
-      },
+        this.categories = response.categories;},
     });
   }
 
@@ -65,8 +62,6 @@ export class AdminBooksComponent {
       (response: any) => {
         this.books = response.books;
         this.totalBooks = response.totalBooks;
-        console.log(this.totalBooks);
-        
       },
       (error) => {
         console.error(error);
@@ -79,9 +74,7 @@ export class AdminBooksComponent {
       () => {
         this.books = this.books.filter((b) => b._id !== id);
       },
-      (error) => {
-        console.error(error);
-      }
+      (error) => {}
     );
   }
 
@@ -120,7 +113,6 @@ export class AdminBooksComponent {
     this.book = { ...book };
     this.book.author=book.author._id;
     this.book.category=book.category._id;
-    console.log(this.book);
     
     const modal = document.getElementById('addBookModal');
     const myModal = new bootstrap.Modal(modal!, { backdrop: 'static' });

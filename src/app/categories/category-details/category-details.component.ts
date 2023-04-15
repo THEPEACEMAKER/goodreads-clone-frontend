@@ -14,8 +14,8 @@ export class CategoryDetailsComponent {
   category: Category | undefined;
   books: Book[] = [];
   page: number=1;
-  perPage:number=5;
-  totalBooks: number = 15;
+  perPage:number=6;
+  totalBooks: number = 0;
   constructor(private _categoryService: CategoryService, private _bookService: BookService, private _activatedRoute: ActivatedRoute) {
     this.id = this._activatedRoute.snapshot.params['id'];
     this.getCategoryByID()
@@ -32,11 +32,10 @@ export class CategoryDetailsComponent {
   }
 
   getBooksByCategory(){
-    this._bookService.getBooksByCategory(this.id).subscribe({      
+    this._bookService.getBooksByCategory(this.id,this.page,this.perPage).subscribe({      
       next: (response: any) => {
         this.books = response.books;
-        console.log(this.books);
-        
+        this.totalBooks=response.totalBooks;
       },
       error: (error) => {},
     });

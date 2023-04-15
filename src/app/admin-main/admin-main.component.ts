@@ -42,7 +42,6 @@ export class AdminMainComponent {
     } else {
       this._categoryService.addCategory(this.newCategory).subscribe({
         next: (response: any) => {
-          console.log(response.message);
           this.operationStatus.add.success = true;
           this.getAllCategories();
           setTimeout(() => {

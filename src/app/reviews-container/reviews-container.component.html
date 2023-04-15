@@ -1,7 +1,7 @@
 <div *ngIf="reviews" class="d-flex flex-column container" >
 <app-review-card *ngFor="let review of reviews" [review]="review" (reviewUpdated)="getReviews()" (reviewToUpdate)="assignReview($event)" ></app-review-card>
 </div>
-<div class="d-flex flex-row justify-content-center mt-3">
+<div  *ngIf="totalReviews" class="d-flex flex-row justify-content-center mt-3">
     <ngb-pagination
       [page]="currentPage"
       [collectionSize]="totalReviews"
@@ -14,6 +14,7 @@
 
   
 <div
+*ngIf="totalReviews"
 class="modal fade"
 id="editFormDrop"
 data-bs-backdrop="static"

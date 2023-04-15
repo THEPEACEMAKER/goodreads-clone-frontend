@@ -26,7 +26,6 @@ currentReview: Review={
 
       ngOnInit(){
         this.getReviews();
-        console.log(this.reviews);
         
         this.editReviewForm = this.fb.group({
           title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
@@ -38,28 +37,21 @@ currentReview: Review={
           next:(response:any)=>{
             this.reviews=response.bookReviews;
             this.totalReviews=response.totalReviews;
-            console.log(this.reviews);
-            console.log(response);
-            
           }
         })
       }
 
       assignReview(review:Review){
         this.currentReview={...review};
-        console.log(review);
-        
       }
 
       editReview() {
         if(this.currentReview._id)
         this._reviewService.updateReview(this.currentReview._id,{title:this.editReviewForm.value.title, content:this.editReviewForm.value.content}).subscribe({
           next: (response:any) => {
-           console.log(response);
            this.getReviews();
           },
-          error: (err) => console.log(err)
+          error: (err) => {}
         })
       }
-
 }

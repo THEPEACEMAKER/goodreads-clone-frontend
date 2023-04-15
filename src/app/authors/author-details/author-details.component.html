@@ -8,7 +8,7 @@
 </div>
 <app-books-container [books]="books"></app-books-container>
 
-<div class="d-flex flex-row justify-content-center mt-3">
-    <ngb-pagination  [collectionSize]="totalBooks" [pageSize]="perPage" [(page)]="page" aria-label="Default pagination" (pageChange)="getAuthorBooks()"></ngb-pagination>
+<div *ngIf="totalBooks" class="d-flex flex-row justify-content-center mt-3">
+    <ngb-pagination  [collectionSize]="totalBooks" [pageSize]="perPage" [(page)]="page" (pageChange)="getAuthorBooks()"></ngb-pagination>
 </div>
 </div>
