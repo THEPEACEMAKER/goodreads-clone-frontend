@@ -8,14 +8,18 @@
   <div class="content-container">
     <div class="content"  *ngIf="selectedContent === 'all'">
       <app-book-card class="task" *ngFor="let book of allBooks" [book]="book"></app-book-card>
+      <ngb-pagination [collectionSize]="totalBooks" [pageSize]="perPage" [(page)]="page" (pageChange)="showContent('all')"></ngb-pagination>
     </div>
     <div class="content" *ngIf="selectedContent === 'read'">
       <app-book-card class="task" *ngFor="let book of readBooks" [book]="book"></app-book-card>
+      <ngb-pagination [collectionSize]="totalBooks" [pageSize]="perPage" [(page)]="page" (pageChange)="showContent('read')"></ngb-pagination>
     </div>
     <div class="content" *ngIf="selectedContent === 'want-to-read'">
       <app-book-card class="task" *ngFor="let book of wantToReadBooks" [book]="book"></app-book-card>
+      <ngb-pagination [collectionSize]="totalBooks" [pageSize]="perPage" [(page)]="page" (pageChange)="showContent('want-to-read')"></ngb-pagination>
     </div>
     <div class="content" *ngIf="selectedContent === 'currently-reading'">
       <app-book-card class="task" *ngFor="let book of currentlyReadingBooks" [book]="book"></app-book-card>
+      <ngb-pagination [collectionSize]="totalBooks" [pageSize]="perPage" [(page)]="page" (pageChange)="showContent('currently-reading')"></ngb-pagination>
     </div>
   </div>
