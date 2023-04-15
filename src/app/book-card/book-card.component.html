@@ -20,10 +20,10 @@
         <button [routerLink]='["/book", book._id]' *ngIf="!router.url.includes('admin')">See the Book</button>
         <br>
         <select class="shelf" (change)="addSehlf($event.target, book._id)" *ngIf="!router.url.includes('admin')">
-            <option selected disabled>Choose shelf</option>
-            <option value="READ">Read</option>
-            <option value="CURRENTLY_READING">Continue reading</option>
-            <option value="WANT_TO_READ">Want to read</option>
+            <option [selected]="!book.shelfName" disabled>Choose shelf</option>
+            <option value="READ" [selected]="book.shelfName === 'READ'">Read</option>
+            <option value="CURRENTLY_READING" [selected]="book.shelfName === 'CURRENTLY_READING'">Continue reading</option>
+            <option value="WANT_TO_READ" [selected]="book.shelfName === 'WANT_TO_READ'">Want to read</option>
             <option value="NONE">NONE</option>
         </select>
     </div>

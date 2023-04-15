@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { ShelfService } from '../services/shelf.service';
 import { RatingService } from '../services/rating.service';
 
-
 @Component({
   selector: 'app-book-card',
   templateUrl: './book-card.component.html',
@@ -20,7 +19,11 @@ export class BookCardComponent {
   newShelf: any = { bookId: 0, shelf: '' };
   newRating: any = { bookId: 0, rating: 0 };
 
-  constructor(public router: Router, private ShelfService: ShelfService, private RatingService:RatingService) {}
+  constructor(
+    public router: Router,
+    private ShelfService: ShelfService,
+    private RatingService: RatingService
+  ) {}
 
   ngOnInit(): void {
     if (this.book && this.book.author) {
@@ -46,7 +49,7 @@ export class BookCardComponent {
 
     this.ShelfService.addToShelf(bookId, event.value).subscribe({
       next: (response: any) => {
-        console.log(response);
+        this.book.shelfName = event.value == 'NONE' ? null : event.value;
       },
     });
   }
@@ -75,8 +78,7 @@ export class BookCardComponent {
     }
   }
 
-
-  addRating(bookId:any, rate:any){
+  addRating(bookId: any, rate: any) {
     console.log(rate);
     console.log(bookId);
     let newRating = {
@@ -89,6 +91,4 @@ export class BookCardComponent {
       },
     });
   }
-
-
 }
