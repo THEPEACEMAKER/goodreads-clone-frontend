@@ -1,0 +1,8 @@
+.cat:hover{
+    background-color: blueviolet;
+}
+
+.bigcat{
+    padding: 20px;
+    margin: auto;
+}

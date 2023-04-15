@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { BookShelf } from '../interfaces';
+import { Book, BookShelf } from '../interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -10,24 +10,27 @@ export class ShelfService {
   private baseUrl = 'http://localhost:3000/user';
 
   constructor(private http: HttpClient) {}
-
-  addToShelf(bookId: number, shelf: BookShelf): Observable<any> {
+  // 'WANT_TO_READ', 'CURRENTLY_READING', 'READ', 'NONE'
+  addToShelf(bookId: number, shelf: BookShelf | string): Observable<any> {
     const body = { bookId, shelf };
-    console.log(`${this.baseUrl}/book`);
-    
+
     return this.http.post(`${this.baseUrl}/book`, body);
     // { message: 'Book Added successfully' }
   }
 
-  updateShelf(bookId: any, shelf: BookShelf): Observable<any> {
-    const body = { bookId, shelf };
-    return this.http.patch(`${this.baseUrl}/${bookId}`, body);
-    // { message: 'User shelf updated successfully', updateData: user }
-  }
+  getUserBooks(
+    shelf?: string, // 'WANT_TO_READ', 'CURRENTLY_READING', 'READ'
+    page = 1,
+    perPage = 10
+  ): Observable<{ books: Book[]; totalBooks: number }> {
+    let params = new HttpParams().set('page', page.toString()).set('perPage', perPage.toString());
 
-  deleteFromShelf(bookId: number): Observable<any> {
-    const body = { bookId };
-    return this.http.delete(`${this.baseUrl}/${bookId}`, { body });
-    // { message: 'Book removed from user books', user: user }
+    if (shelf) {
+      params = params.set('shelf', shelf);
+    }
+
+    return this.http.get<{ books: Book[]; totalBooks: number }>(`${this.baseUrl}/books`, {
+      params,
+    });
   }
 }

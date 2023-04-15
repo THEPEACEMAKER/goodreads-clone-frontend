@@ -29,6 +29,10 @@ import { CategoryDetailsComponent } from './categories/category-details/category
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { ReviewsContainerComponent } from './reviews-container/reviews-container.component';
 import { ReviewCardComponent } from './review-card/review-card.component';
+import { MyBooksComponent } from './my-books/my-books.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,9 +56,10 @@ import { ReviewCardComponent } from './review-card/review-card.component';
     CategoryDetailsComponent,
     BookDetailsComponent,
     ReviewsContainerComponent,
-    ReviewCardComponent
+    ReviewCardComponent,
+    MyBooksComponent
   ],
-  imports: [BrowserModule, ReactiveFormsModule,NgbPaginationModule,NgbCarouselModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [BrowserModule, ReactiveFormsModule,NgbPaginationModule,NgbCarouselModule, AppRoutingModule, HttpClientModule, FormsModule, CarouselModule, BrowserAnimationsModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

@@ -14,6 +14,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { CategoryDetailsComponent } from './categories/category-details/category-details.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { BooksContainerComponent } from './books-container/books-container.component';
+import { MyBooksComponent } from './my-books/my-books.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -29,7 +30,7 @@ const routes: Routes = [
   { path: 'authors/:id', component: AuthorDetailsComponent },
   { path: 'categories/:id', component: CategoryDetailsComponent },
   { path: 'book/:id', component: BookDetailsComponent },
-  // { path: 'books', component: puplicBooksComponent },
+  { path: 'mybooks', component:MyBooksComponent}
   // { path: 'categories', component: categoriesComponent },
 ];
 
