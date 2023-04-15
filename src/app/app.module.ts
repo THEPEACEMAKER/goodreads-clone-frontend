@@ -27,6 +27,8 @@ import { CategoriesComponent } from './categories/categories.component';
 import { CategoryComponent } from './categories/category/category.component';
 import { CategoryDetailsComponent } from './categories/category-details/category-details.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
+import { ReviewsContainerComponent } from './reviews-container/reviews-container.component';
+import { ReviewCardComponent } from './review-card/review-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +50,9 @@ import { BookDetailsComponent } from './book-details/book-details.component';
     CategoriesComponent,
     CategoryComponent,
     CategoryDetailsComponent,
-    BookDetailsComponent
+    BookDetailsComponent,
+    ReviewsContainerComponent,
+    ReviewCardComponent
   ],
   imports: [BrowserModule, ReactiveFormsModule,NgbPaginationModule,NgbCarouselModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [

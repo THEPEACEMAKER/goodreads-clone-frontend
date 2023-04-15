@@ -1,7 +1,5 @@
 export interface Review {
-  _id?: number;
+  _id?: string;
   title: string;
   content: string;
-  user: number; // reference to User
-  book: number; // reference to Book
 }

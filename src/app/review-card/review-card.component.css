@@ -1,0 +1,9 @@
+.content{
+    background-color: rgb(255, 127, 80,0.7);
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.username{
+    font-weight: bolder;
+}

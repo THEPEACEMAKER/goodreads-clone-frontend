@@ -1,0 +1,58 @@
+<div *ngIf="reviews" class="d-flex flex-column container" >
+<app-review-card *ngFor="let review of reviews" [review]="review" (reviewUpdated)="getReviews()" (reviewToUpdate)="assignReview($event)" ></app-review-card>
+</div>
+<div class="d-flex flex-row justify-content-center mt-3">
+    <ngb-pagination
+      [page]="currentPage"
+      [collectionSize]="totalReviews"
+      [pageSize]="maxReviewsPerPage"
+      (pageChange)="getReviews()"
+    ></ngb-pagination>
+  </div>
+
+
+
+  
+<div
+class="modal fade"
+id="editFormDrop"
+data-bs-backdrop="static"
+data-bs-keyboard="false"
+tabindex="-1"
+aria-labelledby="editFormDropLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="editFormDropLabel">Edit Review</h1>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        (click)="editReviewForm.reset()"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="editReviewForm" (ngSubmit)="editReview()">
+        <input
+          type="text"
+          class="form-control mb-2"
+          placeholder="Tile..."
+          [(ngModel)]="currentReview.title"
+          formControlName="title"
+        />
+        <input
+          type="text"
+          class="form-control mb-2"
+          formControlName="content"
+          [(ngModel)]="currentReview.content"
+          placeholder="Review..."
+        />
+        <button class="btn btn-primary ma" data-bs-dismiss="modal">Edit</button>
+      </form>
+    </div>
+  </div>
+</div>
+</div>

@@ -16,4 +16,53 @@
         </div>
     </div>
 </div>
+<div class="d-flex flex-row justify-content-end w-100 p-5">
+<button
+class="btn btn-secondary col-2"
+data-bs-toggle="modal"
+data-bs-target="#addFormDrop"><i class="fa-solid fa-plus"></i> Add Review</button>
+</div>
+
+<div
+  class="modal fade"
+  id="addFormDrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="addFormDropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="addFormDropLabel">Add Review</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="addReviewForm.reset()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addReviewForm" (ngSubmit)="addReview()">
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="Title..."
+            formControlName="title"
+          />
+          <input
+            type="text"
+            class="form-control mb-2"
+            formControlName="content"
+            placeholder="Review..."
+          />
+          <button class="btn btn-primary ma" data-bs-dismiss="modal">Add</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<app-reviews-container [bookId]="id" ></app-reviews-container>
 </div>
