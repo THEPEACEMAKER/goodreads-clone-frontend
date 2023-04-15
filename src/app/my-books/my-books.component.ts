@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { BookService } from '../services/book.service';
 import { Book} from '../interfaces';
+import { ShelfService } from '../services/shelf.service';
+
 
 
 @Component({
@@ -9,49 +11,54 @@ import { Book} from '../interfaces';
   styleUrls: ['./my-books.component.css']
 })
 export class MyBooksComponent {
-  books:Book[] = []
-  book: Book = {
-    _id: 0,
-    name: '',
-    description: '',
-    imageUrl: '',
-    category: '',
-    author: '',
-  };
-  currentPage: number = 1;
-  totalBooks: number = 1;
-  booksPerPage: number =10;
+  allBooks: Book[] = [];
+  readBooks: Book[] = [];
+  wantToReadBooks: Book[] = [];
+  currentlyReadingBooks: Book[] = [];
+  selectedContent = 'all';
 
-  constructor(private BookService:BookService){
-    this.BookService = BookService;
-  }
+  constructor(private bookService: BookService, private ShelfService:ShelfService) {}
 
   ngOnInit(): void {
-    this.getBooks();
+    this.ShelfService.getUserBooks().subscribe((response) => {
+      this.allBooks = response.books;
+    });
   }
 
-  getBooks(): void {
-    this.BookService.getBooks(this.currentPage,this.booksPerPage).subscribe(
-      (response: any) => {
-        this.books = response.books;
-        this.totalBooks = response.totalBooks;
-        console.log(this.totalBooks);
-        
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
+  showContent(content: string): void {
+    this.selectedContent = content;
 
-  selectedButton: string = 'ALL';
-  isSelected: boolean = false;
-  showContent(buttonName: string) {
-    this.selectedButton = buttonName;
-    this.isSelected = true;
-    // if(this.isSelected == true){
-    //   this.isSelected.
-    // }
+    switch (content) {
+      case 'all':
+        if (!this.allBooks.length) {
+          this.ShelfService.getUserBooks().subscribe((response) => {
+            this.allBooks = response.books;
+          });
+        }
+        break;
+      case 'read':
+        if (!this.readBooks.length) {
+          this.ShelfService.getUserBooks('READ').subscribe((response) => {
+            this.readBooks = response.books;
+          });
+        }
+        break;
+      case 'want-to-read':
+        if (!this.wantToReadBooks.length) {
+          this.ShelfService.getUserBooks('WANT_TO_READ').subscribe((response) => {
+            this.wantToReadBooks = response.books;
+          });
+        }
+        break;
+      case 'currently-reading':
+        if (!this.currentlyReadingBooks.length) {
+          this.ShelfService.getUserBooks('CURRENTLY_READING').subscribe((response) => {
+            this.currentlyReadingBooks = response.books;
+          });
+        }
+        break;
+    }
   }
 }
+
 
