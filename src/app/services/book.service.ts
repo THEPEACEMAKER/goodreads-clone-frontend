@@ -42,6 +42,11 @@ export class BookService {
     return this.http.get<Book[]>(`${url}categories/${categoryId}/books`);
   }
 
+  searchBooks(searchTerm: string): Observable<Book[]> {
+    const url = `${environment.BASE_URL}/books/search?name=${searchTerm}`;
+    return this.http.get<Book[]>(url);
+  }
+
   // highest average rating or the most reviewed books
   // getPopularBooks(): Observable<Book[]>
 }
