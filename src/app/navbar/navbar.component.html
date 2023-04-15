@@ -13,13 +13,13 @@
             <a class="nav-link smsmlink"routerLink="categories"><span class="hover-underline-animation"> Categories </span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link smsmlink" routerLink="books"><span class="hover-underline-animation"> Books </span></a>
+            <a class="nav-link smsmlink" routerLink="allbooks"><span class="hover-underline-animation"> Books </span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link smsmlink" routerLink="authors"><span class="hover-underline-animation"> Authors</span></a>
           </li>
           <li class="nav-item" *ngIf="(currentUser | async)?.role === 'ADMIN'">
-            <a class="nav-link smsmlink" [routerLink]="['/admin']"><span class="hover-underline-animation"> Admin </span></a>
+            <a class="nav-link smsmlink admin fancy" [routerLink]="['/admin']"><span> Admin </span></a>
           </li>
         </ul>
         <form class="d-flex me-auto" role="search">
@@ -45,7 +45,7 @@
                 <a class="nav-link" href="#"><img [src]="(currentUser | async)?.imageUrl"  class="img-fluid rounded-circle" alt="User Image"></a>
               </li>
             <li class="nav-item" *ngIf="currentUser | async">
-              <a class="nav-link usrOut" (click)="logout()">Logout</a>
+              <a class="nav-link usrOut" (click)="logout()" routerLink="login">Logout</a>
             </li>
           </ul>
       </div>

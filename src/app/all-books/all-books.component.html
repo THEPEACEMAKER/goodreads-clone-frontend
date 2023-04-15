@@ -1,0 +1,9 @@
+<div class="main">
+    <app-books-container class="task" [books]="books"></app-books-container>
+</div>
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="pagination">
+        <ngb-pagination [collectionSize]="totalBooks" [pageSize]="perPage" [(page)]="page" aria-label="Default pagination" (pageChange)="getBooks()"></ngb-pagination>
+    </div>
+</div>

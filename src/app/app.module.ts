@@ -32,6 +32,7 @@ import { ReviewCardComponent } from './review-card/review-card.component';
 import { MyBooksComponent } from './my-books/my-books.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AllBooksComponent } from './all-books/all-books.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BookDetailsComponent,
     ReviewsContainerComponent,
     ReviewCardComponent,
-    MyBooksComponent
+    MyBooksComponent,
+    AllBooksComponent
   ],
   imports: [BrowserModule, ReactiveFormsModule,NgbPaginationModule,NgbCarouselModule, AppRoutingModule, HttpClientModule, FormsModule, CarouselModule, BrowserAnimationsModule],
   providers: [
