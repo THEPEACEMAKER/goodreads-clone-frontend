@@ -3,7 +3,7 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand home" href="#">Navbar</a>
+      <a class="navbar-brand home" href="#">Good Reads</a>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
@@ -19,18 +19,20 @@
             <a class="nav-link smsmlink" routerLink="authors"><span class="hover-underline-animation"> Authors</span></a>
           </li>
           <li class="nav-item" *ngIf="(currentUser | async)?.role === 'ADMIN'">
-            <a class="nav-link smsmlink admin fancy" [routerLink]="['/admin']"><span> Admin </span></a>
+            <a class="nav-link smsmlink fancy" [routerLink]="['/admin']"><button class="admin">
+              Admin
+            </button></a>
           </li>
         </ul>
-        <form class="d-flex me-auto" role="search">
-          <input class="form-control me-2" type="search" [(ngModel)]="searchTerm" (keyup.enter)="search()" placeholder="Search for a book..." aria-label="Search" name="search">
+        <form class="d-flex me-auto" role="search" style="position: relative;">
+          <input class="form-control me-2" type="search" [(ngModel)]="searchTerm" (keyup)="search()" placeholder="Search for a book..." aria-label="Search" name="search">
           <button class="btn btn-outline-success" type="submit">Search</button>
+          <div *ngIf="searchTerm" style="position: absolute; top: 50px; left: 0; width: 100%;">
+            <ul class="list-group">
+              <li *ngFor="let book of searchResults" class="list-group-item">{{ book.name }}</li>
+            </ul>
+          </div>
         </form>
-        <div *ngIf="searchTerm">
-          <ul class="list-group">
-            <li *ngFor="let book of searchResults" class="list-group-item">{{ book.name }}</li>
-          </ul>
-        </div>
         <ul class="navbar-nav  mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" routerLink="signup" *ngIf="!(currentUser | async)">Register</a>

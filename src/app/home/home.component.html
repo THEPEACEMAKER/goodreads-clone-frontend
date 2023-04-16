@@ -9,13 +9,14 @@
       </div>
 
       <owl-carousel-o [options]="customOptions">
-
         <ng-container *ngFor="let book of books">
           <ng-template carouselSlide>
             <figure class="book-style">
               <a [routerLink]="['/book', book._id]"
                 ><img [src]="book.imageUrl" alt="Books" class="book-item" 
-              /></a>
+              />
+              <!-- <p>{{book.name}}</p> -->
+            </a>
             </figure>
           </ng-template>
         </ng-container>
@@ -27,8 +28,8 @@
       </div>
 
       <section>
-        <div style="display: flex; height: 350px;">
-            <app-author *ngFor="let author of authors" [author]="author"></app-author>
+        <div style="display: flex; height: 350px; text-align: center;">
+            <app-author class="auth" *ngFor="let author of authors" [author]="author"></app-author>
         </div>
       </section>
 
@@ -39,8 +40,8 @@
     </div>
 
     <section>
-      <div style="display: flex; height: 350px;">
-          <app-category *ngFor="let category of categories" [category]="category"></app-category>
+      <div style="display: flex; height: 50px; justify-content: space-around;">
+          <app-category  class="catego" *ngFor="let category of categories" [category]="category"></app-category>
       </div>
     </section>
 

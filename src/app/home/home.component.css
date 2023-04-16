@@ -57,3 +57,25 @@
     justify-content: center;
     margin-bottom: 15px;
   }
+
+
+img{
+    transition: transform 1s;
+}
+img:hover{
+    transform: scale(1.05);
+}
+
+.catego{
+  transition: transform 1s;
+}
+.catego:hover{
+  transform: scale(1.05);
+}
+
+.auth{
+  transition: transform 1s;
+}
+.auth:hover{
+  transform: scale(1.05);
+}
