@@ -12,6 +12,7 @@
         <ng-container *ngFor="let book of popularBooks">
           <ng-template carouselSlide>
             <figure class="book-style">
+              <div class="popBookCont">
               <a [routerLink]="['/book', book._id]"
                 ><img [src]="book.imageUrl" alt="Books" class="book-item" 
               />
@@ -21,12 +22,13 @@
             <i  class="material-icons star-filled" style="color: coral;">star</i>
             <label for="star" class="rating">{{ book.avgRating }}/5</label>
           </div>
-            <p style="display: inline-block; font-weight: bold; ">Rating no.<span style="border: 1px solid black"> {{book.ratingsCount}}</span></p>
+          <p style="font-weight: bold; text-align: center;">Rating no.<span style="border: 1px solid black"> {{book.ratingsCount}}</span></p>
+        </div>
             </figure>
           </ng-template>
         </ng-container>
       </owl-carousel-o>
-
+      
 
       <div class="popularbooks">
         <h2 class="popularTitle">Popular Authors</h2>
