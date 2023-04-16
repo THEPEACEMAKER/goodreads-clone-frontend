@@ -1,106 +1,5 @@
 
 
-/* ------------------------------------------------- for mobiles -------------------------------------------------------------------- */
-@media(max-width: 900px){
-    /* ------------------------- main book store ---------------------------- */
-    .books{
-        display: flex;
-        flex-direction: row;
-        background-color: #fdca95;
-        border-radius: 10px;
-        margin-bottom: 3em;
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
-    }
-    .book-img{
-        width: 100%;
-        max-width: 1000px;
-        margin: 1.5em;
-        border-radius: 3px;
-        transition: transform 1s;
-        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-    }
-    .book-img:hover{
-        transform: scale(1.05);
-    }
-    .descp{
-        margin: 1.5em;
-        padding: 1em;
-        
-    }
-    .book-name{
-        font-weight: bold;
-        padding-bottom: 0.5em;
-        font-size: 1.1em;
-        letter-spacing: 1px;
-        color: white;
-    }
-    .author{
-        padding-bottom: 0.5em;
-        font-size: 1.1em;
-        letter-spacing: 1px;
-        color: white;
-    }
-    .category{
-        padding-bottom: 0.5em;
-        font-size: 1.1em;
-        letter-spacing: 1px;
-        color: white;
-    }
-    .rating{
-        padding-bottom: 1.2em;
-        font-size: 1em;
-        letter-spacing: 1px;
-        color: white;
-    }
-    .info{
-        font-size: 1em;
-        letter-spacing: 1px;
-        color: white;
-    }
-    .descp button{
-        margin-top: 1em;
-        background: none;
-        border: none;
-        color: #fdca95;
-        background-color: white;
-        padding: 0.6em 1.5em;
-        font-size: 1em;
-        border-radius: 20px;
-        font-weight: bolder;
-    }
-    .descp button:hover{
-        color: #a790f2;
-    }
-    #b1{
-        color: #fbadaf;
-    }
-    #b1:hover{
-        color: #ff6e9f;
-    }
-    #b2{
-        color: #a4e0eb;
-    }
-    #b2:hover{
-        color: #62cdec;
-    }
-    #b3{
-        color: #fdca95;
-    }
-    #b3:hover{
-        color: #fb9124;
-    }
-
-}
-
-
-
-
-
-
-/*--------------------------------------------------------------- fOR PC AND LAPTOPS -------------------------------------------- */
-@media(min-width: 900px){
-    /* ----------------------------------------------------- Navbar ---------------------------------------------------------- */
-    /* ------------------- MAIN BOOKS ---------------------------------- */
     .books{
         display: flex;
         flex-direction: row;
@@ -111,6 +10,8 @@
         border-radius: 10px;
         margin-bottom: 3em;
         box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+        width: 470px;
+        height: 343px;
     }
     .books:nth-of-type(2){
         background-color: #fbadaf;
@@ -181,7 +82,7 @@
     .descp button:hover{
         color: #fb9124;
     }
-}
+
 
 .flex-container {
   display: flex;

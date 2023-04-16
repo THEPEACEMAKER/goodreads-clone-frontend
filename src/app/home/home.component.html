@@ -1,4 +1,4 @@
- <section class="adminHeader vh-100">
+ <section class="adminHeader vh-100" *ngIf="(currentUser | async)">
     <p class="adminPar">Welcome to your favourite book library</p>
     <button class="mybtn btn btn-primary" [routerLink]="['/mybooks']">My books</button>
  </section>
@@ -29,7 +29,7 @@
 
       <section>
         <div style="display: flex; height: 350px; text-align: center;">
-            <app-author class="auth" *ngFor="let author of authors" [author]="author"></app-author>
+            <app-author style="width: 24%;" class="auth" *ngFor="let author of authors" [author]="author"></app-author>
         </div>
       </section>
 
