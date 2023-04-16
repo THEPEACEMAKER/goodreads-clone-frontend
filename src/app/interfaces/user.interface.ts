@@ -14,7 +14,7 @@ export interface BookSelection {
 }
 
 export interface User {
-  id?: number;
+  _id?: number;
   firstName: string;
   lastName: string;
   email: string;

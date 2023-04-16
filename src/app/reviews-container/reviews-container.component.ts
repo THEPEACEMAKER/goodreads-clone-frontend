@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { ReviewService } from '../services/review.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Review } from '../interfaces';
+import { Review, User } from '../interfaces';
+import { AuthService } from '../auth/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-reviews-container',
@@ -10,7 +12,8 @@ import { Review } from '../interfaces';
 })
 export class ReviewsContainerComponent {
   @Input() bookId!: number;
-  
+
+  currentUser!: Observable<User | null>;
   editReviewForm!: FormGroup;
   
 reviews = [];
@@ -22,7 +25,7 @@ currentReview: Review={
   content:''
 };
 
-      constructor(private _reviewsService: ReviewService,private fb:FormBuilder,private _reviewService:ReviewService){}
+      constructor(private _reviewsService: ReviewService,private fb:FormBuilder,private _reviewService:ReviewService,private _authService: AuthService){}
 
       ngOnInit(){
         this.getReviews();
@@ -31,6 +34,9 @@ currentReview: Review={
           title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
           content: ['', [Validators.required, Validators.minLength(3)]]
         });
+
+
+        this.currentUser=this._authService.getCurrentUser();
       }
       getReviews(){
         this._reviewsService.getReviewsByBookId(this.bookId,this.currentPage).subscribe({
