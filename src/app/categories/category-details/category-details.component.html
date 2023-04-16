@@ -2,6 +2,11 @@
     <h1>{{ category?.name }}</h1>
 </div>
 <app-books-container [books]="books"></app-books-container>
+<div style="height:300px;" *ngIf="books.length === 0">
+    <h3 style="text-align: center;">
+        No Books Available in this category yet.
+    </h3>
+</div>
 
 <div *ngIf="totalBooks" class="container mt-5 d-flex justify-content-center">
     <div class="pagination">
