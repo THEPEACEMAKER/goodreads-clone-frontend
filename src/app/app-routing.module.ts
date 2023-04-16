@@ -16,6 +16,7 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 import { BooksContainerComponent } from './books-container/books-container.component';
 import { MyBooksComponent } from './my-books/my-books.component';
 import { AllBooksComponent } from './all-books/all-books.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'book/:id', component: BookDetailsComponent },
   { path: 'mybooks', component: MyBooksComponent },
   { path: 'allbooks', component: AllBooksComponent },
+  { path: '**', component:NotFoundComponent},
   // { path: 'categories', component: categoriesComponent },
 ];
 
