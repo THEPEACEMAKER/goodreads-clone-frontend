@@ -8,7 +8,7 @@
         <h3 class="category" *ngIf="book.category">{{ book.category.name }}</h3>
         <i class="material-icons star-filled">star</i>
         <label for="star" class="rating">{{ book.avgRating }}/5</label> 
-        <div class="star-rating"  [ngClass]="{'show-all-stars': showAllStars}"  (mouseenter)="showStars()" (mouseleave)="hideStars()" *ngIf="!router.url.includes('admin')">
+        <div class="star-rating"  [ngClass]="{'show-all-stars': showAllStars}"  (mouseenter)="showStars()" (mouseleave)="hideStars()" (click)="addRating(book._id, rating)" *ngIf="!router.url.includes('admin')">
             <i class="material-icons" [ngClass]="{'star-filled': 1 <= rating, 'star-empty': 1 > rating}"
                 (click)="setRating(1)">star</i>
                 <span *ngIf="!showAllStars"> Rate</span>
