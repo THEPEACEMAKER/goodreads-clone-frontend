@@ -134,7 +134,7 @@ export class AdminBooksComponent {
     formData.append('description', this.book.description);
     formData.append('categoryId', this.book.category);
     formData.append('authorId', this.book.author);
-    formData.append('image', this.imageFile ? this.imageFile : this.book.imageUrl || '');
+    formData.append('image', this.imageFile);
     if (this.editingBook!._id) {
       this.bookService.updateBook(this.editingBook!._id, formData).subscribe(
         (response: any) => {

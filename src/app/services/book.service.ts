@@ -22,7 +22,8 @@ export class BookService {
   }
 
   updateBook(bookId: number, updates: FormData): Observable<Book> {
-    return this.http.patch<Book>(`${this.baseUrl}/${bookId}`, updates);
+    const headers = new HttpHeaders();
+    return this.http.patch<Book>(`${this.baseUrl}/${bookId}`, updates, { headers: headers });
   }
 
   getBooks(page: number = 1, perPage: number = 10): Observable<Book[]> {
