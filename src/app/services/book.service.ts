@@ -34,9 +34,11 @@ export class BookService {
     return this.http.get<Book>(`${this.baseUrl}/${bookId}`);
   }
 
-  getBooksByCategory(categoryId: string,page:number,perPage:number=6): Observable<Book[]> {
+  getBooksByCategory(categoryId: string, page: number, perPage: number = 6): Observable<Book[]> {
     const url: string = `${this.baseUrl.split('b')[0]}`;
-    return this.http.get<Book[]>(`${url}categories/${categoryId}/books?page=${page}&perPage=${perPage}`);
+    return this.http.get<Book[]>(
+      `${url}categories/${categoryId}/books?page=${page}&perPage=${perPage}`
+    );
   }
 
   searchBooks(searchTerm: string): Observable<Book[]> {
@@ -45,5 +47,8 @@ export class BookService {
   }
 
   // highest average rating or the most reviewed books
-  // getPopularBooks(): Observable<Book[]>
+  getPopularBooks(): Observable<Book[]> {
+    const url = `${this.baseUrl}/popular`;
+    return this.http.get<Book[]>(url);
+  }
 }
