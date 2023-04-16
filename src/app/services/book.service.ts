@@ -35,9 +35,8 @@ export class BookService {
   }
 
   getBooksByCategory(categoryId: string, page: number, perPage: number = 6): Observable<Book[]> {
-    const url: string = `${this.baseUrl.split('b')[0]}`;
     return this.http.get<Book[]>(
-      `${url}categories/${categoryId}/books?page=${page}&perPage=${perPage}`
+      `${environment.BASE_URL}/categories/${categoryId}/books?page=${page}&perPage=${perPage}`
     );
   }
 

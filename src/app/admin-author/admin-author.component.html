@@ -141,7 +141,7 @@
             [(ngModel)]="currentAuthor.dob"
             formControlName="dob"
           />
-          <input type="file" class="form-control mb-2" formControlName="image" />
+          <input type="file" class="form-control mb-2" formControlName="image" (change)="onFileSelect($event)"/>
           <button class="btn btn-primary ma" data-bs-dismiss="modal">Edit</button>
         </form>
       </div>
