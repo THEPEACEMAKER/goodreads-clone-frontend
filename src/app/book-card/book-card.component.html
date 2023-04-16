@@ -8,7 +8,7 @@
         <h3 class="category" *ngIf="book.category">{{ book.category.name }}</h3>
         <i class="material-icons star-filled" style="color: coral;">star</i>
         <label for="star" class="rating">{{ book.avgRating }}/5</label> 
-        <div class="star-rating"  [ngClass]="{'show-all-stars': showAllStars}"  (mouseenter)="showStars()" (mouseleave)="hideStars()" (click)="addRating(book._id, rating)" *ngIf="!router.url.includes('admin')">
+        <div class="star-rating"  [ngClass]="{'show-all-stars': showAllStars}"  (mouseenter)="showStars()" (mouseleave)="hideStars()" (click)="addRating(book._id, rating)" *ngIf="(currentUser | async) && !router.url.includes('admin')">
             <i class="material-icons"  [ngClass]="{'star-filled': 1 <= rating, 'star-empty': 1 > rating}"
                 (click)="setRating(1)">star</i>
                 <span *ngIf="!showAllStars"> Rate</span>
@@ -17,9 +17,9 @@
         </div>
         
         
-        <button [routerLink]='["/book", book._id]' *ngIf="!router.url.includes('admin')">See the Book</button>
+        <button id="seeBook" [routerLink]='["/book", book._id]' *ngIf="!router.url.includes('admin')">See the Book</button>
         <br>
-        <select class="shelf" (change)="addSehlf($event.target, book._id)" *ngIf="!router.url.includes('admin')">
+        <select class="shelf" (change)="addSehlf($event.target, book._id)" *ngIf="(currentUser | async) && !router.url.includes('admin')">
             <option [selected]="!book.shelfName" disabled>Choose shelf</option>
             <option value="READ" [selected]="book.shelfName === 'READ'">Read</option>
             <option value="CURRENTLY_READING" [selected]="book.shelfName === 'CURRENTLY_READING'">Continue reading</option>

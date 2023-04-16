@@ -200,3 +200,6 @@
     display: inline-block;
   }
   
+  .rating {
+    margin-right:5px;
+  }

@@ -1,8 +1,10 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Author, Book, BookShelf } from '../interfaces';
+import { Author, Book, BookShelf, User } from '../interfaces';
 import { Router } from '@angular/router';
 import { ShelfService } from '../services/shelf.service';
 import { RatingService } from '../services/rating.service';
+import { Observable } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-book-card',
@@ -19,10 +21,13 @@ export class BookCardComponent {
   newShelf: any = { bookId: 0, shelf: '' };
   newRating: any = { bookId: 0, rating: 0 };
 
+  currentUser: Observable<User | null> = this._authService.getCurrentUser();
+
   constructor(
     public router: Router,
     private ShelfService: ShelfService,
-    private RatingService: RatingService
+    private RatingService: RatingService,
+    private _authService: AuthService
   ) {}
 
   ngOnInit(): void {
