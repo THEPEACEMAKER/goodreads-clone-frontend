@@ -50,6 +50,12 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cancelEdit()">{{ isEditingBook ? 'Cancel' : 'Close' }}</button>
             <button type="button" class="btn btn-primary" (click)="isEditingBook ? updateBook() : addBook()" [disabled]="!book.name || !book.description || !book.category || !book.author">{{ isEditingBook ? 'Save' : 'Add' }}</button>
+            <div *ngIf="error" class="alert alert-danger">
+              {{ error }}
+            </div>
+            <div *ngIf="success" class="alert alert-success">
+              updated successfully
+            </div>
           </div>
         </div>
       </div>

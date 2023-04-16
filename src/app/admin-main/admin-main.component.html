@@ -49,8 +49,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let category of categories">
-      <td scope="row">{{category._id}}</td>
+    <tr *ngFor="let category of categories; let i=index">
+      <td scope="row">{{ i+1 }}</td>
       <td>{{category.name}}</td>
       <td>
         
@@ -60,7 +60,7 @@
         </button>
         
         <!-- Modal -->
-        <div class="modal fade" id="staticBackdropnn" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropnnLabel" aria-hidden="true">
+        <div class="modal fade" id="staticBackdropnn" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropnnLabel" aria-hidden="true" (hidden.bs.modal)="clearMessages()">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -89,7 +89,7 @@
         </button>
         
         <!-- Modal -->
-        <div class="modal fade" id="staticBackdropdel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropdelLabel" aria-hidden="true">
+        <div class="modal fade" id="staticBackdropdel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropdelLabel" aria-hidden="true" (hidden.bs.modal)="clearMessages()">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
