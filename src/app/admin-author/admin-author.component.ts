@@ -87,7 +87,6 @@ export class AdminAuthorComponent {
     this.currentAuthor = { ...author };
   }
   editAuthor() {
-    
     const formData = new FormData();
     formData.append('firstName', this.editForm.value.firstName);
     formData.append('lastName', this.editForm.value.lastName);
