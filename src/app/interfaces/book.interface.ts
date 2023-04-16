@@ -7,4 +7,5 @@ export interface Book {
   author: string; // reference to Author
   avgRating?: number;
   reviews?: number[] | []; // reference to Review
+  ratingsCount?: number; // number of reviews
 }

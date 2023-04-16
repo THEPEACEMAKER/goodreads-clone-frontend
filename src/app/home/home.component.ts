@@ -19,6 +19,8 @@ export class HomeComponent {
   books:Book[]=[];
   authors:Author[]=[];
   categories:Category[]=[];
+  popularBooks!: Book[];
+  popularAuthors: Author[]=[];
   constructor(private _bookService: BookService,private _authorService: AuthorService, private _CategoryService:CategoryService, private _authService:AuthService){
     _bookService.getBooks().subscribe({
       next: (response:any) =>{
@@ -36,6 +38,22 @@ export class HomeComponent {
         this.categories=response.categories;
       }
     });
+    
+    
+    _bookService.getPopularBooks().subscribe({
+      next: (response:any) =>{
+        this.popularBooks=response.books;
+      }
+    });
+    
+
+    _authorService.getPopularAuthors().subscribe({
+      next: (response:any) =>{
+        this.popularAuthors=response.authors;
+      }
+    });
+
+
   }
 
 

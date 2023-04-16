@@ -9,14 +9,19 @@
       </div>
 
       <owl-carousel-o [options]="customOptions">
-        <ng-container *ngFor="let book of books">
+        <ng-container *ngFor="let book of popularBooks">
           <ng-template carouselSlide>
             <figure class="book-style">
               <a [routerLink]="['/book', book._id]"
                 ><img [src]="book.imageUrl" alt="Books" class="book-item" 
               />
-              <!-- <p>{{book.name}}</p> -->
             </a>
+            <p style="font-weight: bold; text-align: center;">{{book.name}}</p>
+            <div style="font-weight: bold; text-align: center;">
+            <i  class="material-icons star-filled" style="color: coral;">star</i>
+            <label for="star" class="rating">{{ book.avgRating }}/5</label>
+          </div>
+            <p style="display: inline-block; font-weight: bold; ">Rating no.<span style="border: 1px solid black"> {{book.ratingsCount}}</span></p>
             </figure>
           </ng-template>
         </ng-container>
@@ -29,7 +34,7 @@
 
       <section>
         <div style="display: flex; height: 350px; text-align: center;">
-            <app-author style="width: 24%;" class="auth" *ngFor="let author of authors" [author]="author"></app-author>
+            <app-author style="width: 24%;" class="auth" *ngFor="let author of popularAuthors" [author]="author"></app-author>
         </div>
       </section>
 
@@ -40,7 +45,7 @@
     </div>
 
     <section>
-      <div style="display: flex; height: 50px; justify-content: space-around;">
+      <div style="display: flex; height: 50px; justify-content: space-around; flex-wrap: wrap;">
           <app-category  class="catego" *ngFor="let category of categories" [category]="category"></app-category>
       </div>
     </section>
