@@ -51,5 +51,8 @@ export class AuthorService {
   }
 
   // the authors with the most books or the authors with the highest-rated books
-  // getPopularAuthors(): Observable<Author[]>
+  getPopularAuthors(): Observable<Author[]> {
+    const url = `${this.baseUrl}/popular`;
+    return this.http.get<Author[]>(url);
+  }
 }

@@ -29,7 +29,7 @@
           <button class="btn btn-outline-success" type="submit">Search</button>
           <div *ngIf="searchTerm" style="position: absolute; top: 50px; left: 0; width: 100%;">
             <ul class="list-group">
-              <li *ngFor="let book of searchResults" class="list-group-item">{{ book.name }}</li>
+              <li *ngFor="let book of searchResults" class="list-group-item" [routerLink]="['/book', book._id]">{{ book.name }}</li>
             </ul>
           </div>
         </form>
@@ -47,7 +47,7 @@
                 <a class="nav-link" href="#"><img [src]="(currentUser | async)?.imageUrl"  class="img-fluid rounded-circle" alt="User Image"></a>
               </li>
             <li class="nav-item" *ngIf="currentUser | async">
-              <a class="nav-link usrOut" (click)="logout()" routerLink="login">Logout</a>
+              <a class="nav-link usrOut" (click)="logout()" routerLink="login"><button class="usrOut" class="btn btn-dark" (click)="logout()" routerLink="login">Logout</button></a>
             </li>
           </ul>
       </div>

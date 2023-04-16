@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { BookService } from '../services/book.service';
-import { Author, Book, Category } from '../interfaces';
+import { Author, Book, Category, User } from '../interfaces';
 import { AuthorService } from '../services/author.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CategoryService } from '../services/category.service';
+import { AuthService } from '../auth/auth.service';
+import { Observable } from 'rxjs';
+
 
 
 @Component({
@@ -12,11 +15,11 @@ import { CategoryService } from '../services/category.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-
+  currentUser: Observable<User | null> = this._authService.getCurrentUser();
   books:Book[]=[];
   authors:Author[]=[];
   categories:Category[]=[];
-  constructor(private _bookService: BookService,private _authorService: AuthorService, private _CategoryService:CategoryService){
+  constructor(private _bookService: BookService,private _authorService: AuthorService, private _CategoryService:CategoryService, private _authService:AuthService){
     _bookService.getBooks().subscribe({
       next: (response:any) =>{
         this.books=response.books;
