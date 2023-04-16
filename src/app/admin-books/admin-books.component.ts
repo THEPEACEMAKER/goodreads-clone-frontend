@@ -15,7 +15,7 @@ export class AdminBooksComponent {
   books: Book[] = [];
   currentPage: number = 1;
   totalBooks: number = 1;
-  booksPerPage: number =10;
+  booksPerPage: number = 10;
   isEditingBook: boolean = false;
   editingBook: Book | null = null;
   book: Book = {
@@ -29,6 +29,8 @@ export class AdminBooksComponent {
 
   categories: Category[] = [];
   authors: Author[] = [];
+  error: string | null = null;
+  success: boolean = false;
 
   constructor(
     private bookService: BookService,
@@ -53,12 +55,13 @@ export class AdminBooksComponent {
   getAllCategories(): void {
     this._categoryService.getAllCategories().subscribe({
       next: (response: any) => {
-        this.categories = response.categories;},
+        this.categories = response.categories;
+      },
     });
   }
 
   getBooks(): void {
-    this.bookService.getBooks(this.currentPage,this.booksPerPage).subscribe(
+    this.bookService.getBooks(this.currentPage, this.booksPerPage).subscribe(
       (response: any) => {
         this.books = response.books;
         this.totalBooks = response.totalBooks;
@@ -73,8 +76,12 @@ export class AdminBooksComponent {
     this.bookService.deleteBook(id).subscribe(
       () => {
         this.books = this.books.filter((b) => b._id !== id);
+        this.error = null;
+        this.success = true;
       },
-      (error) => {}
+      (error) => {
+        this.error = error;
+      }
     );
   }
 
@@ -94,9 +101,11 @@ export class AdminBooksComponent {
       (newBook) => {
         this.getBooks();
         this.cancelEdit();
+        this.error = null;
+        this.success = true;
       },
       (error) => {
-        console.error(error);
+        this.error = error;
       }
     );
   }
@@ -111,9 +120,9 @@ export class AdminBooksComponent {
     this.isEditingBook = true;
     this.editingBook = book;
     this.book = { ...book };
-    this.book.author=book.author._id;
-    this.book.category=book.category._id;
-    
+    this.book.author = book.author._id;
+    this.book.category = book.category._id;
+
     const modal = document.getElementById('addBookModal');
     const myModal = new bootstrap.Modal(modal!, { backdrop: 'static' });
     myModal.show();
@@ -133,9 +142,11 @@ export class AdminBooksComponent {
           const index = this.books.findIndex((b) => b._id === updatedBook._id);
           this.books[index] = updatedBook;
           this.cancelEdit();
+          this.error = null;
+          this.success = true;
         },
         (error) => {
-          console.error(error);
+          this.error = error;
         }
       );
     }
