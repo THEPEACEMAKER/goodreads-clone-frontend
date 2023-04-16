@@ -153,6 +153,7 @@ export class AdminBooksComponent {
   }
 
   cancelEdit(): void {
+    this.clearMessages();
     this.editingBook = null;
     this.isEditingBook = false;
     this.book = {
@@ -168,5 +169,10 @@ export class AdminBooksComponent {
     if (myModal) {
       myModal.hide();
     }
+  }
+
+  clearMessages() {
+    this.error = null;
+    this.success = false;
   }
 }
