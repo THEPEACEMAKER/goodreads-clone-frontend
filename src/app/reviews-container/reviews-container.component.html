@@ -1,5 +1,5 @@
 <div *ngIf="reviews" class="d-flex flex-column container" >
-<app-review-card *ngFor="let review of reviews" [review]="review" (reviewUpdated)="getReviews()" (reviewToUpdate)="assignReview($event)" ></app-review-card>
+<app-review-card *ngFor="let review of reviews" [review]="review" (reviewUpdated)="getReviews()" (reviewToUpdate)="assignReview($event)" [userId]="(currentUser | async)?._id"></app-review-card>
 </div>
 <div  *ngIf="totalReviews" class="d-flex flex-row justify-content-center mt-3">
     <ngb-pagination

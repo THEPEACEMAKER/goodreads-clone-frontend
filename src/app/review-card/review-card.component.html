@@ -1,17 +1,17 @@
 <div class="card mt-2">
     <div class="card-header d-flex flex-row">
       <p class="col username">{{review.user.firstName + " " + review.user.lastName}}</p>
-      <button class="col-1 btn" (click)="editReview()" 
+      <button *ngIf="userId== review.user._id" class="col-1 btn" (click)="editReview()" 
 data-bs-toggle="modal"
 data-bs-target="#editFormDrop">
         <i class="fa-solid fa-pencil"></i>
       </button>
-      <button class="btn col-1" (click)="deleteReview()">
+      <button *ngIf="userId== review.user._id" class="btn col-1" (click)="deleteReview()">
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
     <div class="card-body">
-      <h5 class="card-title">{{review.title}}</h5>
+      <h5 class="card-title">{{review.title}} </h5>
       <p class="card-text content">{{review.content}}</p>
     </div>
   </div>
